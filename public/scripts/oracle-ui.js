@@ -18,14 +18,36 @@ async function initOracle() {
     models.twitter = new MarkovGenerator(corpora.twitter, 2);
     models.cyborg = new MarkovGenerator(corpora.cyborg, 2);
     
+    // NEW: Load user feedback from database
+    try {
+        const feedbackResponse = await fetch('/api/get-feedback');
+        const feedbackData = await feedbackResponse.json();
+        
+        if (feedbackData.feedback && feedbackData.feedback.length > 0) {
+            // Combine all feedback into one corpus
+            const feedbackText = feedbackData.feedback
+                .map(item => item.comment)
+                .join(' ');
+            
+            models.feedback = new MarkovGenerator(feedbackText, 2);
+            console.log(`✓ Loaded ${feedbackData.count} user comments into oracle`);
+        } else {
+            // No feedback yet, create empty model
+            models.feedback = new MarkovGenerator('The community awaits your voice.', 2);
+        }
+    } catch (error) {
+        console.error('Error loading feedback:', error);
+        models.feedback = new MarkovGenerator('The community awaits your voice.', 2);
+    }
+    
     modelsLoaded = true;
     console.log('✓ Oracle ready');
 }
 
 function generateWithWeights(weights) {
     const combined = MarkovGenerator.combine(
-        [models.epa, models.blogs, models.youtube, models.tiktok, models.reviews, models.twitter, models.cyborg],
-        [weights.epa, weights.blogs || 0, weights.youtube || 0, weights.tiktok || 0, weights.reviews, weights.twitter, weights.cyborg]
+        [models.epa, models.blogs, models.youtube, models.tiktok, models.reviews, models.twitter, models.cyborg, models.feedback],
+        [weights.epa, weights.blogs || 0, weights.youtube || 0, weights.tiktok || 0, weights.reviews, weights.twitter, weights.cyborg, weights.feedback || 0]
     );
     
     for (let i = 0; i < 50; i++) {
@@ -48,30 +70,36 @@ function askOracle(question) {
     
     const responses = [];
     
-    // Sentence 1: Bureaucratic opening (70% EPA)
+    // Sentence 1: Bureaucratic opening (60% EPA, 10% feedback)
     const bureaucratic = generateWithWeights({
-        epa: 0.7,
+        epa: 0.6,
         cyborg: 0.1,
         reviews: 0.1,
-        twitter: 0.1
+        twitter: 0.1,
+        feedback: 0.1
     });
     responses.push(bureaucratic);
     
-    // Sentence 2: Medium contamination (20% EPA, 40% cyborg)
+    // Sentence 2: Medium contamination (15% EPA, 30% cyborg, 15% feedback)
     const prediction = generateWithWeights({
-        epa: 0.2,
-        cyborg: 0.4,
-        reviews: 0.2,
-        twitter: 0.2
+        epa: 0.15,
+        cyborg: 0.30,
+        reviews: 0.15,
+        twitter: 0.15,
+        feedback: 0.15,
+        blogs: 0.05,
+        youtube: 0.05
     });
     responses.push(prediction);
     
-    // Sentence 3: High contamination (5% EPA, 50% cyborg)
+    // Sentence 3: High contamination (5% EPA, 40% cyborg, 20% feedback)
     const mystical = generateWithWeights({
         epa: 0.05,
-        cyborg: 0.5,
-        reviews: 0.225,
-        twitter: 0.225
+        cyborg: 0.40,
+        reviews: 0.15,
+        twitter: 0.15,
+        feedback: 0.20,
+        tiktok: 0.05
     });
     responses.push(mystical);
     

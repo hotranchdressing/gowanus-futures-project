@@ -4,5 +4,8 @@
   "description": "Gowanus Canal Superfund Futures - An Interactive Speculative Archive",
   "scripts": {
     "build": "echo 'No build needed'"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2"
   }
 }
