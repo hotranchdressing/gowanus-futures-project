@@ -1,0 +1,8 @@
+{
+  "name": "gowanus-futures-project",
+  "version": "1.0.0",
+  "description": "Gowanus Canal Superfund Futures - An Interactive Speculative Archive",
+  "scripts": {
+    "build": "echo 'No build needed'"
+  }
+}

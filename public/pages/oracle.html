@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gowanus Oracle - QuickScore Predictive Analysis</title>
+    <link rel="stylesheet" href="../styles/oracle.css">
+</head>
+<body>
+    <div id="oracle-container">
+        <div id="oracle-header">
+            <h1>GOWANUS FUTURES PROJECT</h1>
+            <div id="system-status">STATUS: ONLINE | CONTAMINATION MONITORING ACTIVE</div>
+        </div>
+
+        <div id="query-section">
+            <label for="oracle-input">SUBMIT QUERY ABOUT GOWANUS 2050:</label>
+            <input 
+                type="text" 
+                id="oracle-input" 
+                placeholder="e.g., Will there be fish in the canal?"
+                maxlength="200"
+            >
+            <button id="oracle-submit">ANALYZE</button>
+        </div>
+
+        <div id="response-section" class="hidden">
+            <div id="response-header">
+                <span>ANALYSIS COMPLETE</span>
+                <span id="contamination-display">CONTAMINATION: 0%</span>
+            </div>
+            <div id="response-content">
+                <p id="oracle-response"></p>
+            </div>
+            <div id="confidence-bar">
+                <div id="confidence-label">CONFIDENCE LEVEL:</div>
+                <div id="confidence-meter">
+                    <div id="confidence-fill"></div>
+                </div>
+                <div id="confidence-text">UNSTABLE</div>
+            </div>
+        </div>
+
+        <div id="past-queries">
+            <h3>RECENT ANALYSES:</h3>
+            <div id="query-list"></div>
+        </div>
+    </div>
+
+    <script src="../scripts/markov.js"></script>
+    <script src="../scripts/shared.js"></script>
+    <script src="../scripts/oracle-ui.js"></script>
+</body>
+</html>

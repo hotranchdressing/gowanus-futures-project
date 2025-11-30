@@ -1,0 +1,7 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/public/pages/index.html" },
+    { "source": "/oracle", "destination": "/public/pages/oracle.html" },
+    { "source": "/api/(.*)", "destination": "/api/$1" }
+  ]
+}
