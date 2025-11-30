@@ -1,7 +1,9 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/public/pages/index.html" },
-    { "source": "/oracle", "destination": "/public/pages/oracle.html" },
+    { "source": "/", "destination": "/pages/community-meeting.html" },
+    { "source": "/pages/(.*)", "destination": "/pages/$1" },
+    { "source": "/oracle", "destination": "/pages/oracle.html" },
+    { "source": "/community", "destination": "/pages/community-meeting.html" },
     { "source": "/api/(.*)", "destination": "/api/$1" }
   ]
 }
