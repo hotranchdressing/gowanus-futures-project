@@ -215,3 +215,128 @@ body {
 #query-list::-webkit-scrollbar-thumb {
     background: #00ff00;
 }
+
+/* Community Meeting Specific Styles */
+#feedback-form-section {
+    margin-bottom: 30px;
+}
+
+#feedback-form-section label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+#comment-input {
+    width: 100%;
+    min-height: 100px;
+    background: #000;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    padding: 12px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    margin-bottom: 15px;
+    resize: vertical;
+}
+
+#comment-input:focus {
+    outline: none;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+#submit-feedback-btn {
+    width: 100%;
+    background: #00ff00;
+    color: #000;
+    border: none;
+    padding: 15px;
+    font-family: 'Courier New', monospace;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#submit-feedback-btn:hover {
+    background: #00cc00;
+    box-shadow: 0 0 15px #00ff00;
+}
+
+#status {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+#progress-section {
+    margin: 40px 0;
+    padding: 20px 0;
+}
+
+#progress-divider {
+    border-top: 2px solid #00ff00;
+    margin-bottom: 20px;
+}
+
+#progress-text {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+#proceed-oracle-btn {
+    width: 100%;
+    background: #ff0000;
+    color: #fff;
+    border: none;
+    padding: 20px;
+    font-family: 'Courier New', monospace;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#proceed-oracle-btn:hover {
+    background: #cc0000;
+    box-shadow: 0 0 20px #ff0000;
+}
+
+#all-feedback {
+    border-top: 2px solid #00ff00;
+    padding-top: 20px;
+    margin-top: 40px;
+}
+
+#all-feedback h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+#feedback-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.feedback-item {
+    margin: 15px 0;
+    padding: 10px;
+    border-left: 3px solid #00ff00;
+    background: rgba(0, 255, 0, 0.05);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Scrollbar */
+#feedback-list::-webkit-scrollbar {
+    width: 10px;
+}
+
+#feedback-list::-webkit-scrollbar-track {
+    background: #000;
+}
+
+#feedback-list::-webkit-scrollbar-thumb {
+    background: #00ff00;
+}

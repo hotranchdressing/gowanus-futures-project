@@ -4,128 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community Meeting - Gowanus Futures</title>
-    <style>
-        body {
-            font-family: 'Courier New', monospace;
-            background: #000;
-            color: #00ff00;
-            padding: 40px;
-        }
-        
-        #feedback-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        textarea {
-            width: 100%;
-            min-height: 100px;
-            background: #000;
-            border: 2px solid #00ff00;
-            color: #00ff00;
-            padding: 10px;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-        }
-        
-        button {
-            background: #00ff00;
-            color: #000;
-            border: none;
-            padding: 15px 30px;
-            font-family: 'Courier New', monospace;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-        
-        #all-feedback {
-            margin-top: 40px;
-            border-top: 2px solid #00ff00;
-            padding-top: 20px;
-        }
-        
-        .feedback-item {
-            margin: 15px 0;
-            padding: 10px;
-            border-left: 3px solid #00ff00;
-            background: rgba(0, 255, 0, 0.05);
-        }
-    </style>
+    <link rel="stylesheet" href="../styles/oracle.css">
 </head>
 <body>
-    <h1>EPA COMMUNITY MEETING - PUBLIC COMMENT PERIOD</h1>
-    
-    <div id="feedback-form">
-        <h2>Submit Your Feedback:</h2>
-        <textarea id="comment-input" placeholder="Share your thoughts on the Gowanus Canal remediation..."></textarea>
-        <button onclick="submitFeedback()">SUBMIT COMMENT</button>
-        <p id="status"></p>
-    </div>
-    
-    <div id="all-feedback">
-        <h2>Community Feedback:</h2>
-        <div id="feedback-list"></div>
+    <div id="oracle-container">
+        <div id="oracle-header">
+            <h1>GOWANUS FUTURES PROJECT</h1>
+            <h2>EPA COMMUNITY MEETING - PUBLIC COMMENT PERIOD</h2>
+            <div id="system-status">ACCEPTING STAKEHOLDER INPUT</div>
+        </div>
+
+        <div id="feedback-form-section">
+            <label for="comment-input">SUBMIT YOUR FEEDBACK ON REMEDIATION:</label>
+            <textarea 
+                id="comment-input" 
+                placeholder="Share your thoughts on the Gowanus Canal remediation..."
+                rows="5"
+            ></textarea>
+            <button id="submit-feedback-btn">SUBMIT COMMENT</button>
+            <p id="status"></p>
+        </div>
+
+        <div id="progress-section">
+            <div id="progress-divider"></div>
+            <p id="progress-text">
+                Your voice has been recorded. The future is contaminated by community input.
+            </p>
+            <button id="proceed-oracle-btn">
+                PROCEED TO 2050 ANALYSIS →
+            </button>
+        </div>
+
+        <div id="all-feedback">
+            <h3>COMMUNITY FEEDBACK:</h3>
+            <div id="feedback-list"></div>
+        </div>
     </div>
 
-    <script>
-        async function submitFeedback() {
-            const comment = document.getElementById('comment-input').value.trim();
-            const status = document.getElementById('status');
-            
-            if (!comment) {
-                status.textContent = 'Please enter a comment.';
-                return;
-            }
-            
-            try {
-                const response = await fetch('/api/submit-feedback', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ comment })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok) {
-                    status.textContent = '✓ Comment submitted!';
-                    document.getElementById('comment-input').value = '';
-                    loadFeedback();
-                } else {
-                    status.textContent = 'Error: ' + data.error;
-                }
-            } catch (error) {
-                status.textContent = 'Error submitting comment';
-                console.error(error);
-            }
-        }
-        
-        async function loadFeedback() {
-            try {
-                const response = await fetch('/api/get-feedback');
-                const data = await response.json();
-                
-                const feedbackList = document.getElementById('feedback-list');
-                feedbackList.innerHTML = '';
-                
-                data.feedback.forEach(item => {
-                    const div = document.createElement('div');
-                    div.className = 'feedback-item';
-                    div.textContent = item.comment;
-                    feedbackList.appendChild(div);
-                });
-            } catch (error) {
-                console.error('Error loading feedback:', error);
-            }
-        }
-        
-        // Load feedback on page load
-        loadFeedback();
-    </script>
+    <script src="../scripts/community-meeting.js"></script>
 </body>
 </html>
-```
-
-Save it, then go to:
-```
-http://localhost:3000/pages/community-meeting.html
