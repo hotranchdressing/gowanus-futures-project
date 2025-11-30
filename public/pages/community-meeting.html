@@ -1,46 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Community Meeting - Gowanus Futures</title>
-    <link rel="stylesheet" href="../styles/oracle.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community Meeting - Gowanus Futures</title>
+  <link rel="stylesheet" href="../styles/gowanus98.css" />
 </head>
 <body>
-    <div id="oracle-container">
-        <div id="oracle-header">
-            <h1>GOWANUS FUTURES PROJECT</h1>
-            <h2>EPA COMMUNITY MEETING - PUBLIC COMMENT PERIOD</h2>
-            <div id="system-status">ACCEPTING STAKEHOLDER INPUT</div>
-        </div>
-
-        <div id="feedback-form-section">
-            <label for="comment-input">SUBMIT YOUR FEEDBACK ON REMEDIATION:</label>
-            <textarea 
-                id="comment-input" 
-                placeholder="Share your thoughts on the Gowanus Canal remediation..."
-                rows="5"
-            ></textarea>
-            <button id="submit-feedback-btn">SUBMIT COMMENT</button>
-            <p id="status"></p>
-        </div>
-
-        <div id="progress-section">
-            <div id="progress-divider"></div>
-            <p id="progress-text">
-                Your voice has been recorded. The future is contaminated by community input.
-            </p>
-            <button id="proceed-oracle-btn">
-                PROCEED TO 2050 ANALYSIS →
-            </button>
-        </div>
-
-        <div id="all-feedback">
-            <h3>COMMUNITY FEEDBACK:</h3>
-            <div id="feedback-list"></div>
-        </div>
+  <header class="chrome">
+    <div class="chrome-buttons">
+      <button class="chrome-btn" onclick="window.history.back()" title="Go back">⬅</button>
+      <button class="chrome-btn" onclick="window.location.reload()" title="Refresh">⟲</button>
     </div>
+    <div class="address-bar">gowanus://community-meeting</div>
+    <div class="save-btn"></div>
+  </header>
 
-    <script src="../scripts/community-meeting.js"></script>
+  <main class="meeting-container">
+    <div class="window shell wide">
+      <div class="window-title">EPA COMMUNITY MEETING - PUBLIC COMMENT PERIOD</div>
+      <div class="window-body">
+        <div class="terminal-section">
+          <div class="terminal-header">GOWANUS CANAL SUPERFUND SITE</div>
+          <div class="terminal-title">STAKEHOLDER INPUT SESSION</div>
+          <p style="font-size: 13px; line-height: 1.6;">
+            &gt; The Environmental Protection Agency invites community members to submit feedback
+            on the proposed remediation strategy for the Gowanus Canal Superfund Site.
+            All comments will be incorporated into the public record and future projections.
+          </p>
+        </div>
+
+        <div class="feedback-section">
+          <label class="feedback-label" for="comment-input">
+            SUBMIT YOUR FEEDBACK ON REMEDIATION:
+          </label>
+          <textarea
+            id="comment-input"
+            class="feedback-textarea"
+            placeholder="Share your thoughts on the Gowanus Canal remediation..."
+            rows="5"
+          ></textarea>
+          <button id="submit-feedback-btn" class="submit-btn">
+            SUBMIT COMMENT
+          </button>
+          <div id="status" class="status-message"></div>
+        </div>
+
+        <div class="progress-divider"></div>
+
+        <div class="progress-message">
+          ⚠ Your voice has been recorded. The future is contaminated by community input.
+        </div>
+
+        <button id="proceed-oracle-btn" class="proceed-btn">
+          PROCEED TO 2050 ANALYSIS →
+        </button>
+
+        <div class="feedback-list-section">
+          <div class="feedback-list-title">COMMUNITY FEEDBACK LOG:</div>
+          <div id="feedback-list" class="feedback-list"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../scripts/community-meeting.js"></script>
 </body>
 </html>

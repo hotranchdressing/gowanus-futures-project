@@ -1,54 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gowanus Oracle - QuickScore Predictive Analysis</title>
-    <link rel="stylesheet" href="../styles/oracle.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oracle - Gowanus Futures 2050</title>
+  <link rel="stylesheet" href="../styles/gowanus98.css" />
 </head>
 <body>
-    <div id="oracle-container">
-        <div id="oracle-header">
-            <h1>GOWANUS FUTURES PROJECT</h1>
-            <div id="system-status">STATUS: ONLINE | CONTAMINATION MONITORING ACTIVE</div>
-        </div>
-
-        <div id="query-section">
-            <label for="oracle-input">SUBMIT QUERY ABOUT GOWANUS 2050:</label>
-            <input 
-                type="text" 
-                id="oracle-input" 
-                placeholder="e.g., Will there be fish in the canal?"
-                maxlength="200"
-            >
-            <button id="oracle-submit">ANALYZE</button>
-        </div>
-
-        <div id="response-section" class="hidden">
-            <div id="response-header">
-                <span>ANALYSIS COMPLETE</span>
-                <span id="contamination-display">CONTAMINATION: 0%</span>
-            </div>
-            <div id="response-content">
-                <p id="oracle-response"></p>
-            </div>
-            <div id="confidence-bar">
-                <div id="confidence-label">CONFIDENCE LEVEL:</div>
-                <div id="confidence-meter">
-                    <div id="confidence-fill"></div>
-                </div>
-                <div id="confidence-text">UNSTABLE</div>
-            </div>
-        </div>
-
-        <div id="past-queries">
-            <h3>RECENT ANALYSES:</h3>
-            <div id="query-list"></div>
-        </div>
+  <header class="chrome">
+    <div class="chrome-buttons">
+      <button class="chrome-btn" onclick="window.history.back()" title="Go back">⬅</button>
+      <button class="chrome-btn" onclick="window.location.href='/community'" title="Home">⌂</button>
+      <button class="chrome-btn" onclick="window.location.reload()" title="Refresh">⟲</button>
     </div>
+    <div class="address-bar">gowanus://oracle/2050</div>
+    <div class="save-btn">💾</div>
+  </header>
 
-    <script src="../scripts/markov.js"></script>
-    <script src="../scripts/shared.js"></script>
-    <script src="../scripts/oracle-ui.js"></script>
+  <main class="oracle-container">
+    <div class="window shell wide">
+      <div class="window-title">QUICKSCORE PREDICTIVE ANALYSIS SYSTEM</div>
+      <div class="window-body">
+        <div class="terminal-section">
+          <div class="terminal-header">GOWANUS FUTURES PROJECT</div>
+          <div class="terminal-title">CONTAMINATED ORACLE - TIMELINE 2050</div>
+          <p style="font-size: 13px; line-height: 1.6;">
+            &gt; SYSTEM STATUS: ONLINE<br>
+            &gt; CONTAMINATION MONITORING: ACTIVE<br>
+            &gt; USER FEEDBACK INTEGRATION: ENABLED<br>
+            &gt; TEMPORAL ANALYSIS: READY
+          </p>
+        </div>
+
+        <div class="oracle-input-section">
+          <label class="oracle-label" for="oracle-input">
+            SUBMIT QUERY ABOUT GOWANUS 2050:
+          </label>
+          <input
+            id="oracle-input"
+            class="oracle-input"
+            type="text"
+            placeholder="e.g., Will there be fish in the canal?"
+            maxlength="200"
+          />
+          <button id="oracle-submit" class="analyze-btn">
+            ANALYZE
+          </button>
+          <div id="status" class="status-message"></div>
+        </div>
+
+        <div id="response-section" class="window hidden response-window">
+          <div class="window-title">ANALYSIS RESULTS</div>
+          <div class="response-header">
+            <span>ANALYSIS COMPLETE</span>
+            <span id="contamination-display" class="contamination-level">CONTAMINATION: 0%</span>
+          </div>
+          <div class="response-content">
+            <p id="oracle-response"></p>
+          </div>
+          <div class="confidence-section">
+            <div class="confidence-label">CONFIDENCE LEVEL:</div>
+            <div class="confidence-meter">
+              <div id="confidence-fill" class="confidence-fill"></div>
+            </div>
+            <div id="confidence-text" class="confidence-text">UNSTABLE</div>
+          </div>
+        </div>
+
+        <div class="past-queries-section">
+          <div class="past-queries-title">RECENT ANALYSES:</div>
+          <div id="query-list" class="query-list"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="../scripts/markov.js"></script>
+  <script src="../scripts/oracle-ui.js"></script>
 </body>
 </html>
