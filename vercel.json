@@ -1,9 +1,11 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/pages/community-meeting.html" },
-    { "source": "/pages/(.*)", "destination": "/pages/$1" },
-    { "source": "/oracle", "destination": "/pages/oracle.html" },
+    { "source": "/", "destination": "/pages/index.html" },
+    { "source": "/site-assessment", "destination": "/pages/site-assessment.html" },
+    { "source": "/npl", "destination": "/pages/npl.html" },
     { "source": "/community", "destination": "/pages/community-meeting.html" },
+    { "source": "/oracle", "destination": "/pages/oracle.html" },
+    { "source": "/pages/(.*)", "destination": "/pages/$1" },
     { "source": "/api/(.*)", "destination": "/api/$1" }
   ]
 }
