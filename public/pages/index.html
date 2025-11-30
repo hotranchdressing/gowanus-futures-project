@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gowanus Canal Superfund</title>
+    <link rel="stylesheet" href="../styles/gowanus98.css" />
+  </head>
+  <body class="win98">
+    <div id="loader" class="window shell center">
+      <div class="window-title">Gowanus 98</div>
+      <div class="window-body">
+        <p class="loader-text">Initializing...</p>
+      </div>
+    </div>
+
+    <main id="app" class="hidden">
+      <header class="chrome">
+        <div class="chrome-buttons">
+          <button class="chrome-btn" data-action="back" title="Go back">
+            ⬅
+          </button>
+          <button class="chrome-btn" data-action="forward" title="Forward">
+            ➡
+          </button>
+          <button class="chrome-btn" data-action="home" title="Home">⌂</button>
+          <button class="chrome-btn" data-action="refresh" title="Refresh">
+            ⟲
+          </button>
+        </div>
+        <div class="address-bar"></div>
+        <button
+          class="chrome-btn save-btn"
+          data-action="save"
+          title="Save results"
+        >
+          💾
+        </button>
+      </header>
+
+      <section id="home-screen" class="view">
+        <div class="bg-flash" id="bg-flash"></div>
+        <div class="home-wrap">
+          <div class="window shell wide">
+            <div class="window-title">HOME PAGE</div>
+            <div class="window-body center-content">
+              <h1 class="title">Gowanus Canal Superfund</h1>
+              <div class="menu-buttons">
+                <button class="nav-btn" data-target="level1">
+                  Site Assessment
+                </button>
+                <button class="nav-btn" data-target="npl">
+                  National Priorities List
+                </button>
+                <button class="nav-btn coming-soon" data-target="coming">
+                  Remedial Investigation
+                </button>
+                <button class="nav-btn coming-soon" data-target="coming">
+                  Records of Decision Survey
+                </button>
+                <button class="nav-btn disabled danger" disabled>
+                  Remedial Design
+                </button>
+              </div>
+              <div class="scores">
+                <div>Best Level 1: <span id="best-level1">--</span></div>
+                <div>Best Level 2: <span id="best-level2">--</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="level1" class="view hidden">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Site Assessment</div>
+            <h2>Level 1: Jigsaw Puzzle</h2>
+          </div>
+          <div class="timer" id="timer1">00:00</div>
+        </div>
+
+        <div class="window shell wide">
+          <div class="window-body">
+            <div class="puzzle-wrap">
+              <div class="puzzle-board" id="puzzle-board"></div>
+              <div class="puzzle-side">
+                <div class="reference-image">
+                  <div class="reference-title">Reference Image</div>
+                  <img
+                    src="../assets/images/Level 1 Map.png"
+                    alt="Reference"
+                    class="reference-img"
+                  />
+                </div>
+                <div class="puzzle-pool" id="puzzle-pool"></div>
+              </div>
+            </div>
+            <div class="legend hidden" id="legend">
+              <div class="legend-title">Contamination Legend</div>
+              <ul>
+                <li>
+                  <span class="chip purple"></span> Purple: Lowest contamination
+                </li>
+                <li>
+                  <span class="chip green"></span> Green: Lowest contamination
+                </li>
+                <li>
+                  <span class="chip blue"></span> Blue: Intermediate
+                  contamination
+                </li>
+                <li>
+                  <span class="chip red"></span> Red: Highest contamination
+                </li>
+              </ul>
+              <button class="nav-btn" id="start-level2">Start Level 2</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="level2" class="view hidden">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">Site Assessment</div>
+            <h2>Level 2: Match objects to numbers</h2>
+          </div>
+          <div class="timer" id="timer2">00:00</div>
+        </div>
+        <div class="window shell wide">
+          <div class="window-body">
+            <div class="match-layout">
+              <div class="map-area">
+                <img
+                  src="../assets/images/Level 3 Map.png"
+                  alt="Level 3 Map"
+                  class="map-img"
+                />
+                <div class="targets" id="targets"></div>
+              </div>
+              <div class="cards" id="cards"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="npl" class="view hidden">
+        <div class="section-header">
+          <div>
+            <div class="eyebrow">National Priorities List</div>
+            <h2>Guess the HRS score</h2>
+          </div>
+        </div>
+
+        <div class="window shell wide">
+          <div class="window-title">High Scores</div>
+          <div class="window-body npl-body">
+            <div class="scoreboard">
+              <div class="scoreboard-header">
+                <span>Rank</span>
+                <span>Name</span>
+                <span>Score</span>
+              </div>
+              <div id="score-rows" class="score-rows"></div>
+            </div>
+            <div class="guess-bar">
+              <label for="guess-input">Guess Gowanus score:</label>
+              <input id="guess-input" type="number" min="0" max="100" />
+              <button id="guess-submit" class="nav-btn slim">Submit</button>
+              <button id="guess-reset" class="nav-btn slim secondary">
+                Reset
+              </button>
+              <span id="guess-feedback" class="guess-feedback"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="../scripts/script.js"></script>
+  </body>
+</html>
