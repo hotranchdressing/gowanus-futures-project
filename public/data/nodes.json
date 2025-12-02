@@ -199,11 +199,8 @@
       "keywords": ["future", "2050", "vision", "speculation", "restored", "prediction"],
       "x": 500,
       "y": 550
-    }
-  ]
-}
-
-{
+    },
+    {
   "id": 21,
   "title": "Community Meeting Portal",
   "type": "interactive",
@@ -224,3 +221,6 @@
   "x": 550,
   "y": 650
 }
+  ]
+}
+
