@@ -202,3 +202,25 @@
     }
   ]
 }
+
+{
+  "id": 21,
+  "title": "Community Meeting Portal",
+  "type": "interactive",
+  "year": 2025,
+  "content": "EPA Community Meeting - Public Comment Period. Submit your feedback on the Gowanus Canal remediation strategy. All comments will be recorded and incorporated into future projections.",
+  "keywords": ["community", "meeting", "feedback", "input", "comment", "voice", "participation", "EPA", "public"],
+  "x": 350,
+  "y": 650
+},
+
+{
+  "id": 22,
+  "title": "2050 Oracle Portal",
+  "type": "speculative",
+  "year": 2050,
+  "content": "QuickScore Predictive Analysis System. Query the contaminated oracle about potential futures for the Gowanus Canal. Predictions generated from EPA documents, community input, and speculative contamination.",
+  "keywords": ["oracle", "future", "2050", "prediction", "speculation", "analysis", "forecast", "vision"],
+  "x": 550,
+  "y": 650
+}

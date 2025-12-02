@@ -379,11 +379,50 @@ function showNodeInfo(node) {
   document.getElementById('panel-meta').textContent = 
     `${node.type} • ${node.year}`;
   document.getElementById('panel-content').textContent = node.content;
-  document.getElementById('panel-stats').innerHTML = `
+  
+  // Check if this is a special interactive node
+  let statsHTML = `
     <div>🔍 Revealed ${node.searches} time${node.searches !== 1 ? 's' : ''}</div>
     <div>👁️ Viewed ${node.views} time${node.views !== 1 ? 's' : ''}</div>
     <div>🔗 Connected to ${node.connections.length} nodes</div>
   `;
+  
+  // Add action button for special nodes
+  if (node.id === 21) {
+    // Community Meeting
+    statsHTML += `
+      <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #DEB887;">
+        <button onclick="window.location.href='/community'" style="
+          width: 100%;
+          padding: 12px;
+          background: #E07A5F;
+          border: 2px solid #8B4513;
+          color: #fff;
+          font-weight: bold;
+          cursor: pointer;
+          font-size: 14px;
+        ">ENTER COMMUNITY MEETING →</button>
+      </div>
+    `;
+  } else if (node.id === 22) {
+    // Oracle
+    statsHTML += `
+      <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #DEB887;">
+        <button onclick="window.location.href='/oracle'" style="
+          width: 100%;
+          padding: 12px;
+          background: #3D5A80;
+          border: 2px solid #8B4513;
+          color: #fff;
+          font-weight: bold;
+          cursor: pointer;
+          font-size: 14px;
+        ">CONSULT THE ORACLE →</button>
+      </div>
+    `;
+  }
+  
+  document.getElementById('panel-stats').innerHTML = statsHTML;
   panel.classList.remove('hidden');
 }
 
