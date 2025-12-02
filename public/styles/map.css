@@ -1,0 +1,241 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "MS Sans Serif", "Segoe UI", Tahoma, sans-serif;
+  background: #F5F1E8;
+  color: #5C4033;
+  overflow: hidden;
+}
+
+.map-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.map-header {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.map-header h1 {
+  font-size: 32px;
+  color: #5C4033;
+  font-weight: normal;
+  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+.search-container {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+#search-input {
+  width: 300px;
+  padding: 10px;
+  border: 2px solid #8B4513;
+  background: #FFFEF7;
+  font-size: 14px;
+  font-family: "Courier New", monospace;
+  color: #5C4033;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#search-input::placeholder {
+  color: #CD853F;
+  font-style: italic;
+}
+
+#search-input:focus {
+  outline: none;
+  border-color: #CD853F;
+}
+
+#search-btn,
+#clear-btn {
+  padding: 10px 16px;
+  border: 2px solid #8B4513;
+  background: #DEB887;
+  color: #5C4033;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "MS Sans Serif", sans-serif;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#search-btn:hover,
+#clear-btn:hover {
+  background: #CD853F;
+}
+
+#search-btn:active,
+#clear-btn:active {
+  transform: translateY(1px);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+#search-feedback {
+  position: absolute;
+  bottom: 80px;
+  right: 30px;
+  font-size: 13px;
+  color: #8B4513;
+  background: rgba(255, 254, 247, 0.9);
+  padding: 8px 12px;
+  border: 2px solid #DEB887;
+  border-radius: 3px;
+  max-width: 400px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.map-canvas-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+#map-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+}
+
+.info-panel {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 350px;
+  max-height: 70vh;
+  background: #FFFEF7;
+  border: 3px solid #8B4513;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+.info-panel.hidden {
+  display: none;
+}
+
+#close-panel {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #CD853F;
+  border: 2px solid #8B4513;
+  width: 28px;
+  height: 28px;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  color: #5C4033;
+}
+
+#close-panel:hover {
+  background: #DEB887;
+}
+
+#panel-title {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #5C4033;
+  padding-right: 30px;
+}
+
+#panel-meta {
+  font-size: 12px;
+  color: #8B4513;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+#panel-content {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #5C4033;
+}
+
+#panel-stats {
+  padding-top: 10px;
+  border-top: 2px solid #DEB887;
+  font-size: 12px;
+  color: #8B4513;
+}
+
+.stats-bar {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  color: #8B4513;
+  background: rgba(255, 254, 247, 0.8);
+  padding: 8px 16px;
+  border: 2px solid #DEB887;
+  border-radius: 3px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+/* Scrollbar */
+.info-panel::-webkit-scrollbar {
+  width: 12px;
+}
+
+.info-panel::-webkit-scrollbar-track {
+  background: #F5F1E8;
+}
+
+.info-panel::-webkit-scrollbar-thumb {
+  background: #DEB887;
+  border: 2px solid #8B4513;
+}
+
+/* Floating search queries */
+.floating-search {
+  position: absolute;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  font-weight: bold;
+  pointer-events: none;
+  opacity: 0;
+  animation: float-across 5s ease-in-out;
+  z-index: 5;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes float-across {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0);
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-30px) translateX(50px);
+  }
+}

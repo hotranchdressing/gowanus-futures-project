@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/", "destination": "/pages/index.html" },
+    { "source": "/map", "destination": "/pages/map.html" },
     { "source": "/site-assessment", "destination": "/pages/site-assessment.html" },
     { "source": "/npl", "destination": "/pages/npl.html" },
     { "source": "/community", "destination": "/pages/community-meeting.html" },

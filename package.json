@@ -6,6 +6,8 @@
     "build": "echo 'No build needed'"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^1.0.2"
+    "@neondatabase/serverless": "^1.0.2",
+    "pusher": "^5.2.0",
+    "pusher-js": "^8.4.0"
   }
 }

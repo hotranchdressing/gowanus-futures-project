@@ -1,0 +1,204 @@
+{
+  "nodes": [
+    {
+      "id": 1,
+      "title": "EPA Remedial Investigation 2014",
+      "type": "document",
+      "year": 2014,
+      "content": "Comprehensive 1,591-page analysis of canal contamination levels, sediment composition, and proposed remediation strategies.",
+      "keywords": ["EPA", "remedial", "investigation", "2014", "contamination", "sediment", "analysis"],
+      "x": 400,
+      "y": 300
+    },
+    {
+      "id": 2,
+      "title": "PCB Contamination Levels",
+      "type": "data",
+      "year": 2014,
+      "content": "Polychlorinated biphenyl concentrations exceeded safe levels by significant margins in multiple sediment samples.",
+      "keywords": ["PCB", "polychlorinated", "biphenyl", "contamination", "toxic", "sediment"],
+      "x": 500,
+      "y": 250
+    },
+    {
+      "id": 3,
+      "title": "2013 Dolphin Incident",
+      "type": "news",
+      "year": 2013,
+      "content": "A dolphin was spotted swimming in the Gowanus Canal, sparking concerns about marine wildlife exposure to contaminated waters.",
+      "keywords": ["dolphin", "2013", "marine", "wildlife", "incident", "animal"],
+      "x": 300,
+      "y": 400
+    },
+    {
+      "id": 4,
+      "title": "Coal Tar Deposits",
+      "type": "contaminant",
+      "year": 1950,
+      "content": "Historical coal gasification operations left dense, toxic coal tar deposits throughout the canal bed.",
+      "keywords": ["coal", "tar", "deposits", "toxic", "historical", "industrial"],
+      "x": 600,
+      "y": 350
+    },
+    {
+      "id": 5,
+      "title": "CSO Overflow Events",
+      "type": "infrastructure",
+      "year": 2020,
+      "content": "Combined Sewer Overflow events continue to discharge untreated sewage into the canal during heavy rain.",
+      "keywords": ["CSO", "combined", "sewer", "overflow", "sewage", "rain", "discharge"],
+      "x": 450,
+      "y": 450
+    },
+    {
+      "id": 6,
+      "title": "Hazard Ranking System 2009",
+      "type": "document",
+      "year": 2009,
+      "content": "Documentation establishing the Gowanus Canal's placement on the National Priorities List for Superfund cleanup.",
+      "keywords": ["hazard", "ranking", "HRS", "2009", "NPL", "superfund", "priorities"],
+      "x": 350,
+      "y": 200
+    },
+    {
+      "id": 7,
+      "title": "Feasibility Study 2011",
+      "type": "document",
+      "year": 2011,
+      "content": "Draft study evaluating various remediation approaches including dredging, capping, and in-situ treatment.",
+      "keywords": ["feasibility", "study", "2011", "remediation", "dredging", "capping", "treatment"],
+      "x": 550,
+      "y": 180
+    },
+    {
+      "id": 8,
+      "title": "Potentially Responsible Parties",
+      "type": "legal",
+      "year": 2013,
+      "content": "EPA identified multiple PRPs including current and former industrial property owners along the canal.",
+      "keywords": ["PRP", "responsible", "parties", "legal", "liability", "EPA", "industrial"],
+      "x": 250,
+      "y": 300
+    },
+    {
+      "id": 9,
+      "title": "Public Health Assessment 2017",
+      "type": "document",
+      "year": 2017,
+      "content": "NY State Department of Health evaluation of health risks to nearby residents from canal contamination.",
+      "keywords": ["health", "assessment", "2017", "risk", "residents", "exposure", "public"],
+      "x": 400,
+      "y": 500
+    },
+    {
+      "id": 10,
+      "title": "Proposed Remedial Action Plan 2012",
+      "type": "document",
+      "year": 2012,
+      "content": "EPA's proposed plan for canal cleanup including timelines, methods, and estimated costs.",
+      "keywords": ["proposed", "remedial", "action", "plan", "2012", "cleanup", "EPA"],
+      "x": 500,
+      "y": 400
+    },
+    {
+      "id": 11,
+      "title": "Heavy Metal Contamination",
+      "type": "contaminant",
+      "year": 2014,
+      "content": "Elevated levels of mercury, lead, copper, and zinc detected throughout canal sediments.",
+      "keywords": ["heavy", "metal", "mercury", "lead", "copper", "zinc", "contamination"],
+      "x": 650,
+      "y": 280
+    },
+    {
+      "id": 12,
+      "title": "Historical Industrial Use",
+      "type": "history",
+      "year": 1870,
+      "content": "The canal served coal yards, gas plants, tanneries, and chemical factories from the 1870s through 1960s.",
+      "keywords": ["historical", "industrial", "coal", "gas", "tannery", "chemical", "factory", "1800s"],
+      "x": 200,
+      "y": 250
+    },
+    {
+      "id": 13,
+      "title": "Sediment Dredging Timeline",
+      "type": "remediation",
+      "year": 2020,
+      "content": "Proposed multi-phase dredging operation to remove approximately 307,000 cubic yards of contaminated sediment.",
+      "keywords": ["sediment", "dredging", "timeline", "remediation", "removal", "cleanup"],
+      "x": 550,
+      "y": 500
+    },
+    {
+      "id": 14,
+      "title": "Community Concerns",
+      "type": "community",
+      "year": 2015,
+      "content": "Local residents expressed concerns about odors, construction impacts, and long-term health effects during public comment periods.",
+      "keywords": ["community", "concerns", "residents", "odor", "health", "public", "comment"],
+      "x": 300,
+      "y": 550
+    },
+    {
+      "id": 15,
+      "title": "Gowanus Canal Smell",
+      "type": "issue",
+      "year": 2010,
+      "content": "Hydrogen sulfide emissions create notorious odor, with EPA noting smell was 'worse than expected.'",
+      "keywords": ["smell", "odor", "H2S", "hydrogen", "sulfide", "emissions", "gas"],
+      "x": 450,
+      "y": 350
+    },
+    {
+      "id": 16,
+      "title": "Water Quality Testing",
+      "type": "data",
+      "year": 2016,
+      "content": "Ongoing monitoring of dissolved oxygen, pH, temperature, and contaminant levels throughout the canal.",
+      "keywords": ["water", "quality", "testing", "monitoring", "dissolved", "oxygen", "pH"],
+      "x": 400,
+      "y": 150
+    },
+    {
+      "id": 17,
+      "title": "Brooklyn Development Pressure",
+      "type": "context",
+      "year": 2018,
+      "content": "Rapid real estate development along the canal has increased public attention and cleanup urgency.",
+      "keywords": ["Brooklyn", "development", "real estate", "pressure", "gentrification", "housing"],
+      "x": 150,
+      "y": 350
+    },
+    {
+      "id": 18,
+      "title": "Ecological Impact Studies",
+      "type": "research",
+      "year": 2015,
+      "content": "Research on contamination effects on benthic organisms, fish populations, and canal ecosystem health.",
+      "keywords": ["ecological", "impact", "research", "organisms", "fish", "ecosystem", "benthic"],
+      "x": 350,
+      "y": 450
+    },
+    {
+      "id": 19,
+      "title": "Estimated Cleanup Cost",
+      "type": "financial",
+      "year": 2013,
+      "content": "EPA estimated total remediation costs between $300-500 million, with PRPs bearing financial responsibility.",
+      "keywords": ["cost", "money", "budget", "million", "financial", "cleanup", "expense"],
+      "x": 250,
+      "y": 400
+    },
+    {
+      "id": 20,
+      "title": "Future Canal Vision 2050",
+      "type": "speculative",
+      "year": 2050,
+      "content": "Community-imagined futures ranging from restored ecosystem to ongoing contamination struggles.",
+      "keywords": ["future", "2050", "vision", "speculation", "restored", "prediction"],
+      "x": 500,
+      "y": 550
+    }
+  ]
+}

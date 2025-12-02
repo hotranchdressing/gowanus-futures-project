@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gowanus Canal Information Map</title>
+  <link rel="stylesheet" href="../styles/map.css" />
+<script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+</head>
+<body data-pusher-key="fcb48d0bea0e88fee65e" data-pusher-cluster="us2">
+  <div class="map-container">
+    <header class="map-header">
+      <h1>This is a website about the Gowanus Canal.</h1>
+    </header>
+
+<div class="search-container">
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="Enter a keyword to begin..." 
+          autocomplete="off"
+        />
+        <button id="search-btn">Search</button>
+        <button id="clear-btn">Clear</button>
+      </div>
+
+      <div id="search-feedback"></div>
+
+    <div class="map-canvas-wrapper">
+      <canvas id="map-canvas"></canvas>
+      <div id="node-info-panel" class="info-panel hidden">
+        <button id="close-panel">&times;</button>
+        <h3 id="panel-title"></h3>
+        <div id="panel-meta"></div>
+        <p id="panel-content"></p>
+        <div id="panel-stats"></div>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <span id="revealed-count">Nodes revealed: 0/20</span>
+      <span id="total-searches">Total searches: 0</span>
+    </div>
+  </div>
+
+  <script src="../scripts/map.js"></script>
+</body>
+</html>
