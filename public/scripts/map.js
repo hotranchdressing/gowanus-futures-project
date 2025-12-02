@@ -151,7 +151,7 @@ function updateActiveUsers() {
     statsBar.insertBefore(activeSpan, statsBar.firstChild);
   }
   
-  activeSpan.textContent = `👁️ ${activeUsers} exploring now`;
+  activeSpan.textContent = `${activeUsers} active users`;
 }
 
 function generateConnections() {
@@ -332,8 +332,8 @@ function drawRevealedNode(node) {
   ctx.stroke();
   
   // Draw label
-  ctx.fillStyle = '#5C4033';
-  ctx.font = '12px "MS Sans Serif"';
+  ctx.fillStyle = '#000000ff';
+  ctx.font = '12px "Warbler"';
   ctx.textAlign = 'center';
   ctx.fillText(node.title, node.x, node.y + radius + CONFIG.labelOffset);
 }
@@ -382,22 +382,22 @@ function showNodeInfo(node) {
   
   // Check if this is a special interactive node
   let statsHTML = `
-    <div>🔍 Revealed ${node.searches} time${node.searches !== 1 ? 's' : ''}</div>
-    <div>👁️ Viewed ${node.views} time${node.views !== 1 ? 's' : ''}</div>
-    <div>🔗 Connected to ${node.connections.length} nodes</div>
+    <div>Revealed ${node.searches} time${node.searches !== 1 ? 's' : ''}</div>
+    <div>Viewed ${node.views} time${node.views !== 1 ? 's' : ''}</div>
+    <div>Connected to ${node.connections.length} nodes</div>
   `;
   
   // Add action button for special nodes
   if (node.id === 21) {
     // Community Meeting
     statsHTML += `
-      <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #DEB887;">
+      <div style="margin-top: 15px; padding-top: 15px;">
         <button onclick="window.location.href='/community'" style="
           width: 100%;
           padding: 12px;
-          background: #E07A5F;
-          border: 2px solid #8B4513;
-          color: #fff;
+          background: #ffffffff;
+          border: 2px solid #000000ff;
+          color: #000000ff;
           font-weight: bold;
           cursor: pointer;
           font-size: 14px;
@@ -407,17 +407,17 @@ function showNodeInfo(node) {
   } else if (node.id === 22) {
     // Oracle
     statsHTML += `
-      <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #DEB887;">
+      <div style="margin-top: 15px; padding-top: 15px;">
         <button onclick="window.location.href='/oracle'" style="
           width: 100%;
           padding: 12px;
-          background: #3D5A80;
-          border: 2px solid #8B4513;
-          color: #fff;
+          background: #ffffffff;
+          border: 2px solid #000000ff;
+          color: #000000ff;
           font-weight: bold;
           cursor: pointer;
           font-size: 14px;
-        ">CONSULT THE ORACLE →</button>
+        ">2050</button>
       </div>
     `;
   }

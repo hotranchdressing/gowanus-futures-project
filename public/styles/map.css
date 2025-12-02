@@ -7,7 +7,7 @@
 body {
   font-family: "MS Sans Serif", "Segoe UI", Tahoma, sans-serif;
   background: #F5F1E8;
-  color: #5C4033;
+  color: #000000;
   overflow: hidden;
 }
 
@@ -28,10 +28,12 @@ body {
 }
 
 .map-header h1 {
-  font-size: 32px;
-  color: #5C4033;
+  font-size: 24px;
+  color: #000000;
   font-weight: normal;
-  text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+  font-family: "warbler-text", sans-serif;
+font-weight: 700;
+font-style: normal;
 }
 
 .search-container {
@@ -47,40 +49,41 @@ body {
 #search-input {
   width: 300px;
   padding: 10px;
-  border: 2px solid #8B4513;
   background: #FFFEF7;
   font-size: 14px;
-  font-family: "Courier New", monospace;
-  color: #5C4033;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: "warbler-banner", sans-serif;
+font-weight: 400;
+font-style: italic;
+  color: #000000;
 }
 
 #search-input::placeholder {
-  color: #CD853F;
+  color: #000000;
   font-style: italic;
 }
 
 #search-input:focus {
   outline: none;
-  border-color: #CD853F;
+  border-color: #000000;
 }
 
 #search-btn,
 #clear-btn {
   padding: 10px 16px;
-  border: 2px solid #8B4513;
-  background: #DEB887;
-  color: #5C4033;
+  background: #FFFEF7;
+  color: #000000;
   font-size: 13px;
   font-weight: bold;
   cursor: pointer;
-  font-family: "MS Sans Serif", sans-serif;
+  font-family: "warbler-banner", sans-serif;
+font-weight: 300;
+font-style: normal;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 #search-btn:hover,
 #clear-btn:hover {
-  background: #CD853F;
+  background: #74b3ea;
 }
 
 #search-btn:active,
@@ -94,13 +97,10 @@ body {
   bottom: 80px;
   right: 30px;
   font-size: 13px;
-  color: #8B4513;
+  color: #000000;
   background: rgba(255, 254, 247, 0.9);
   padding: 8px 12px;
-  border: 2px solid #DEB887;
-  border-radius: 3px;
   max-width: 400px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .map-canvas-wrapper {
@@ -122,9 +122,9 @@ body {
   right: 30px;
   width: 350px;
   max-height: 70vh;
-  background: #FFFEF7;
-  border: 3px solid #8B4513;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+  background: #ffffff;
+  border: 3px solid #000000;
+  box-shadow: 4px 4px 8px rgba(0, 0, .1, 10);
   padding: 20px;
   overflow-y: auto;
   z-index: 100;
@@ -138,30 +138,30 @@ body {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: #CD853F;
-  border: 2px solid #8B4513;
+  background: #ffffff;
+  border: 2px solid #000000;
   width: 28px;
   height: 28px;
   font-size: 18px;
   line-height: 1;
   cursor: pointer;
-  color: #5C4033;
+  color: #000000;
 }
 
 #close-panel:hover {
-  background: #DEB887;
+  background: #74b3ea;
 }
 
 #panel-title {
   font-size: 18px;
   margin-bottom: 10px;
-  color: #5C4033;
+  color: #000000;
   padding-right: 30px;
 }
 
 #panel-meta {
   font-size: 12px;
-  color: #8B4513;
+  color: #000000;
   margin-bottom: 10px;
   font-style: italic;
 }
@@ -170,14 +170,13 @@ body {
   font-size: 14px;
   line-height: 1.6;
   margin-bottom: 15px;
-  color: #5C4033;
+  color: #000000;
 }
 
 #panel-stats {
   padding-top: 10px;
-  border-top: 2px solid #DEB887;
   font-size: 12px;
-  color: #8B4513;
+  color: #000000;
 }
 
 .stats-bar {
@@ -187,10 +186,10 @@ body {
   display: flex;
   gap: 20px;
   font-size: 13px;
-  color: #8B4513;
+  color: #000000;
   background: rgba(255, 254, 247, 0.8);
   padding: 8px 16px;
-  border: 2px solid #DEB887;
+  border: 1px solid #000000;
   border-radius: 3px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 10;
@@ -206,16 +205,17 @@ body {
 }
 
 .info-panel::-webkit-scrollbar-thumb {
-  background: #DEB887;
-  border: 2px solid #8B4513;
+  background: #ffffff;
+  border: 2px solid #000000;
 }
 
 /* Floating search queries */
 .floating-search {
   position: absolute;
-  font-family: "Courier New", monospace;
+  font-family: "articulat-cf", sans-serif;
+font-weight: 100;
+font-style: normal;
   font-size: 14px;
-  font-weight: bold;
   pointer-events: none;
   opacity: 0;
   animation: float-across 5s ease-in-out;
@@ -252,22 +252,21 @@ body {
 
 .nav-link {
   padding: 8px 14px;
-  background: #DEB887;
-  border: 2px solid #8B4513;
-  color: #5C4033;
+  background: #ffffff;
+  border: 2px solid #000000;
+  color: #000000;
   text-decoration: none;
   font-size: 13px;
-  font-weight: bold;
   font-family: "MS Sans Serif", sans-serif;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   transition: background 0.2s;
 }
 
 .nav-link:hover {
-  background: #CD853F;
+  background: #74b3ea;
 }
 
 .nav-link.active {
-  background: #E07A5F;
+  background: #000000;
   color: #fff;
 }
