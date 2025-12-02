@@ -312,26 +312,21 @@ function organizeStuckNodes() {
   const canvasWidth = canvas.clientWidth;
   const canvasHeight = canvas.clientHeight;
   
-  // Use force-directed layout for better distribution
   stuckNodes.forEach((node, index) => {
-    // Target position based on index with more spread
-    const cols = Math.ceil(Math.sqrt(stuckNodes.length) * 1.5);
-    const spacing = Math.min(150, canvasWidth / (cols + 1));
+    // If node doesn't have a target position yet, assign one randomly
+    if (!node.targetX || !node.targetY) {
+      node.targetX = Math.random() * (canvasWidth - 200) + 100;
+      node.targetY = Math.random() * (canvasHeight - 200) + 100;
+    }
     
-    const col = index % cols;
-    const row = Math.floor(index / cols);
+    // Move toward target position
+    const dx = node.targetX - node.x;
+    const dy = node.targetY - node.y;
     
-    const targetX = (col + 1) * spacing + 50;
-    const targetY = row * spacing + 150;
+    node.x += dx * 0.05;
+    node.y += dy * 0.05;
     
-    // Apply force toward target
-    const dx = targetX - node.x;
-    const dy = targetY - node.y;
-    
-    node.x += dx * 0.1;
-    node.y += dy * 0.1;
-    
-    // Repel from other stuck nodes to avoid overlap
+    // Repel from other stuck nodes to prevent overlap
     stuckNodes.forEach((otherNode, otherIndex) => {
       if (index === otherIndex) return;
       
@@ -339,16 +334,18 @@ function organizeStuckNodes() {
       const ody = node.y - otherNode.y;
       const dist = Math.sqrt(odx * odx + ody * ody);
       
-      if (dist < 100 && dist > 0) {
-        const force = (100 - dist) / 100;
-        node.x += (odx / dist) * force * 2;
-        node.y += (ody / dist) * force * 2;
+      const minDist = 120; // Minimum distance between nodes
+      
+      if (dist < minDist && dist > 0) {
+        const force = (minDist - dist) / minDist;
+        node.x += (odx / dist) * force * 3;
+        node.y += (ody / dist) * force * 3;
       }
     });
     
     // Keep within bounds
-    node.x = Math.max(100, Math.min(canvasWidth - 100, node.x));
-    node.y = Math.max(150, Math.min(canvasHeight - 100, node.y));
+    node.x = Math.max(80, Math.min(canvasWidth - 80, node.x));
+    node.y = Math.max(80, Math.min(canvasHeight - 80, node.y));
   });
 }
 
