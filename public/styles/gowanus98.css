@@ -979,3 +979,37 @@ body.win98 {
     justify-items: stretch;
   }
 }
+
+/* Add at the bottom */
+
+/* Navigation bar */
+.site-nav {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.nav-link {
+  padding: 8px 14px;
+  background: #DEB887;
+  border: 2px solid #8B4513;
+  color: #5C4033;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
+  font-family: "MS Sans Serif", sans-serif;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s;
+}
+
+.nav-link:hover {
+  background: #CD853F;
+}
+
+.nav-link.active {
+  background: #E07A5F;
+  color: #fff;
+}
