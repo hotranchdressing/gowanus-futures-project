@@ -3,33 +3,28 @@ const CONFIG = {
   nodeRadius: 8,
   revealedNodeRadius: 12,
   connectionColor: '#DEB887',
-  hiddenNodeColor: 'transparent',
   revealedNodeColor: '#E07A5F',
+  otherUserColor: '#81B29A',
   connectionWidth: 1.5,
-  connectionOpacity: 0.3,
-  labelOffset: 15
+  labelOffset: 15,
+  driftSpeed: 0.3, // pixels per frame (60fps = ~20s to cross 1920px screen)
+  waveAmplitude: 0.5,
+  waveFrequency: 0.001
 };
 
 // Pusher state
 let pusher;
 let channel;
 let activeUsers = 1;
-let userColor = generateUserColor();
-
-function generateUserColor() {
-  const colors = [
-    '#E07A5F', '#81B29A', '#F2CC8F', '#3D5A80',
-    '#E63946', '#06FFA5', '#FF6B9D', '#C77DFF'
-  ];
-  return colors[Math.floor(Math.random() * colors.length)];
-}
 
 // State
 let nodes = [];
 let revealedNodeIds = new Set();
+let stuckNodeIds = new Set(); // Nodes this user has clicked/stuck
 let selectedNode = null;
 let canvas, ctx;
 let searchCount = 0;
+let animationId = null;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
@@ -40,8 +35,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   window.addEventListener('resize', resizeCanvas);
   
   await loadNodes();
-  generateConnections();
-  draw();
+  
+  // Start animation loop
+  animate();
   
   document.getElementById('search-btn').addEventListener('click', handleSearch);
   document.getElementById('clear-btn').addEventListener('click', clearRevealed);
@@ -57,22 +53,16 @@ function resizeCanvas() {
   const wrapper = canvas.parentElement;
   const dpr = window.devicePixelRatio || 1;
   
-  // Set display size (CSS pixels)
   const displayWidth = wrapper.clientWidth;
   const displayHeight = wrapper.clientHeight;
   
-  // Set actual size in memory (scaled for DPI)
   canvas.width = displayWidth * dpr;
   canvas.height = displayHeight * dpr;
   
-  // Set display size
   canvas.style.width = displayWidth + 'px';
   canvas.style.height = displayHeight + 'px';
   
-  // Scale context to match DPI
   ctx.scale(dpr, dpr);
-  
-  if (ctx) draw();
 }
 
 async function loadNodes() {
@@ -81,11 +71,16 @@ async function loadNodes() {
     const data = await response.json();
     nodes = data.nodes.map(node => ({
       ...node,
-      connections: [],
       revealed: false,
+      stuck: false,
       views: 0,
       searches: 0,
-      revealedBy: null
+      revealedBy: null,
+      // Random starting position (off-screen left or scattered)
+      x: Math.random() * -200 - 50,
+      y: Math.random() * window.innerHeight,
+      vx: CONFIG.driftSpeed,
+      waveOffset: Math.random() * Math.PI * 2
     }));
     
     initializePusher();
@@ -96,7 +91,6 @@ async function loadNodes() {
 }
 
 function initializePusher() {
-  // Check if Pusher is loaded
   if (typeof Pusher === 'undefined') {
     console.warn('Pusher not loaded, real-time features disabled');
     return;
@@ -138,9 +132,11 @@ function handleRemoteSearch(data) {
         node.revealed = true;
         node.revealedBy = 'other';
         revealedNodeIds.add(node.id);
+        // Spawn at left edge
+        node.x = -50;
+        node.y = Math.random() * canvas.clientHeight;
       }
     });
-    draw();
   }
 }
 
@@ -148,7 +144,7 @@ function displayFloatingSearch(query) {
   const floater = document.createElement('div');
   floater.className = 'floating-search';
   floater.textContent = query;
-  floater.style.color = generateUserColor();
+  floater.style.color = CONFIG.otherUserColor;
   floater.style.left = Math.random() * 80 + 10 + '%';
   floater.style.top = Math.random() * 30 + 10 + '%';
   
@@ -166,24 +162,7 @@ function updateActiveUsers() {
     statsBar.insertBefore(activeSpan, statsBar.firstChild);
   }
   
-  activeSpan.textContent = `${activeUsers} active users`;
-}
-
-function generateConnections() {
-  nodes.forEach((node, i) => {
-    nodes.forEach((otherNode, j) => {
-      if (i >= j) return;
-      
-      const sharedKeywords = node.keywords.filter(k => 
-        otherNode.keywords.includes(k)
-      );
-      
-      if (sharedKeywords.length >= 2) {
-        node.connections.push(otherNode.id);
-        otherNode.connections.push(node.id);
-      }
-    });
-  });
+  activeSpan.textContent = `👁️ ${activeUsers} exploring now`;
 }
 
 async function handleSearch() {
@@ -208,6 +187,12 @@ async function handleSearch() {
         node.searches++;
         node.revealedBy = 'self';
         revealedIds.push(node.id);
+        // Spawn at left edge
+        node.x = -50;
+        node.y = Math.random() * canvas.clientHeight;
+      } else {
+        // If already floating, highlight it briefly
+        highlightNode(node);
       }
     });
     
@@ -224,6 +209,9 @@ async function handleSearch() {
       node.revealed = true;
       node.revealedBy = 'self';
       revealedIds.push(node.id);
+      // Spawn at left edge
+      node.x = -50;
+      node.y = Math.random() * canvas.clientHeight * 0.8 + canvas.clientHeight * 0.1;
     }
     
     document.getElementById('search-feedback').textContent = 
@@ -246,88 +234,130 @@ async function handleSearch() {
   }
   
   updateStats();
-  draw();
+}
+
+function highlightNode(node) {
+  // Store original color
+  const originalRevealedBy = node.revealedBy;
+  
+  // Pulse effect
+  node.revealedBy = 'highlight';
+  
+  setTimeout(() => {
+    node.revealedBy = originalRevealedBy;
+  }, 1000);
 }
 
 function clearRevealed() {
   revealedNodeIds.clear();
+  stuckNodeIds.clear();
   nodes.forEach(node => {
     node.revealed = false;
+    node.stuck = false;
     node.revealedBy = null;
   });
   document.getElementById('search-input').value = '';
   document.getElementById('search-feedback').textContent = '';
   closePanel();
   updateStats();
-  draw();
 }
 
 function updateStats() {
   document.getElementById('revealed-count').textContent = 
-    `Nodes revealed: ${revealedNodeIds.size}/${nodes.length}`;
+    `Nodes revealed: ${revealedNodeIds.size}/${nodes.length} | Collected: ${stuckNodeIds.size}`;
   document.getElementById('total-searches').textContent = 
     `Total searches: ${searchCount}`;
+}
+
+// Animation loop
+function animate() {
+  updateNodePositions();
+  draw();
+  animationId = requestAnimationFrame(animate);
+}
+
+function updateNodePositions() {
+  const canvasWidth = canvas.clientWidth;
+  const canvasHeight = canvas.clientHeight;
+  
+  nodes.forEach(node => {
+    if (!node.revealed || node.stuck) return;
+    
+    // Drift right
+    node.x += node.vx;
+    
+    // Wave motion (sine wave for up/down bobbing)
+    const time = Date.now() * CONFIG.waveFrequency;
+    node.y += Math.sin(time + node.waveOffset) * CONFIG.waveAmplitude;
+    
+    // Keep within vertical bounds
+    if (node.y < 50) node.y = 50;
+    if (node.y > canvasHeight - 50) node.y = canvasHeight - 50;
+    
+    // Reset to left if off-screen right
+    if (node.x > canvasWidth + 100) {
+      node.x = -50;
+      node.y = Math.random() * canvasHeight;
+    }
+  });
+  
+  // Organize stuck nodes into constellation
+  organizeStuckNodes();
+}
+
+function organizeStuckNodes() {
+  const stuckNodes = nodes.filter(n => n.stuck);
+  if (stuckNodes.length === 0) return;
+  
+  // Simple grid layout in top-left area
+  const startX = 100;
+  const startY = 150;
+  const spacing = 80;
+  const cols = 8;
+  
+  stuckNodes.forEach((node, index) => {
+    const targetX = startX + (index % cols) * spacing;
+    const targetY = startY + Math.floor(index / cols) * spacing;
+    
+    // Smooth movement toward target position
+    node.x += (targetX - node.x) * 0.1;
+    node.y += (targetY - node.y) * 0.1;
+  });
 }
 
 function draw() {
   if (!ctx) return;
   
   const dpr = window.devicePixelRatio || 1;
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // Reset scale
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   
   const displayWidth = canvas.clientWidth;
   const displayHeight = canvas.clientHeight;
   
   ctx.clearRect(0, 0, displayWidth, displayHeight);
-  // Draw connections
-  nodes.forEach(node => {
-    if (!node.revealed) return;
-    
-    node.connections.forEach(connId => {
-      const connNode = nodes.find(n => n.id === connId);
-      if (!connNode) return;
-      
-      ctx.strokeStyle = CONFIG.connectionColor;
-      ctx.lineWidth = CONFIG.connectionWidth;
-      ctx.globalAlpha = CONFIG.connectionOpacity;
-      ctx.beginPath();
-      ctx.moveTo(node.x, node.y);
-      ctx.lineTo(connNode.x, connNode.y);
-      ctx.stroke();
-      ctx.globalAlpha = 1;
-      
-      if (!connNode.revealed) {
-        drawNodeOutline(connNode);
-      }
-    });
-  });
   
-  // Draw nodes
+  // Draw all revealed nodes
   nodes.forEach(node => {
     if (node.revealed) {
-      drawRevealedNode(node);
+      drawNode(node);
     }
   });
 }
 
-function drawNodeOutline(node) {
-  ctx.strokeStyle = CONFIG.connectionColor;
-  ctx.lineWidth = 1;
-  ctx.globalAlpha = 0.3;
-  ctx.setLineDash([3, 3]);
-  ctx.beginPath();
-  ctx.arc(node.x, node.y, CONFIG.nodeRadius, 0, Math.PI * 2);
-  ctx.stroke();
-  ctx.setLineDash([]);
-  ctx.globalAlpha = 1;
-}
-
-function drawRevealedNode(node) {
-  const radius = selectedNode && selectedNode.id === node.id ? 
-    CONFIG.revealedNodeRadius + 2 : CONFIG.revealedNodeRadius;
+function drawNode(node) {
+  const radius = node.stuck ? CONFIG.revealedNodeRadius : CONFIG.nodeRadius;
   
-  const nodeColor = node.revealedBy === 'self' ? 
-    CONFIG.revealedNodeColor : '#81B29A';
+  // Color based on state
+  let nodeColor;
+  if (node.revealedBy === 'highlight') {
+    nodeColor = '#FFD700'; // Gold for highlight pulse
+  } else if (node.stuck) {
+    nodeColor = CONFIG.revealedNodeColor; // Your collected nodes
+  } else if (node.revealedBy === 'other') {
+    nodeColor = CONFIG.otherUserColor; // Others' reveals
+  } else {
+    nodeColor = CONFIG.revealedNodeColor; // Your reveals
+  }
   
   // Draw glow
   const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, radius * 1.5);
@@ -348,14 +378,16 @@ function drawRevealedNode(node) {
   
   // Draw border
   ctx.strokeStyle = '#8B4513';
-  ctx.lineWidth = 2;
+  ctx.lineWidth = node.stuck ? 3 : 2;
   ctx.stroke();
   
-  // Draw label
-  ctx.fillStyle = '#000000ff';
-  ctx.font = '12px "Warbler"';
-  ctx.textAlign = 'center';
-  ctx.fillText(node.title, node.x, node.y + radius + CONFIG.labelOffset);
+  // Draw label (only for stuck nodes or selected)
+  if (node.stuck || node === selectedNode) {
+    ctx.fillStyle = '#5C4033';
+    ctx.font = '12px "MS Sans Serif"';
+    ctx.textAlign = 'center';
+    ctx.fillText(node.title, node.x, node.y + radius + CONFIG.labelOffset);
+  }
 }
 
 function handleCanvasClick(e) {
@@ -367,14 +399,22 @@ function handleCanvasClick(e) {
     if (!node.revealed) return false;
     const dx = x - node.x;
     const dy = y - node.y;
-    return Math.sqrt(dx * dx + dy * dy) <= CONFIG.revealedNodeRadius;
+    const radius = node.stuck ? CONFIG.revealedNodeRadius : CONFIG.nodeRadius;
+    return Math.sqrt(dx * dx + dy * dy) <= radius;
   });
   
   if (clickedNode) {
+    if (!clickedNode.stuck) {
+      // Stick the node
+      clickedNode.stuck = true;
+      stuckNodeIds.add(clickedNode.id);
+      clickedNode.views++;
+      updateStats();
+    }
+    
+    // Show info panel
     selectedNode = clickedNode;
-    clickedNode.views++;
     showNodeInfo(clickedNode);
-    draw();
   }
 }
 
@@ -387,10 +427,11 @@ function handleCanvasHover(e) {
     if (!node.revealed) return false;
     const dx = x - node.x;
     const dy = y - node.y;
-    return Math.sqrt(dx * dx + dy * dy) <= CONFIG.revealedNodeRadius;
+    const radius = node.stuck ? CONFIG.revealedNodeRadius : CONFIG.nodeRadius;
+    return Math.sqrt(dx * dx + dy * dy) <= radius;
   });
   
-  canvas.style.cursor = hoverNode ? 'pointer' : 'crosshair';
+  canvas.style.cursor = hoverNode ? 'pointer' : 'default';
 }
 
 function showNodeInfo(node) {
@@ -400,24 +441,22 @@ function showNodeInfo(node) {
     `${node.type} • ${node.year}`;
   document.getElementById('panel-content').textContent = node.content;
   
-  // Check if this is a special interactive node
   let statsHTML = `
-    <div>Revealed ${node.searches} time${node.searches !== 1 ? 's' : ''}</div>
-    <div>Viewed ${node.views} time${node.views !== 1 ? 's' : ''}</div>
-    <div>Connected to ${node.connections.length} nodes</div>
+    <div>🔍 Revealed ${node.searches} time${node.searches !== 1 ? 's' : ''}</div>
+    <div>👁️ Viewed ${node.views} time${node.views !== 1 ? 's' : ''}</div>
+    <div>${node.stuck ? '📌 Collected' : '🌊 Drifting'}</div>
   `;
   
   // Add action button for special nodes
   if (node.id === 21) {
-    // Community Meeting
     statsHTML += `
-      <div style="margin-top: 15px; padding-top: 15px;">
+      <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #DEB887;">
         <button onclick="window.location.href='/community'" style="
           width: 100%;
           padding: 12px;
-          background: #ffffffff;
-          border: 2px solid #000000ff;
-          color: #000000ff;
+          background: #E07A5F;
+          border: 2px solid #8B4513;
+          color: #fff;
           font-weight: bold;
           cursor: pointer;
           font-size: 14px;
@@ -425,19 +464,18 @@ function showNodeInfo(node) {
       </div>
     `;
   } else if (node.id === 22) {
-    // Oracle
     statsHTML += `
-      <div style="margin-top: 15px; padding-top: 15px;">
+      <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #DEB887;">
         <button onclick="window.location.href='/oracle'" style="
           width: 100%;
           padding: 12px;
-          background: #ffffffff;
-          border: 2px solid #000000ff;
-          color: #000000ff;
+          background: #3D5A80;
+          border: 2px solid #8B4513;
+          color: #fff;
           font-weight: bold;
           cursor: pointer;
           font-size: 14px;
-        ">2050</button>
+        ">CONSULT THE ORACLE →</button>
       </div>
     `;
   }
@@ -449,5 +487,4 @@ function showNodeInfo(node) {
 function closePanel() {
   document.getElementById('node-info-panel').classList.add('hidden');
   selectedNode = null;
-  draw();
 }
