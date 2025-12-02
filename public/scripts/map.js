@@ -309,19 +309,46 @@ function organizeStuckNodes() {
   const stuckNodes = nodes.filter(n => n.stuck);
   if (stuckNodes.length === 0) return;
   
-  // Simple grid layout in top-left area
-  const startX = 100;
-  const startY = 150;
-  const spacing = 80;
-  const cols = 8;
+  const canvasWidth = canvas.clientWidth;
+  const canvasHeight = canvas.clientHeight;
   
+  // Use force-directed layout for better distribution
   stuckNodes.forEach((node, index) => {
-    const targetX = startX + (index % cols) * spacing;
-    const targetY = startY + Math.floor(index / cols) * spacing;
+    // Target position based on index with more spread
+    const cols = Math.ceil(Math.sqrt(stuckNodes.length) * 1.5);
+    const spacing = Math.min(150, canvasWidth / (cols + 1));
     
-    // Smooth movement toward target position
-    node.x += (targetX - node.x) * 0.1;
-    node.y += (targetY - node.y) * 0.1;
+    const col = index % cols;
+    const row = Math.floor(index / cols);
+    
+    const targetX = (col + 1) * spacing + 50;
+    const targetY = row * spacing + 150;
+    
+    // Apply force toward target
+    const dx = targetX - node.x;
+    const dy = targetY - node.y;
+    
+    node.x += dx * 0.1;
+    node.y += dy * 0.1;
+    
+    // Repel from other stuck nodes to avoid overlap
+    stuckNodes.forEach((otherNode, otherIndex) => {
+      if (index === otherIndex) return;
+      
+      const odx = node.x - otherNode.x;
+      const ody = node.y - otherNode.y;
+      const dist = Math.sqrt(odx * odx + ody * ody);
+      
+      if (dist < 100 && dist > 0) {
+        const force = (100 - dist) / 100;
+        node.x += (odx / dist) * force * 2;
+        node.y += (ody / dist) * force * 2;
+      }
+    });
+    
+    // Keep within bounds
+    node.x = Math.max(100, Math.min(canvasWidth - 100, node.x));
+    node.y = Math.max(150, Math.min(canvasHeight - 100, node.y));
   });
 }
 
@@ -381,13 +408,26 @@ function drawNode(node) {
   ctx.lineWidth = node.stuck ? 3 : 2;
   ctx.stroke();
   
-  // Draw label (only for stuck nodes or selected)
-  if (node.stuck || node === selectedNode) {
-    ctx.fillStyle = '#5C4033';
-    ctx.font = '12px "MS Sans Serif"';
-    ctx.textAlign = 'center';
-    ctx.fillText(node.title, node.x, node.y + radius + CONFIG.labelOffset);
-  }
+// Draw label for all revealed nodes
+if (node.revealed) {
+  ctx.fillStyle = '#5C4033';
+  ctx.font = '12px "MS Sans Serif"';
+  ctx.textAlign = 'center';
+  
+  // Add background for readability
+  const textWidth = ctx.measureText(node.title).width;
+  ctx.fillStyle = 'rgba(245, 241, 232, 0.9)'; // Semi-transparent cream background
+  ctx.fillRect(
+    node.x - textWidth / 2 - 4, 
+    node.y + radius + 4, 
+    textWidth + 8, 
+    16
+  );
+  
+  // Draw text
+  ctx.fillStyle = '#5C4033';
+  ctx.fillText(node.title, node.x, node.y + radius + CONFIG.labelOffset);
+}
 }
 
 function handleCanvasClick(e) {
