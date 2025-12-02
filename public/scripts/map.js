@@ -55,8 +55,23 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 function resizeCanvas() {
   const wrapper = canvas.parentElement;
-  canvas.width = wrapper.clientWidth;
-  canvas.height = wrapper.clientHeight;
+  const dpr = window.devicePixelRatio || 1;
+  
+  // Set display size (CSS pixels)
+  const displayWidth = wrapper.clientWidth;
+  const displayHeight = wrapper.clientHeight;
+  
+  // Set actual size in memory (scaled for DPI)
+  canvas.width = displayWidth * dpr;
+  canvas.height = displayHeight * dpr;
+  
+  // Set display size
+  canvas.style.width = displayWidth + 'px';
+  canvas.style.height = displayHeight + 'px';
+  
+  // Scale context to match DPI
+  ctx.scale(dpr, dpr);
+  
   if (ctx) draw();
 }
 
@@ -257,8 +272,13 @@ function updateStats() {
 function draw() {
   if (!ctx) return;
   
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const dpr = window.devicePixelRatio || 1;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0); // Reset scale
   
+  const displayWidth = canvas.clientWidth;
+  const displayHeight = canvas.clientHeight;
+  
+  ctx.clearRect(0, 0, displayWidth, displayHeight);
   // Draw connections
   nodes.forEach(node => {
     if (!node.revealed) return;
