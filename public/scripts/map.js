@@ -8,7 +8,7 @@ const CONFIG = {
   connectionWidth: 1.5,
   labelOffset: 15,
   driftSpeed: 0.05, // pixels per frame
-  waveAmplitude: 0.5,
+  waveAmplitude: 0.1,
   waveFrequency: 0.001
 };
 
