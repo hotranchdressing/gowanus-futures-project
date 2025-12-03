@@ -25,6 +25,8 @@ let selectedNode = null;
 let showingSpeculations = false;
 let currentAnalysis = null;
 let yourAnalyses = 0;
+let clickSequence = []; // Track clicked nodes in order
+let connections = []; // Store connections between nodes
 
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
@@ -427,6 +429,11 @@ function draw() {
   // Draw faint mystical grid for infinite field effect
   drawGrid(displayWidth, displayHeight);
 
+  // Draw connections between clicked nodes
+  connections.forEach(conn => {
+    drawConnection(conn.from, conn.to, conn.color);
+  });
+
   analysesNodes.forEach(node => {
     drawNode(node);
   });
@@ -503,6 +510,31 @@ function drawNode(node) {
   ctx.fillText(label, node.x, node.y + radius + 14);
 }
 
+function drawConnection(fromId, toId, color) {
+  const fromNode = analysesNodes.find(n => n.id === fromId);
+  const toNode = analysesNodes.find(n => n.id === toId);
+
+  if (!fromNode || !toNode) return;
+
+  // Draw mystical glowing line
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 3;
+  ctx.globalAlpha = 0.7;
+
+  // Add glow effect
+  ctx.shadowColor = color;
+  ctx.shadowBlur = 10;
+
+  ctx.beginPath();
+  ctx.moveTo(fromNode.x, fromNode.y);
+  ctx.lineTo(toNode.x, toNode.y);
+  ctx.stroke();
+
+  // Reset shadow
+  ctx.shadowBlur = 0;
+  ctx.globalAlpha = 1;
+}
+
 function getNodeRadius(node) {
   const minWords = 20;
   const maxWords = 150;
@@ -528,6 +560,26 @@ function handleCanvasClick(e) {
   });
 
   if (clickedNode) {
+    // Add to click sequence
+    clickSequence.push(clickedNode.id);
+
+    // If there's a previous node, create connection
+    if (clickSequence.length > 1) {
+      const prevNodeId = clickSequence[clickSequence.length - 2];
+      connections.push({
+        from: prevNodeId,
+        to: clickedNode.id,
+        color: '#9370db'
+      });
+    }
+
+    // After 3 clicks, transition to map
+    if (clickSequence.length >= 3) {
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 1500); // Short delay to show the final connection
+    }
+
     selectedNode = clickedNode;
     showAnalysisInfo(clickedNode);
   }
