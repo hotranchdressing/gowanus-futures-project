@@ -569,7 +569,7 @@ function showNodeInfo(node) {
     statsHTML += `
       <div style="margin-top: 20px; padding-top: 15px;">
         <p style="font-size: 13px; margin-bottom: 10px; line-height: 1.5;">
-          Do you have an opinion about this? Click to voice your thoughts.
+          Do you have an opinion about this?
         </p>
         <button onclick="window.location.href='/community'" style="
           width: 100%;
