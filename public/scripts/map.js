@@ -396,31 +396,57 @@ function organizeStuckNodes() {
 
 function draw() {
   if (!ctx) return;
-  
+
   const dpr = window.devicePixelRatio || 1;
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  
+
   const displayWidth = canvas.clientWidth;
   const displayHeight = canvas.clientHeight;
-  
+
   ctx.clearRect(0, 0, displayWidth, displayHeight);
-  
+
+  // Draw faint grid for infinite field effect
+  drawGrid(displayWidth, displayHeight);
+
   // Draw other users' connections first (underneath)
   otherUserConnections.forEach(conn => {
     drawConnection(conn.from, conn.to, conn.color, CONFIG.otherConnectionWidth);
   });
-  
+
   // Draw your connections on top
   userConnections.forEach(conn => {
     drawConnection(conn.from, conn.to, conn.color, CONFIG.connectionWidth);
   });
-  
+
   // Draw all revealed nodes
   nodes.forEach(node => {
     if (node.revealed) {
       drawNode(node);
     }
   });
+}
+
+function drawGrid(width, height) {
+  const gridSize = 40; // Grid cell size
+
+  ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)'; // Very faint black lines
+  ctx.lineWidth = 1;
+
+  // Draw vertical lines
+  for (let x = 0; x <= width; x += gridSize) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, height);
+    ctx.stroke();
+  }
+
+  // Draw horizontal lines
+  for (let y = 0; y <= height; y += gridSize) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(width, y);
+    ctx.stroke();
+  }
 }
 
 function drawNode(node) {

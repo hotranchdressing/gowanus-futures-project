@@ -40,9 +40,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Start animation loop
   animate();
 
-  document.getElementById('oracle-submit').addEventListener('click', handleSubmit);
+  document.getElementById('oracle-submit').addEventListener('click', handleOracleButton);
   document.getElementById('oracle-input').addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') handleSubmit();
+    if (e.key === 'Enter' && document.getElementById('oracle-submit').textContent === 'Analyze') {
+      handleSubmit();
+    }
   });
   document.getElementById('close-oracle-panel').addEventListener('click', closePanel);
   document.getElementById('show-speculations-btn').addEventListener('click', showSpeculations);
@@ -220,6 +222,22 @@ function calculateContamination(text) {
   return Math.min(100, Math.floor(base + random));
 }
 
+function handleOracleButton() {
+  const submitBtn = document.getElementById('oracle-submit');
+
+  if (submitBtn.textContent === 'Keep Exploring') {
+    window.location.href = '/';
+  } else {
+    handleSubmit();
+  }
+}
+
+function resetOracleButton() {
+  const submitBtn = document.getElementById('oracle-submit');
+  submitBtn.textContent = 'Analyze';
+  submitBtn.disabled = false;
+}
+
 function showStatus(message) {
   const statusDiv = document.getElementById('oracle-status');
   statusDiv.textContent = message;
@@ -324,7 +342,9 @@ async function handleSubmit() {
     // Reset input
     input.value = '';
     submitBtn.disabled = false;
-    submitBtn.textContent = 'Analyze';
+
+    // Change button to "Keep Exploring"
+    submitBtn.textContent = 'Keep Exploring';
   }, 2500);
 }
 
@@ -404,9 +424,35 @@ function draw() {
 
   ctx.clearRect(0, 0, displayWidth, displayHeight);
 
+  // Draw faint mystical grid for infinite field effect
+  drawGrid(displayWidth, displayHeight);
+
   analysesNodes.forEach(node => {
     drawNode(node);
   });
+}
+
+function drawGrid(width, height) {
+  const gridSize = 40; // Grid cell size
+
+  ctx.strokeStyle = 'rgba(138, 43, 226, 0.12)'; // Faint mystical purple lines
+  ctx.lineWidth = 1;
+
+  // Draw vertical lines
+  for (let x = 0; x <= width; x += gridSize) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, height);
+    ctx.stroke();
+  }
+
+  // Draw horizontal lines
+  for (let y = 0; y <= height; y += gridSize) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(width, y);
+    ctx.stroke();
+  }
 }
 
 function drawNode(node) {
@@ -535,4 +581,7 @@ function closePanel() {
   // Show speculations button again
   document.getElementById('speculations-section').style.display = 'block';
   selectedNode = null;
+
+  // Reset button back to Analyze mode when panel is closed
+  resetOracleButton();
 }

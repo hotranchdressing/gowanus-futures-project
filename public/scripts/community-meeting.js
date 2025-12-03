@@ -262,10 +262,36 @@ function draw() {
 
   ctx.clearRect(0, 0, displayWidth, displayHeight);
 
+  // Draw faint grid for infinite field effect
+  drawGrid(displayWidth, displayHeight);
+
   // Draw all feedback nodes
   feedbackNodes.forEach(node => {
     drawNode(node);
   });
+}
+
+function drawGrid(width, height) {
+  const gridSize = 40; // Grid cell size
+
+  ctx.strokeStyle = 'rgba(0, 0, 0, 0.08)'; // Very faint black lines
+  ctx.lineWidth = 1;
+
+  // Draw vertical lines
+  for (let x = 0; x <= width; x += gridSize) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, height);
+    ctx.stroke();
+  }
+
+  // Draw horizontal lines
+  for (let y = 0; y <= height; y += gridSize) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(width, y);
+    ctx.stroke();
+  }
 }
 
 function drawNode(node) {
