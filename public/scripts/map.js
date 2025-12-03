@@ -5,9 +5,10 @@ const CONFIG = {
   connectionColor: '#DEB887',
   revealedNodeColor: '#E07A5F',
   otherUserColor: '#81B29A',
-  connectionWidth: 1.5,
+  connectionWidth: 2,
+  otherConnectionWidth: 1,
   labelOffset: 15,
-  driftSpeed: 0.09, // pixels per frame
+  driftSpeed: 0.09,
   waveAmplitude: 0.01,
   waveFrequency: 0.001
 };
@@ -25,6 +26,9 @@ let selectedNode = null;
 let canvas, ctx;
 let searchCount = 0;
 let animationId = null;
+let clickSequence = []; // Array of node IDs in order clicked
+let userConnections = []; // Array of {from, to, color} for this user
+let otherUserConnections = []; // Array of {from, to, color} from other users
 
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
@@ -113,6 +117,10 @@ function initializePusher() {
   channel.bind('search-event', function(data) {
     handleRemoteSearch(data);
   });
+
+  channel.bind('connection-event', function(data) {
+  handleRemoteConnection(data);
+});
   
   channel.bind('pusher:subscription_succeeded', function() {
     activeUsers = Math.max(1, Math.floor(Math.random() * 5) + 1);
@@ -138,6 +146,16 @@ function handleRemoteSearch(data) {
       }
     });
   }
+}
+
+function handleRemoteConnection(data) {
+  const { from, to, color } = data;
+  
+  otherUserConnections.push({
+    from: from,
+    to: to,
+    color: CONFIG.otherUserColor
+  });
 }
 
 function displayFloatingSearch(query) {
@@ -251,6 +269,10 @@ function highlightNode(node) {
 function clearRevealed() {
   revealedNodeIds.clear();
   stuckNodeIds.clear();
+  clickSequence = []; // Reset sequence
+  userConnections = []; // Clear your connections
+  otherUserConnections = []; // Clear others' connections
+  
   nodes.forEach(node => {
     node.revealed = false;
     node.stuck = false;
@@ -360,6 +382,16 @@ function draw() {
   
   ctx.clearRect(0, 0, displayWidth, displayHeight);
   
+  // Draw other users' connections first (underneath)
+  otherUserConnections.forEach(conn => {
+    drawConnection(conn.from, conn.to, conn.color, CONFIG.otherConnectionWidth);
+  });
+  
+  // Draw your connections on top
+  userConnections.forEach(conn => {
+    drawConnection(conn.from, conn.to, conn.color, CONFIG.connectionWidth);
+  });
+  
   // Draw all revealed nodes
   nodes.forEach(node => {
     if (node.revealed) {
@@ -427,7 +459,26 @@ if (node.revealed) {
 }
 }
 
-function handleCanvasClick(e) {
+function drawConnection(fromId, toId, color, width) {
+  const fromNode = nodes.find(n => n.id === fromId);
+  const toNode = nodes.find(n => n.id === toId);
+  
+  if (!fromNode || !toNode) return;
+  
+  // Only draw if both nodes are stuck (visible)
+  if (!fromNode.stuck || !toNode.stuck) return;
+  
+  ctx.strokeStyle = color;
+  ctx.lineWidth = width;
+  ctx.globalAlpha = 0.6;
+  ctx.beginPath();
+  ctx.moveTo(fromNode.x, fromNode.y);
+  ctx.lineTo(toNode.x, toNode.y);
+  ctx.stroke();
+  ctx.globalAlpha = 1;
+}
+
+async function handleCanvasClick(e) {
   const rect = canvas.getBoundingClientRect();
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
@@ -446,6 +497,35 @@ function handleCanvasClick(e) {
       clickedNode.stuck = true;
       stuckNodeIds.add(clickedNode.id);
       clickedNode.views++;
+      
+      // Add to click sequence
+      clickSequence.push(clickedNode.id);
+      
+      // If there's a previous node, create connection
+      if (clickSequence.length > 1) {
+        const prevNodeId = clickSequence[clickSequence.length - 2];
+        userConnections.push({
+          from: prevNodeId,
+          to: clickedNode.id,
+          color: CONFIG.revealedNodeColor
+        });
+        
+        // Broadcast this connection to other users
+        try {
+          await fetch('/api/broadcast-connection', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              from: prevNodeId,
+              to: clickedNode.id,
+              color: CONFIG.revealedNodeColor
+            })
+          });
+        } catch (error) {
+          console.warn('Failed to broadcast connection:', error);
+        }
+      }
+      
       updateStats();
     }
     
