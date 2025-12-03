@@ -7,7 +7,7 @@ const CONFIG = {
   otherUserColor: '#81B29A',
   connectionWidth: 1.5,
   labelOffset: 15,
-  driftSpeed: 0.05, // pixels per frame
+  driftSpeed: 0.09, // pixels per frame
   waveAmplitude: 0.01,
   waveFrequency: 0.001
 };
