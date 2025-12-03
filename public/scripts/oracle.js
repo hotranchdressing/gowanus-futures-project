@@ -1,15 +1,82 @@
-// Initialize Markov models
+// Configuration
+const CONFIG = {
+  minNodeRadius: 10,
+  maxNodeRadius: 22,
+  nodeColor: '#9370db',
+  yourNodeColor: '#e8d5ff',
+  driftSpeed: 0.06,
+  waveAmplitude: 0.02,
+  waveFrequency: 0.0015
+};
+
+// Markov models
 let models = {};
 let modelsLoaded = false;
 
+// Pusher state
+let pusher;
+let channel;
+
+// State
+let analysesNodes = [];
+let canvas, ctx;
+let animationId = null;
+let selectedNode = null;
+let showingSpeculations = false;
+let currentAnalysis = null;
+let yourAnalyses = 0;
+
+// Initialize
+document.addEventListener('DOMContentLoaded', async () => {
+  canvas = document.getElementById('oracle-canvas');
+  ctx = canvas.getContext('2d');
+
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  await initOracle();
+  await loadAnalyses();
+
+  // Start animation loop
+  animate();
+
+  document.getElementById('oracle-submit').addEventListener('click', handleSubmit);
+  document.getElementById('oracle-input').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') handleSubmit();
+  });
+  document.getElementById('close-oracle-panel').addEventListener('click', closePanel);
+  document.getElementById('show-speculations-btn').addEventListener('click', showSpeculations);
+  canvas.addEventListener('click', handleCanvasClick);
+  canvas.addEventListener('mousemove', handleCanvasHover);
+
+  initializePusher();
+});
+
+function resizeCanvas() {
+  const wrapper = canvas.parentElement;
+  const dpr = window.devicePixelRatio || 1;
+
+  const displayWidth = wrapper.clientWidth;
+  const displayHeight = wrapper.clientHeight;
+
+  canvas.width = displayWidth * dpr;
+  canvas.height = displayHeight * dpr;
+
+  canvas.style.width = displayWidth + 'px';
+  canvas.style.height = displayHeight + 'px';
+
+  ctx.scale(dpr, dpr);
+}
+
 async function initOracle() {
-    console.log('Loading oracle corpora...');
-    
-    const response = await fetch('corpora.json');
+  console.log('Loading oracle corpora...');
+
+  try {
+    const response = await fetch('../data/corpora.json');
     const corpora = await response.json();
-    
+
     console.log('Building oracle models...');
-    
+
     models.epa = new MarkovGenerator(corpora.epa, 2);
     models.blogs = new MarkovGenerator(corpora.blogs, 2);
     models.youtube = new MarkovGenerator(corpora.youtube, 2);
@@ -17,175 +84,455 @@ async function initOracle() {
     models.reviews = new MarkovGenerator(corpora.google_reviews, 2);
     models.twitter = new MarkovGenerator(corpora.twitter, 2);
     models.cyborg = new MarkovGenerator(corpora.cyborg, 2);
-    
+
     modelsLoaded = true;
     console.log('✓ Oracle ready');
+  } catch (error) {
+    console.error('Error loading oracle:', error);
+    showStatus('Error loading oracle systems');
+  }
+}
+
+async function loadAnalyses() {
+  try {
+    const response = await fetch('/api/get-analyses');
+    const data = await response.json();
+
+    analysesNodes = data.analyses.map((item, index) => ({
+      id: item.id || index,
+      question: item.question,
+      answer: item.answer,
+      contamination: item.contamination || 50,
+      timestamp: item.created_at || new Date().toISOString(),
+      isYours: false,
+      x: Math.random() * canvas.clientWidth,
+      y: Math.random() * canvas.clientHeight,
+      vx: CONFIG.driftSpeed,
+      waveOffset: Math.random() * Math.PI * 2
+    }));
+
+    updateStats();
+  } catch (error) {
+    console.error('Error loading analyses:', error);
+  }
+}
+
+function initializePusher() {
+  if (typeof Pusher === 'undefined') {
+    console.warn('Pusher not loaded, real-time features disabled');
+    return;
+  }
+
+  const pusherKey = document.body.dataset.pusherKey;
+  const pusherCluster = document.body.dataset.pusherCluster;
+
+  if (!pusherKey || !pusherCluster) {
+    console.warn('Pusher credentials missing');
+    return;
+  }
+
+  pusher = new Pusher(pusherKey, {
+    cluster: pusherCluster
+  });
+
+  channel = pusher.subscribe('gowanus-oracle');
+
+  channel.bind('new-analysis', function(data) {
+    handleNewAnalysis(data);
+  });
+}
+
+function handleNewAnalysis(data) {
+  const newNode = {
+    id: data.id || Date.now(),
+    question: data.question,
+    answer: data.answer,
+    contamination: data.contamination,
+    timestamp: data.timestamp || new Date().toISOString(),
+    isYours: false,
+    x: -50,
+    y: Math.random() * canvas.clientHeight,
+    vx: CONFIG.driftSpeed,
+    waveOffset: Math.random() * Math.PI * 2
+  };
+
+  analysesNodes.push(newNode);
+  updateStats();
 }
 
 function generateWithWeights(weights) {
-    const combined = MarkovGenerator.combine(
-        [models.epa, models.blogs, models.youtube, models.tiktok, models.reviews, models.twitter, models.cyborg],
-        [weights.epa, weights.blogs || 0, weights.youtube || 0, weights.tiktok || 0, weights.reviews, weights.twitter, weights.cyborg]
-    );
-    
-    for (let i = 0; i < 50; i++) {
-        const sentence = combined.generate(50, 10);
-        if (sentence && sentence.split(' ').length >= 10) {
-            return sentence;
-        }
+  const combined = MarkovGenerator.combine(
+    [models.epa, models.blogs, models.youtube, models.tiktok, models.reviews, models.twitter, models.cyborg],
+    [weights.epa, weights.blogs || 0, weights.youtube || 0, weights.tiktok || 0, weights.reviews, weights.twitter, weights.cyborg]
+  );
+
+  for (let i = 0; i < 50; i++) {
+    const sentence = combined.generate(50, 10);
+    if (sentence && sentence.split(' ').length >= 10) {
+      return sentence;
     }
-    
-    return "Analysis inconclusive. Temporal data corruption detected.";
+  }
+
+  return "Analysis inconclusive. Temporal data corruption detected.";
 }
 
 function askOracle(question) {
-    if (!modelsLoaded) {
-        return "ERROR: Oracle systems not initialized.";
-    }
-    
-    const responses = [];
-    
-    // Sentence 1: Bureaucratic opening (70% EPA)
-    const bureaucratic = generateWithWeights({
-        epa: 0.7,
-        cyborg: 0.1,
-        reviews: 0.1,
-        twitter: 0.1
-    });
-    responses.push(bureaucratic);
-    
-    // Sentence 2: Medium contamination (20% EPA, 40% cyborg)
-    const prediction = generateWithWeights({
-        epa: 0.2,
-        cyborg: 0.4,
-        reviews: 0.2,
-        twitter: 0.2
-    });
-    responses.push(prediction);
-    
-    // Sentence 3: High contamination (5% EPA, 50% cyborg)
-    const mystical = generateWithWeights({
-        epa: 0.05,
-        cyborg: 0.5,
-        reviews: 0.225,
-        twitter: 0.225
-    });
-    responses.push(mystical);
-    
-    return responses.join(' ');
-}
+  if (!modelsLoaded) {
+    return "ERROR: Oracle systems not initialized.";
+  }
 
-function typewriterResponse(text, onComplete) {
-    const responseEl = document.getElementById('oracle-response');
-    responseEl.textContent = '';
-    
-    const words = text.split(' ');
-    let index = 0;
-    
-    function typeNextWord() {
-        if (index < words.length) {
-            if (index > 0) responseEl.textContent += ' ';
-            responseEl.textContent += words[index];
-            index++;
-            setTimeout(typeNextWord, 50);
-        } else {
-            if (onComplete) onComplete();
-        }
-    }
-    
-    typeNextWord();
+  const responses = [];
+
+  // Sentence 1: Bureaucratic opening (70% EPA)
+  const bureaucratic = generateWithWeights({
+    epa: 0.7,
+    cyborg: 0.1,
+    reviews: 0.1,
+    twitter: 0.1
+  });
+  responses.push(bureaucratic);
+
+  // Sentence 2: Medium contamination (20% EPA, 40% cyborg)
+  const prediction = generateWithWeights({
+    epa: 0.2,
+    cyborg: 0.4,
+    reviews: 0.2,
+    twitter: 0.2
+  });
+  responses.push(prediction);
+
+  // Sentence 3: High contamination (5% EPA, 50% cyborg)
+  const mystical = generateWithWeights({
+    epa: 0.05,
+    cyborg: 0.5,
+    reviews: 0.225,
+    twitter: 0.225
+  });
+  responses.push(mystical);
+
+  return responses.join(' ');
 }
 
 function calculateContamination(text) {
-    // Simple heuristic: longer responses = more contaminated
-    const wordCount = text.split(' ').length;
-    const base = Math.min(100, (wordCount / 150) * 100);
-    const random = Math.random() * 20;
-    return Math.min(100, Math.floor(base + random));
+  const wordCount = text.split(' ').length;
+  const base = Math.min(100, (wordCount / 150) * 100);
+  const random = Math.random() * 20;
+  return Math.min(100, Math.floor(base + random));
 }
 
-function savePastQuery(question, answer) {
-    const queryList = document.getElementById('query-list');
-    const queryDiv = document.createElement('div');
-    queryDiv.className = 'past-query';
-    
-    const questionDiv = document.createElement('div');
-    questionDiv.className = 'past-query-q';
-    questionDiv.textContent = 'Q: ' + question;
-    
-    const answerDiv = document.createElement('div');
-    answerDiv.className = 'past-query-a';
-    answerDiv.textContent = 'A: ' + answer.substring(0, 100) + '...';
-    
-    queryDiv.appendChild(questionDiv);
-    queryDiv.appendChild(answerDiv);
-    
-    queryList.insertBefore(queryDiv, queryList.firstChild);
-    
-    // Keep only last 10 queries
-    while (queryList.children.length > 10) {
-        queryList.removeChild(queryList.lastChild);
+function showStatus(message) {
+  const statusDiv = document.getElementById('oracle-status');
+  statusDiv.textContent = message;
+  statusDiv.style.display = 'block';
+
+  setTimeout(() => {
+    statusDiv.style.display = 'none';
+  }, 3000);
+}
+
+async function handleSubmit() {
+  const input = document.getElementById('oracle-input');
+  const question = input.value.trim();
+  const submitBtn = document.getElementById('oracle-submit');
+
+  if (!question) {
+    showStatus('Please enter a query');
+    return;
+  }
+
+  if (!modelsLoaded) {
+    showStatus('Oracle systems still initializing');
+    return;
+  }
+
+  // Show mystical animation
+  const overlay = document.getElementById('mystical-overlay');
+  overlay.classList.remove('hidden');
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Analyzing...';
+
+  // Wait for mystical animation
+  setTimeout(async () => {
+    const answer = askOracle(question);
+    const contamination = calculateContamination(answer);
+
+    // Hide overlay
+    overlay.classList.add('hidden');
+
+    // Store analysis
+    currentAnalysis = {
+      question,
+      answer,
+      contamination,
+      timestamp: new Date().toISOString()
+    };
+
+    // Save to database
+    try {
+      const response = await fetch('/api/submit-analysis', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(currentAnalysis)
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Add to local nodes
+        const newNode = {
+          id: data.id || Date.now(),
+          question,
+          answer,
+          contamination,
+          timestamp: currentAnalysis.timestamp,
+          isYours: true,
+          x: -50,
+          y: Math.random() * canvas.clientHeight,
+          vx: CONFIG.driftSpeed,
+          waveOffset: Math.random() * Math.PI * 2
+        };
+
+        analysesNodes.push(newNode);
+        yourAnalyses++;
+        updateStats();
+
+        // Broadcast to other users
+        try {
+          await fetch('/api/broadcast-analysis', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: newNode.id,
+              question,
+              answer,
+              contamination,
+              timestamp: newNode.timestamp
+            })
+          });
+        } catch (error) {
+          console.warn('Failed to broadcast analysis:', error);
+        }
+      }
+    } catch (error) {
+      console.error('Error saving analysis:', error);
     }
+
+    // Show results panel
+    showResultsPanel(question, answer, contamination);
+
+    // Reset input
+    input.value = '';
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Analyze';
+  }, 2500);
 }
 
-// Event listeners
-document.addEventListener('DOMContentLoaded', () => {
-    initOracle();
-    
-    const submitBtn = document.getElementById('oracle-submit');
-    const input = document.getElementById('oracle-input');
-    const responseSection = document.getElementById('response-section');
-    
-    submitBtn.addEventListener('click', () => {
-        const question = input.value.trim();
-        
-        if (!question) {
-            alert('Please enter a query.');
-            return;
-        }
-        
-        if (!modelsLoaded) {
-            alert('Oracle systems still initializing. Please wait.');
-            return;
-        }
-        
-        // Show response section
-        responseSection.classList.remove('hidden');
-        
-        // Generate response
-        submitBtn.textContent = 'ANALYZING...';
-        submitBtn.disabled = true;
-        
-        setTimeout(() => {
-            const answer = askOracle(question);
-            const contamination = calculateContamination(answer);
-            
-            // Update contamination level
-            document.getElementById('contamination-display').textContent = 
-                `CONTAMINATION: ${contamination}%`;
-            
-            // Animate confidence meter
-            const confidenceFill = document.getElementById('confidence-fill');
-            confidenceFill.style.width = contamination + '%';
-            
-            // Type out response
-            typewriterResponse(answer, () => {
-                // Save to past queries
-                savePastQuery(question, answer);
-                
-                // Reset button
-                submitBtn.textContent = 'ANALYZE';
-                submitBtn.disabled = false;
-                input.value = '';
-            });
-            
-        }, 500);
-    });
-    
-    // Allow Enter key to submit
-    input.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            submitBtn.click();
-        }
-    });
-});
+function showResultsPanel(question, answer, contamination) {
+  const panel = document.getElementById('oracle-panel');
+
+  document.getElementById('oracle-panel-title').textContent = 'Analysis Results';
+
+  document.getElementById('oracle-panel-meta').innerHTML = `
+    <strong>Query:</strong> ${question}<br>
+    <strong>Contamination Level:</strong> <span style="color: ${contamination > 70 ? '#ff6b6b' : contamination > 40 ? '#ffd93d' : '#6bcf7f'}">${contamination}%</span>
+  `;
+
+  document.getElementById('oracle-panel-content').textContent = answer;
+
+  document.getElementById('oracle-panel-stats').innerHTML = `
+    <div style="font-size: 12px; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(147, 112, 219, 0.3);">
+      <div>Analysis Date: ${new Date().toLocaleDateString()}</div>
+      <div>Timestamp: ${new Date().toLocaleTimeString()}</div>
+      <div>Status: <span style="color: #6bcf7f">COMPLETE</span></div>
+    </div>
+  `;
+
+  panel.classList.remove('hidden');
+}
+
+function showSpeculations() {
+  showingSpeculations = true;
+  closePanel();
+  showStatus('Revealing other speculations...');
+}
+
+function updateStats() {
+  document.getElementById('analyses-count').textContent =
+    `Recent analyses: ${analysesNodes.length}`;
+  document.getElementById('contamination-level').textContent =
+    currentAnalysis ? `Contamination: ${currentAnalysis.contamination}%` : 'Contamination: 0%';
+}
+
+// Animation loop
+function animate() {
+  updateNodePositions();
+  draw();
+  animationId = requestAnimationFrame(animate);
+}
+
+function updateNodePositions() {
+  if (!showingSpeculations) return;
+
+  const canvasWidth = canvas.clientWidth;
+  const canvasHeight = canvas.clientHeight;
+
+  analysesNodes.forEach(node => {
+    node.x += node.vx;
+
+    const time = Date.now() * CONFIG.waveFrequency;
+    node.y += Math.sin(time + node.waveOffset) * CONFIG.waveAmplitude;
+
+    if (node.y < 50) node.y = 50;
+    if (node.y > canvasHeight - 50) node.y = canvasHeight - 50;
+
+    if (node.x > canvasWidth + 100) {
+      node.x = -50;
+      node.y = Math.random() * canvasHeight;
+    }
+  });
+}
+
+function draw() {
+  if (!ctx || !showingSpeculations) return;
+
+  const dpr = window.devicePixelRatio || 1;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const displayWidth = canvas.clientWidth;
+  const displayHeight = canvas.clientHeight;
+
+  ctx.clearRect(0, 0, displayWidth, displayHeight);
+
+  analysesNodes.forEach(node => {
+    drawNode(node);
+  });
+}
+
+function drawNode(node) {
+  const radius = getNodeRadius(node);
+  const nodeColor = node.isYours ? CONFIG.yourNodeColor : CONFIG.nodeColor;
+
+  // Draw glow
+  const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, radius * 1.8);
+  gradient.addColorStop(0, nodeColor);
+  gradient.addColorStop(1, 'transparent');
+  ctx.fillStyle = gradient;
+  ctx.globalAlpha = 0.7;
+  ctx.beginPath();
+  ctx.arc(node.x, node.y, radius * 1.8, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.globalAlpha = 1;
+
+  // Draw node
+  ctx.fillStyle = nodeColor;
+  ctx.beginPath();
+  ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Draw border
+  ctx.strokeStyle = '#8a2be2';
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Draw label
+  const label = node.question.length > 25
+    ? node.question.substring(0, 25) + '...'
+    : node.question;
+
+  ctx.fillStyle = '#e8d5ff';
+  ctx.font = '11px "MS Sans Serif"';
+  ctx.textAlign = 'center';
+
+  const textWidth = ctx.measureText(label).width;
+  ctx.fillStyle = 'rgba(26, 26, 46, 0.9)';
+  ctx.fillRect(
+    node.x - textWidth / 2 - 4,
+    node.y + radius + 4,
+    textWidth + 8,
+    14
+  );
+
+  ctx.fillStyle = '#e8d5ff';
+  ctx.fillText(label, node.x, node.y + radius + 14);
+}
+
+function getNodeRadius(node) {
+  const minWords = 20;
+  const maxWords = 150;
+  const wordCount = node.answer.split(' ').length;
+
+  const normalized = Math.min(Math.max((wordCount - minWords) / (maxWords - minWords), 0), 1);
+
+  return CONFIG.minNodeRadius + (normalized * (CONFIG.maxNodeRadius - CONFIG.minNodeRadius));
+}
+
+function handleCanvasClick(e) {
+  if (!showingSpeculations) return;
+
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const clickedNode = analysesNodes.find(node => {
+    const dx = x - node.x;
+    const dy = y - node.y;
+    const radius = getNodeRadius(node);
+    return Math.sqrt(dx * dx + dy * dy) <= radius;
+  });
+
+  if (clickedNode) {
+    selectedNode = clickedNode;
+    showAnalysisInfo(clickedNode);
+  }
+}
+
+function handleCanvasHover(e) {
+  if (!showingSpeculations) return;
+
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+
+  const hoverNode = analysesNodes.find(node => {
+    const dx = x - node.x;
+    const dy = y - node.y;
+    const radius = getNodeRadius(node);
+    return Math.sqrt(dx * dx + dy * dy) <= radius;
+  });
+
+  canvas.style.cursor = hoverNode ? 'pointer' : 'default';
+}
+
+function showAnalysisInfo(node) {
+  const panel = document.getElementById('oracle-panel');
+
+  document.getElementById('oracle-panel-title').textContent = 'Speculation Analysis';
+
+  document.getElementById('oracle-panel-meta').innerHTML = `
+    <strong>Query:</strong> ${node.question}<br>
+    <strong>Contamination:</strong> <span style="color: ${node.contamination > 70 ? '#ff6b6b' : node.contamination > 40 ? '#ffd93d' : '#6bcf7f'}">${node.contamination}%</span>
+  `;
+
+  document.getElementById('oracle-panel-content').textContent = node.answer;
+
+  const date = new Date(node.timestamp);
+  document.getElementById('oracle-panel-stats').innerHTML = `
+    <div style="font-size: 12px; margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(147, 112, 219, 0.3);">
+      <div>Analysis Date: ${date.toLocaleDateString()}</div>
+      <div>Timestamp: ${date.toLocaleTimeString()}</div>
+    </div>
+  `;
+
+  // Hide the "Other Speculations" button when viewing a speculation
+  document.getElementById('speculations-section').style.display = 'none';
+
+  panel.classList.remove('hidden');
+}
+
+function closePanel() {
+  document.getElementById('oracle-panel').classList.add('hidden');
+  // Show speculations button again
+  document.getElementById('speculations-section').style.display = 'block';
+  selectedNode = null;
+}

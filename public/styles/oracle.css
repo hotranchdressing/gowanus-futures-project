@@ -1,342 +1,288 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Mystical Oracle Theme */
+.oracle-body {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
 }
 
-body {
-    background: #000;
-    color: #00ff00;
-    font-family: 'Courier New', monospace;
-    padding: 20px;
-    min-height: 100vh;
+.oracle-container {
+  background: transparent;
 }
 
-#oracle-container {
-    max-width: 900px;
-    margin: 0 auto;
-    border: 2px solid #00ff00;
-    padding: 20px;
-    background: rgba(0, 20, 0, 0.8);
+.oracle-body .map-header h1 {
+  color: #e8d5ff;
+  text-shadow: 0 0 20px rgba(147, 112, 219, 0.8), 0 0 40px rgba(138, 43, 226, 0.4);
 }
 
-#oracle-header {
-    border-bottom: 2px solid #00ff00;
-    padding-bottom: 15px;
-    margin-bottom: 25px;
+/* Mystical input and button styling - same structure as map but with glowing purple theme */
+.oracle-body #oracle-input {
+  width: 300px;
+  padding: 10px;
+  background: rgba(147, 112, 219, 0.15);
+  border: 2px solid #8a2be2;
+  font-size: 14px;
+  font-family: "warbler-banner", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  color: #e8d5ff;
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.4), 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-#oracle-header h1 {
-    font-size: 24px;
-    text-align: center;
-    letter-spacing: 2px;
-    margin-bottom: 10px;
+.oracle-body #oracle-input::placeholder {
+  color: #b19cd9;
+  font-style: italic;
 }
 
-#system-status {
-    text-align: center;
-    font-size: 12px;
+.oracle-body #oracle-input:focus {
+  outline: none;
+  border-color: #9370db;
+  box-shadow: 0 0 25px rgba(147, 112, 219, 0.6), 0 0 40px rgba(138, 43, 226, 0.3);
+}
+
+.oracle-body #oracle-submit {
+  padding: 10px 16px;
+  background: rgba(138, 43, 226, 0.4);
+  border: 2px solid #8a2be2;
+  color: #e8d5ff;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "warbler-banner", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.4), 2px 2px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.oracle-body #oracle-submit:hover {
+  background: rgba(147, 112, 219, 0.6);
+  box-shadow: 0 0 25px rgba(147, 112, 219, 0.6), 0 0 40px rgba(138, 43, 226, 0.4);
+  transform: translateY(-2px);
+}
+
+.oracle-body #oracle-submit:active {
+  transform: translateY(1px);
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.4), 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Oracle Panel - Mystical styling */
+.oracle-panel {
+  background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%);
+  border: 3px solid #8a2be2;
+  box-shadow: 0 0 30px rgba(138, 43, 226, 0.5), 4px 4px 12px rgba(0, 0, 0, 0.6);
+  color: #e8d5ff;
+}
+
+.oracle-panel h3 {
+  color: #9370db;
+  text-shadow: 0 0 10px rgba(147, 112, 219, 0.8);
+}
+
+.oracle-panel #oracle-panel-meta {
+  color: #b19cd9;
+  font-style: italic;
+}
+
+.oracle-panel #oracle-panel-content {
+  color: #e8d5ff;
+  line-height: 1.8;
+}
+
+.oracle-panel #close-oracle-panel {
+  background: rgba(138, 43, 226, 0.3);
+  border: 2px solid #8a2be2;
+  color: #e8d5ff;
+}
+
+.oracle-panel #close-oracle-panel:hover {
+  background: rgba(138, 43, 226, 0.5);
+  box-shadow: 0 0 15px rgba(147, 112, 219, 0.6);
+}
+
+/* Glowing "Other Speculations" Button */
+.speculations-section {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid rgba(138, 43, 226, 0.5);
+}
+
+.speculations-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #8a2be2 0%, #9370db 100%);
+  border: 2px solid #b19cd9;
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.glowing-btn {
+  animation: glow-pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(147, 112, 219, 0.6), 0 0 40px rgba(138, 43, 226, 0.4);
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(147, 112, 219, 0.6), 0 0 40px rgba(138, 43, 226, 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(147, 112, 219, 0.8), 0 0 60px rgba(138, 43, 226, 0.6), 0 0 80px rgba(138, 43, 226, 0.3);
+    transform: scale(1.02);
+  }
+}
+
+.speculations-btn:hover {
+  background: linear-gradient(135deg, #9370db 0%, #b19cd9 100%);
+  transform: scale(1.05);
+}
+
+.speculations-btn:active {
+  transform: scale(0.98);
+}
+
+/* Mystical Processing Animation Overlay */
+.mystical-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 52, 96, 0.9);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.mystical-overlay.hidden {
+  display: none;
+}
+
+.mystical-animation {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* Mystical Orb */
+.orb {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(147, 112, 219, 0.8) 0%, rgba(138, 43, 226, 0.4) 50%, transparent 100%);
+  animation: orb-pulse 2s ease-in-out infinite, orb-rotate 4s linear infinite;
+  box-shadow: 0 0 60px rgba(147, 112, 219, 0.8), 0 0 120px rgba(138, 43, 226, 0.6), inset 0 0 60px rgba(255, 255, 255, 0.2);
+  position: relative;
+}
+
+.orb::before {
+  content: '';
+  position: absolute;
+  inset: 20px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.4), transparent);
+}
+
+@keyframes orb-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes orb-rotate {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Mystical Particles */
+.particles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+}
+
+.particles::before,
+.particles::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(147, 112, 219, 0.3);
+  border-radius: 50%;
+  animation: particle-ring 3s ease-in-out infinite;
+}
+
+.particles::after {
+  animation-delay: 1.5s;
+}
+
+@keyframes particle-ring {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.analyzing-text {
+  color: #e8d5ff;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: "warbler-text", sans-serif;
+  text-shadow: 0 0 15px rgba(147, 112, 219, 0.8);
+  animation: text-flicker 1.5s ease-in-out infinite;
+}
+
+@keyframes text-flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
     opacity: 0.7;
-    animation: pulse 2s infinite;
+  }
 }
 
-@keyframes pulse {
-    0%, 100% { opacity: 0.7; }
-    50% { opacity: 1; }
+/* Oracle Stats Bar */
+.oracle-stats {
+  background: rgba(26, 26, 46, 0.8);
+  border: 1px solid #8a2be2;
+  color: #e8d5ff;
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
 }
 
-#query-section {
-    margin-bottom: 30px;
+/* Canvas - Mystical background */
+.oracle-body #oracle-canvas {
+  background: radial-gradient(ellipse at center, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+  cursor: crosshair;
 }
 
-#query-section label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 14px;
-}
-
-#oracle-input {
-    width: 100%;
-    background: #000;
-    border: 2px solid #00ff00;
-    color: #00ff00;
-    padding: 12px;
-    font-family: 'Courier New', monospace;
-    font-size: 16px;
-    margin-bottom: 15px;
-}
-
-#oracle-input:focus {
-    outline: none;
-    box-shadow: 0 0 10px #00ff00;
-}
-
-#oracle-submit {
-    width: 100%;
-    background: #00ff00;
-    color: #000;
-    border: none;
-    padding: 15px;
-    font-family: 'Courier New', monospace;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-#oracle-submit:hover {
-    background: #00cc00;
-    box-shadow: 0 0 15px #00ff00;
-}
-
-#oracle-submit:active {
-    transform: scale(0.98);
-}
-
-#response-section {
-    border: 2px solid #00ff00;
-    padding: 20px;
-    margin-bottom: 30px;
-    animation: fadeIn 0.5s;
-}
-
-#response-section.hidden {
-    display: none;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-#response-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #00ff00;
-    font-size: 14px;
-}
-
-#contamination-display {
-    color: #ff0000;
-    animation: flicker 0.5s infinite;
-}
-
-@keyframes flicker {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-}
-
-#response-content {
-    min-height: 100px;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-#oracle-response {
-    font-size: 16px;
-}
-
-#confidence-bar {
-    margin-top: 20px;
-}
-
-#confidence-label {
-    font-size: 12px;
-    margin-bottom: 8px;
-}
-
-#confidence-meter {
-    width: 100%;
-    height: 25px;
-    border: 2px solid #00ff00;
-    position: relative;
-    overflow: hidden;
-}
-
-#confidence-fill {
-    height: 100%;
-    background: linear-gradient(90deg, #ff0000, #ffff00, #00ff00);
-    width: 0%;
-    transition: width 2s ease-out;
-}
-
-#confidence-text {
-    text-align: center;
-    margin-top: 8px;
-    font-size: 14px;
-    color: #ff0000;
-}
-
-#past-queries {
-    border-top: 2px solid #00ff00;
-    padding-top: 20px;
-}
-
-#past-queries h3 {
-    font-size: 16px;
-    margin-bottom: 15px;
-}
-
-#query-list {
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-.past-query {
-    padding: 10px;
-    margin-bottom: 10px;
-    border-left: 3px solid #00ff00;
-    background: rgba(0, 255, 0, 0.05);
-    font-size: 13px;
-}
-
-.past-query-q {
-    color: #00ff00;
-    margin-bottom: 5px;
-}
-
-.past-query-a {
-    color: #00cc00;
-    opacity: 0.8;
-    font-size: 12px;
-}
-
-/* Scrollbar styling */
-#query-list::-webkit-scrollbar {
-    width: 10px;
-}
-
-#query-list::-webkit-scrollbar-track {
-    background: #000;
-}
-
-#query-list::-webkit-scrollbar-thumb {
-    background: #00ff00;
-}
-
-/* Community Meeting Specific Styles */
-#feedback-form-section {
-    margin-bottom: 30px;
-}
-
-#feedback-form-section label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 14px;
-}
-
-#comment-input {
-    width: 100%;
-    min-height: 100px;
-    background: #000;
-    border: 2px solid #00ff00;
-    color: #00ff00;
-    padding: 12px;
-    font-family: 'Courier New', monospace;
-    font-size: 14px;
-    margin-bottom: 15px;
-    resize: vertical;
-}
-
-#comment-input:focus {
-    outline: none;
-    box-shadow: 0 0 10px #00ff00;
-}
-
-#submit-feedback-btn {
-    width: 100%;
-    background: #00ff00;
-    color: #000;
-    border: none;
-    padding: 15px;
-    font-family: 'Courier New', monospace;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-#submit-feedback-btn:hover {
-    background: #00cc00;
-    box-shadow: 0 0 15px #00ff00;
-}
-
-#status {
-    margin-top: 10px;
-    font-size: 14px;
-}
-
-#progress-section {
-    margin: 40px 0;
-    padding: 20px 0;
-}
-
-#progress-divider {
-    border-top: 2px solid #00ff00;
-    margin-bottom: 20px;
-}
-
-#progress-text {
-    font-size: 14px;
-    opacity: 0.8;
-    margin-bottom: 15px;
-    text-align: center;
-}
-
-#proceed-oracle-btn {
-    width: 100%;
-    background: #ff0000;
-    color: #fff;
-    border: none;
-    padding: 20px;
-    font-family: 'Courier New', monospace;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-#proceed-oracle-btn:hover {
-    background: #cc0000;
-    box-shadow: 0 0 20px #ff0000;
-}
-
-#all-feedback {
-    border-top: 2px solid #00ff00;
-    padding-top: 20px;
-    margin-top: 40px;
-}
-
-#all-feedback h3 {
-    font-size: 16px;
-    margin-bottom: 15px;
-}
-
-#feedback-list {
-    max-height: 400px;
-    overflow-y: auto;
-}
-
-.feedback-item {
-    margin: 15px 0;
-    padding: 10px;
-    border-left: 3px solid #00ff00;
-    background: rgba(0, 255, 0, 0.05);
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-/* Scrollbar */
-#feedback-list::-webkit-scrollbar {
-    width: 10px;
-}
-
-#feedback-list::-webkit-scrollbar-track {
-    background: #000;
-}
-
-#feedback-list::-webkit-scrollbar-thumb {
-    background: #00ff00;
+/* Status message styling */
+#oracle-status {
+  position: absolute;
+  bottom: 80px;
+  right: 30px;
+  font-size: 13px;
+  color: #e8d5ff;
+  background: rgba(26, 26, 46, 0.9);
+  border: 1px solid #8a2be2;
+  padding: 8px 12px;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
 }

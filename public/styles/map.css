@@ -139,6 +139,50 @@ font-style: normal;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
+/* Oracle Interface - Same styling as search */
+#oracle-input {
+  width: 300px;
+  padding: 10px;
+  background: #FFFEF7;
+  font-size: 14px;
+  font-family: "warbler-banner", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  color: #000000;
+}
+
+#oracle-input::placeholder {
+  color: #000000;
+  font-style: italic;
+}
+
+#oracle-input:focus {
+  outline: none;
+  border-color: #000000;
+}
+
+#oracle-submit {
+  padding: 10px 16px;
+  background: #FFFEF7;
+  color: #000000;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "warbler-banner", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#oracle-submit:hover {
+  background: #74b3ea;
+}
+
+#oracle-submit:active {
+  transform: translateY(1px);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
 #search-feedback {
   position: absolute;
   bottom: 80px;

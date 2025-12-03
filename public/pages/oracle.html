@@ -4,91 +4,72 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Oracle - Gowanus Futures 2050</title>
-    <link rel="stylesheet" href="../styles/gowanus98.css" />
+    <link rel="stylesheet" href="../styles/map.css" />
+    <link rel="stylesheet" href="../styles/oracle.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/lik2wjj.css" />
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
   </head>
-  <body>
-    <header class="chrome">
-      <div class="chrome-buttons">
-        <button
-          class="chrome-btn"
-          onclick="window.location.href='/'"
-          title="Back to map"
-        >
-          ⬅
-        </button>
-        <button
-          class="chrome-btn"
-          onclick="window.location.reload()"
-          title="Refresh"
-        >
-          ⟲
-        </button>
+  <body
+    data-pusher-key="fcb48d0bea0e88fee65e"
+    data-pusher-cluster="us2"
+    class="oracle-body"
+  >
+    <div class="map-container oracle-container">
+      <header class="map-header">
+        <h1>Contaminated Oracle 2050</h1>
+      </header>
+
+      <div class="search-container">
+        <input
+          type="text"
+          id="oracle-input"
+          placeholder="Submit query..."
+          autocomplete="off"
+        />
+        <button id="oracle-submit">Analyze</button>
       </div>
-      <div class="address-bar">gowanus://oracle/2050</div>
-      <div class="save-btn">💾</div>
-    </header>
 
-    <main class="oracle-container">
-      <div class="window shell wide">
-        <div class="window-title">QUICKSCORE PREDICTIVE ANALYSIS SYSTEM</div>
-        <div class="window-body">
-          <div class="terminal-section">
-            <div class="terminal-header">GOWANUS FUTURES PROJECT</div>
-            <div class="terminal-title">
-              CONTAMINATED ORACLE - TIMELINE 2050
-            </div>
-            <p style="font-size: 13px; line-height: 1.6">
-              &gt; SYSTEM STATUS: ONLINE<br />
-              &gt; CONTAMINATION MONITORING: ACTIVE<br />
-              &gt; USER FEEDBACK INTEGRATION: ENABLED<br />
-              &gt; TEMPORAL ANALYSIS: READY
-            </p>
-          </div>
+      <div id="oracle-status"></div>
 
-          <div class="oracle-input-section">
-            <label class="oracle-label" for="oracle-input">
-              SUBMIT QUERY ABOUT GOWANUS 2050:
-            </label>
-            <input
-              id="oracle-input"
-              class="oracle-input"
-              type="text"
-              placeholder="e.g., Will there be fish in the canal?"
-              maxlength="200"
-            />
-            <button id="oracle-submit" class="analyze-btn">ANALYZE</button>
-            <div id="status" class="status-message"></div>
-          </div>
+      <!-- Mystical processing animation overlay -->
+      <div id="mystical-overlay" class="mystical-overlay hidden">
+        <div class="mystical-animation">
+          <div class="orb"></div>
+          <div class="particles"></div>
+          <p class="analyzing-text">Analyzing temporal data...</p>
+        </div>
+      </div>
 
-          <div id="response-section" class="window hidden response-window">
-            <div class="window-title">ANALYSIS RESULTS</div>
-            <div class="response-header">
-              <span>ANALYSIS COMPLETE</span>
-              <span id="contamination-display" class="contamination-level"
-                >CONTAMINATION: 0%</span
-              >
-            </div>
-            <div class="response-content">
-              <p id="oracle-response"></p>
-            </div>
-            <div class="confidence-section">
-              <div class="confidence-label">CONFIDENCE LEVEL:</div>
-              <div class="confidence-meter">
-                <div id="confidence-fill" class="confidence-fill"></div>
-              </div>
-              <div id="confidence-text" class="confidence-text">UNSTABLE</div>
-            </div>
-          </div>
+      <div class="map-canvas-wrapper">
+        <canvas id="oracle-canvas"></canvas>
 
-          <div class="past-queries-section">
-            <div class="past-queries-title">RECENT ANALYSES:</div>
-            <div id="query-list" class="query-list"></div>
+        <!-- Results Panel -->
+        <div id="oracle-panel" class="info-panel oracle-panel hidden">
+          <button id="close-oracle-panel">&times;</button>
+          <h3 id="oracle-panel-title">Analysis Results</h3>
+          <div id="oracle-panel-meta"></div>
+          <p id="oracle-panel-content"></p>
+          <div id="oracle-panel-stats"></div>
+
+          <!-- Other Speculations Button -->
+          <div id="speculations-section" class="speculations-section">
+            <button
+              id="show-speculations-btn"
+              class="speculations-btn glowing-btn"
+            >
+              ✨ Other Speculations ✨
+            </button>
           </div>
         </div>
       </div>
-    </main>
+
+      <div class="stats-bar oracle-stats">
+        <span id="analyses-count">Recent analyses: 0</span>
+        <span id="contamination-level">Contamination: 0%</span>
+      </div>
+    </div>
 
     <script src="../scripts/markov.js"></script>
-    <script src="../scripts/oracle-ui.js"></script>
+    <script src="../scripts/oracle.js"></script>
   </body>
 </html>
