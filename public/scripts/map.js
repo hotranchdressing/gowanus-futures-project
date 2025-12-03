@@ -180,7 +180,7 @@ function updateActiveUsers() {
     statsBar.insertBefore(activeSpan, statsBar.firstChild);
   }
   
-  activeSpan.textContent = `👁️ ${activeUsers} exploring now`;
+  activeSpan.textContent = `${activeUsers} exploring now`;
 }
 
 async function handleSearch() {
