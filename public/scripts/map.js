@@ -11,7 +11,7 @@ const CONFIG = {
   otherConnectionWidth: 1,
   labelOffset: 15,
   driftSpeed: 0.25,
-  waveAmplitude: 0.01,
+  waveAmplitude: 0.02,
   waveFrequency: 0.001
 };
 
@@ -351,18 +351,9 @@ async function handleSearch() {
       }
     });
 
-    // Check if less than 2 results - show encouragement popup
-    if (matches.length < 2) {
-      showContinueSearchingPopup(matches.length);
-      document.getElementById('search-feedback').textContent =
-        `Found ${matches.length} node${matches.length > 1 ? 's' : ''} matching "${query}"`;
-    } else {
-      document.getElementById('search-feedback').textContent =
-        `Found ${matches.length} node${matches.length > 1 ? 's' : ''} matching "${query}"`;
-    }
-  } else {
-    // No matches found - show popup
-    showContinueSearchingPopup(0);
+     document.getElementById('search-feedback').textContent =
+    `Found ${matches.length} node${matches.length > 1 ? 's' : ''} matching "${query}"`;
+} else {
 
     const unrevealed = nodes.filter(n => !n.revealed);
     const randomCount = Math.min(3, unrevealed.length);
@@ -739,13 +730,13 @@ async function handleCanvasClick(e) {
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
   
-const clickedNode = nodes.find(node => {
-  if (!node.revealed) return false;
-  const dx = x - node.x;
-  const dy = y - node.y;
-  const radius = getNodeRadius(node, node.stuck);
-  return Math.sqrt(dx * dx + dy * dy) <= radius;
-});
+  const clickedNode = nodes.find(node => {
+    if (!node.revealed) return false;
+    const dx = x - node.x;
+    const dy = y - node.y;
+    const radius = getNodeRadius(node, node.stuck);
+    return Math.sqrt(dx * dx + dy * dy) <= radius;
+  });
   
   if (clickedNode) {
     if (!clickedNode.stuck) {
@@ -756,7 +747,7 @@ const clickedNode = nodes.find(node => {
       
       // Add to click sequence
       clickSequence.push(clickedNode.id);
-
+      
       // If there's a previous node, create connection
       if (clickSequence.length > 1) {
         const prevNodeId = clickSequence[clickSequence.length - 2];
@@ -765,7 +756,7 @@ const clickedNode = nodes.find(node => {
           to: clickedNode.id,
           color: CONFIG.revealedNodeColor
         });
-
+        
         // Broadcast this connection to other users
         try {
           await fetch('/api/broadcast-connection', {
@@ -781,20 +772,19 @@ const clickedNode = nodes.find(node => {
           console.warn('Failed to broadcast connection:', error);
         }
       }
-
-      // After 5 clicks, transition to community meeting
-      if (clickSequence.length >= 5) {
-        setTimeout(() => {
-          window.location.href = '/community';
-        }, 1500); // Short delay to show the final connection
-      }
-
+      
       updateStats();
     }
     
-    // Show info panel
-    selectedNode = clickedNode;
-    showNodeInfo(clickedNode);
+    // Check if it's an internal document (no blurb or empty blurb)
+    if (clickedNode.sourceUrl && clickedNode.sourceUrl.startsWith('/assets/') && (!clickedNode.blurb || clickedNode.blurb === '')) {
+      // Open iframe directly for internal documents
+      openSourceWindow(clickedNode.sourceUrl, clickedNode.title);
+    } else {
+      // Show info panel for everything else
+      selectedNode = clickedNode;
+      showNodeInfo(clickedNode);
+    }
   }
 }
 
