@@ -809,12 +809,12 @@ function showNodeInfo(node) {
 
   // Make title clickable if there's a source URL
   if (node.sourceUrl) {
-  const escapedTitle = node.title.replace(/'/g, "\\'");
-  document.getElementById('panel-title').innerHTML =
-    `<a href="${node.sourceUrl}" onclick="openSourceWindow('${node.sourceUrl}', '${escapedTitle}'); return false;" style="color: #5C4033; text-decoration: underline; cursor: pointer;">${node.title}</a>`;
-} else {
-  document.getElementById('panel-title').textContent = node.title;
-}
+    const escapedTitle = node.title.replace(/'/g, "\\'");
+    document.getElementById('panel-title').innerHTML =
+      `<a href="${node.sourceUrl}" onclick="openSourceWindow('${node.sourceUrl}', '${escapedTitle}'); return false;" style="color: #5C4033; text-decoration: underline; cursor: pointer;">${node.title}</a>`;
+  } else {
+    document.getElementById('panel-title').textContent = node.title;
+  }
 
   document.getElementById('panel-meta').textContent =
     `${node.type} • ${node.year}`;
@@ -832,31 +832,52 @@ function showNodeInfo(node) {
     statsHTML += `<div>${node.wordCount.toLocaleString()} words</div>`;
   }
   
-  // Portal nodes
-  if (node.id === 21) {
+  // Show community meeting invitation after 5+ clicks
+  if (clickSequence.length >= 5) {
     statsHTML += `
-      <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #DEB887;">
+      <div style="margin-top: 20px; padding-top: 15px;">
+        <p style="font-size: 13px; margin-bottom: 10px; line-height: 1.5;">
+          Do you have an opinion about this?
+        </p>
         <button onclick="window.location.href='/community'" style="
           width: 100%;
           padding: 12px;
-          background: #E07A5F;
-          border: 2px solid #8B4513;
-          color: #fff;
+          background: #ffffffff;
+          border: 1px solid #000000ff;
+          color: #000000ff;
+          font-weight: bold;
+          cursor: pointer;
+          font-size: 14px;
+        ">VOICE YOUR THOUGHTS →</button>
+      </div>
+    `;
+  }
+  
+  // Portal nodes
+  if (node.id === 202) {
+    statsHTML += `
+      <div style="margin-top: 15px; padding-top: 15px;">
+        <button onclick="window.location.href='/community'" style="
+          width: 100%;
+          padding: 12px;
+          background: #ffffffff;
+          border: 1px solid #000000ff;
+          color: #000000ff;
           font-weight: bold;
           cursor: pointer;
           font-size: 14px;
         ">ENTER COMMUNITY MEETING →</button>
       </div>
     `;
-  } else if (node.id === 22) {
+  } else if (node.id === 203) {
     statsHTML += `
-      <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #DEB887;">
+      <div style="margin-top: 15px; padding-top: 15px;">
         <button onclick="window.location.href='/oracle'" style="
           width: 100%;
           padding: 12px;
-          background: #3D5A80;
-          border: 2px solid #8B4513;
-          color: #fff;
+          background: #ffffffff;
+          border: 1px solid #000000ff;
+          color: #000000ff;
           font-weight: bold;
           cursor: pointer;
           font-size: 14px;
