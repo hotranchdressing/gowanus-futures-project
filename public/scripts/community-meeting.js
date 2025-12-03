@@ -7,7 +7,7 @@ const CONFIG = {
   connectionColor: '#DEB887',
   connectionWidth: 2,
   labelOffset: 15,
-  driftSpeed: 0.08,
+  driftSpeed: 0.18, // Faster conversational speed
   waveAmplitude: 0.015,
   waveFrequency: 0.0012
 };
@@ -27,6 +27,7 @@ let clickedNodesCount = 0;
 let clickSequence = []; // Array of node IDs in order clicked
 let connections = []; // Array of {fromNode, toNode, color} for connections
 let clickedNodeIds = new Set(); // Set of clicked node IDs for quick lookup
+let hasSubmittedFeedback = false; // Track if user has submitted feedback to enable audio
 
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
@@ -92,6 +93,15 @@ function stopNodeSpeech(nodeId) {
   }
 }
 
+function startAllSpeech() {
+  // Start speaking all existing feedback nodes with staggered delays
+  feedbackNodes.forEach((node, index) => {
+    if (!node.isYours) { // Don't speak user's own feedback automatically
+      setTimeout(() => speakFeedback(node), index * 2000 + Math.random() * 1000);
+    }
+  });
+}
+
 async function loadFeedback() {
   try {
     const response = await fetch('/api/get-feedback');
@@ -111,10 +121,7 @@ async function loadFeedback() {
 
     updateStats();
 
-    // Start speaking feedback nodes with random delays
-    feedbackNodes.forEach((node, index) => {
-      setTimeout(() => speakFeedback(node), index * 3000 + Math.random() * 2000);
-    });
+    // Audio will only start after user submits their first feedback
   } catch (error) {
     console.error('Error loading feedback:', error);
   }
@@ -160,8 +167,10 @@ function handleNewFeedback(data) {
   feedbackNodes.push(newNode);
   updateStats();
 
-  // Speak the new feedback after a short delay
-  setTimeout(() => speakFeedback(newNode), 500);
+  // Speak the new feedback only if user has submitted their own feedback
+  if (hasSubmittedFeedback) {
+    setTimeout(() => speakFeedback(newNode), 500);
+  }
 
   // Show floating notification
   showFloatingNotification('New feedback received');
@@ -221,6 +230,12 @@ async function handleSubmit() {
       feedbackNodes.push(newNode);
       yourContributions++;
       updateStats();
+
+      // If this is the first feedback, enable audio and start all existing speech
+      if (!hasSubmittedFeedback) {
+        hasSubmittedFeedback = true;
+        startAllSpeech(); // Start speaking all existing feedback nodes
+      }
 
       // Speak the new feedback
       setTimeout(() => speakFeedback(newNode), 500);

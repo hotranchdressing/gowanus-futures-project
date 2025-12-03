@@ -15,12 +15,17 @@
       </header>
 
       <div class="search-container">
-        <input
-          type="text"
-          id="search-input"
-          placeholder="Enter a keyword to begin..."
-          autocomplete="off"
-        />
+        <div class="input-wrapper">
+          <input
+            type="text"
+            id="search-input"
+            placeholder=""
+            autocomplete="off"
+          />
+          <div id="sliding-prompts" class="sliding-prompts">
+            <div class="prompt-text"></div>
+          </div>
+        </div>
         <button id="search-btn">Search</button>
         <button id="clear-btn">Clear</button>
       </div>

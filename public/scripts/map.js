@@ -15,6 +15,60 @@ const CONFIG = {
   waveFrequency: 0.001
 };
 
+// Search prompts that cycle through placeholder
+const SEARCH_PROMPTS = [
+  "What makes Gowanus smell?",
+  "When will cleanup finish?",
+  "Who lives near the canal?",
+  "What's in the sludge?",
+  "How toxic is the water?",
+  "Why spray perfume?",
+  "Where does smell come from?",
+  "What did they find buried?",
+  "How deep is the canal?",
+  "Who pays for cleanup?",
+  "What's a Superfund site?",
+  "When did pollution start?",
+  "Can you swim here?",
+  "What's dredging?",
+  "Who dumped waste?",
+  "What luxury is coming?",
+  "Where are toxins going?",
+  "How long polluted?",
+  "What happened to the blob?",
+  "Why Christmas scent?",
+  "What's the EPA doing?",
+  "Who protests cleanup?",
+  "What's being built?",
+  "Where do trucks go?",
+  "How many cars found?",
+  "What bodies were discovered?",
+  "Who swims in toxic water?",
+  "What's the wellness center?",
+  "Why cover dredging?",
+  "What church is affected?",
+  "How bad is the air?",
+  "What's carcinogenic?",
+  "Who lives here anyway?",
+  "What year will it be clean?",
+  "Why so glamorous?",
+  "What's Red Hook channel?",
+  "Who's Sante Scardillo?",
+  "What Mercedes was found?",
+  "Why is it black?",
+  "What's industrial waste?",
+  "Where's sewage from?",
+  "Is Al Capone's church toxic?",
+  "What's the stench level?",
+  "Who approved this?",
+  "What about property values?",
+  "Why Brooklyn's punchline?",
+  "What comedians joked?",
+  "Where's the mecca?",
+  "What development is luxury?",
+  "Who fears the smell?"
+];
+
 // Pusher state
 let pusher;
 let channel;
@@ -36,15 +90,18 @@ let otherUserConnections = []; // Array of {from, to, color} from other users
 document.addEventListener('DOMContentLoaded', async () => {
   canvas = document.getElementById('map-canvas');
   ctx = canvas.getContext('2d');
-  
+
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
-  
+
   await loadNodes();
-  
+
   // Start animation loop
   animate();
-  
+
+  // Start cycling search prompts
+  cyclePlaceholder();
+
   document.getElementById('search-btn').addEventListener('click', handleSearch);
   document.getElementById('clear-btn').addEventListener('click', clearRevealed);
   document.getElementById('search-input').addEventListener('keypress', (e) => {
@@ -69,6 +126,63 @@ function resizeCanvas() {
   canvas.style.height = displayHeight + 'px';
   
   ctx.scale(dpr, dpr);
+}
+
+function cyclePlaceholder() {
+  const searchInput = document.getElementById('search-input');
+  const slidingPrompts = document.getElementById('sliding-prompts');
+  const promptText = slidingPrompts.querySelector('.prompt-text');
+  let currentIndex = 0;
+
+  // Function to slide in next prompt
+  function showNextPrompt() {
+    // Set up the next prompt below the visible area
+    promptText.textContent = SEARCH_PROMPTS[currentIndex];
+    promptText.style.transform = 'translateY(100%)';
+    promptText.style.opacity = '0';
+
+    // Trigger animation to slide up into view
+    setTimeout(() => {
+      promptText.style.transform = 'translateY(0)';
+      promptText.style.opacity = '0.6';
+    }, 50);
+
+    // After staying visible, slide up and out
+    setTimeout(() => {
+      promptText.style.transform = 'translateY(-100%)';
+      promptText.style.opacity = '0';
+    }, 7000); // Stay visible for 7 seconds
+
+    // Move to next prompt
+    currentIndex = (currentIndex + 1) % SEARCH_PROMPTS.length;
+  }
+
+  // Start with first prompt
+  showNextPrompt();
+
+  // Cycle through prompts every 8 seconds (7s visible + 1s transition)
+  setInterval(showNextPrompt, 8000);
+
+  // Hide prompts when user focuses on input
+  searchInput.addEventListener('focus', () => {
+    slidingPrompts.classList.add('hidden');
+  });
+
+  // Show prompts again when input is blurred and empty
+  searchInput.addEventListener('blur', () => {
+    if (!searchInput.value.trim()) {
+      slidingPrompts.classList.remove('hidden');
+    }
+  });
+
+  // Hide prompts when user starts typing
+  searchInput.addEventListener('input', () => {
+    if (searchInput.value) {
+      slidingPrompts.classList.add('hidden');
+    } else {
+      slidingPrompts.classList.remove('hidden');
+    }
+  });
 }
 
 async function loadNodes() {
