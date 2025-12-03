@@ -696,9 +696,9 @@ function createIframeWindow(url, title) {
     width: 90%;
     max-width: 1000px;
     height: 85%;
-    background: #F5F1E8;
-    border: 3px solid #8B4513;
-    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3);
+    background: #ffffffff;
+    border: 1px solid #000000ff;
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 10);
     display: flex;
     flex-direction: column;
   `;
@@ -706,7 +706,7 @@ function createIframeWindow(url, title) {
   // Create title bar
   const titleBar = document.createElement('div');
   titleBar.style.cssText = `
-    background: linear-gradient(90deg, #000080, #4c70c7);
+    background: linear-gradient(90deg, #5a5853ff, #e8e8dbff);
     color: #fff;
     padding: 6px 10px;
     font-weight: 700;
@@ -717,14 +717,14 @@ function createIframeWindow(url, title) {
   titleBar.innerHTML = `
     <span>${title}</span>
     <button id="close-source" style="
-      background: #CD853F;
-      border: 2px solid #8B4513;
+      background: #000000ff;
+      border: 1px solid #8B4513;
       width: 28px;
       height: 28px;
       font-size: 18px;
       line-height: 1;
       cursor: pointer;
-      color: #5C4033;
+      color: #000000ff;
     ">×</button>
   `;
   
