@@ -212,10 +212,11 @@ async function handleSearch() {
   searchCount++;
   
   const matches = nodes.filter(node => 
-    node.keywords.some(keyword => keyword.toLowerCase().includes(query)) ||
-    node.title.toLowerCase().includes(query) ||
-    node.content.toLowerCase().includes(query)
-  );
+  node.keywords.some(keyword => keyword.toLowerCase().includes(query)) ||
+  node.title.toLowerCase().includes(query) ||
+  (node.blurb && node.blurb.toLowerCase().includes(query)) ||
+  (node.content && node.content.toLowerCase().includes(query))
+);
   
   const revealedIds = [];
   
