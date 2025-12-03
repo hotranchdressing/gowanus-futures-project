@@ -576,49 +576,58 @@ function handleCanvasHover(e) {
 
 function showNodeInfo(node) {
   const panel = document.getElementById('node-info-panel');
-  
+
   // Make title clickable if there's a source URL
   if (node.sourceUrl) {
   const escapedTitle = node.title.replace(/'/g, "\\'");
-  document.getElementById('panel-title').innerHTML = 
+  document.getElementById('panel-title').innerHTML =
     `<a href="${node.sourceUrl}" onclick="openSourceWindow('${node.sourceUrl}', '${escapedTitle}'); return false;" style="color: #5C4033; text-decoration: underline; cursor: pointer;">${node.title}</a>`;
 } else {
   document.getElementById('panel-title').textContent = node.title;
 }
-  
-  document.getElementById('panel-meta').textContent = 
+
+  document.getElementById('panel-meta').textContent =
     `${node.type} • ${node.year}`;
-  
+
   // Use blurb instead of content
   document.getElementById('panel-content').textContent = node.blurb || node.content || '';
-  
+
   let statsHTML = `
     <div>Revealed ${node.searches} time${node.searches !== 1 ? 's' : ''}</div>
     <div>Viewed ${node.views} time${node.views !== 1 ? 's' : ''}</div>
     <div>${node.stuck ? 'Collected' : 'Drifting'}</div>
   `;
-  
+
   if (node.wordCount) {
     statsHTML += `<div>${node.wordCount.toLocaleString()} words</div>`;
   }
-  
+
+  // Always show submit feedback button after any node click
+  statsHTML += `
+    <div style="margin-top: 20px; padding-top: 15px; border-top: 2px solid #DEB887;">
+      <p style="font-size: 13px; margin-bottom: 10px; line-height: 1.5;">
+        Do you have thoughts on this? Submit your feedback.
+      </p>
+      <button onclick="window.location.href='/community'" style="
+        width: 100%;
+        padding: 12px;
+        background: #E07A5F;
+        border: 2px solid #8B4513;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 14px;
+      ">SUBMIT FEEDBACK →</button>
+    </div>
+  `;
+
   // Show community meeting invitation after 10+ clicks
   if (clickSequence.length >= 10) {
     statsHTML += `
-      <div style="margin-top: 20px; padding-top: 15px; border-top: 2px solid #DEB887;">
-        <p style="font-size: 13px; margin-bottom: 10px; line-height: 1.5;">
-          Do you have an opinion about this? Click to voice your thoughts.
+      <div style="margin-top: 10px;">
+        <p style="font-size: 12px; font-style: italic; color: #5C4033;">
+          You've collected ${clickSequence.length} nodes. Your voice matters.
         </p>
-        <button onclick="window.location.href='/community'" style="
-          width: 100%;
-          padding: 12px;
-          background: #E07A5F;
-          border: 2px solid #8B4513;
-          color: #fff;
-          font-weight: bold;
-          cursor: pointer;
-          font-size: 14px;
-        ">VOICE YOUR THOUGHTS →</button>
       </div>
     `;
   }

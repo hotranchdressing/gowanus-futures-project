@@ -1,69 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Community Meeting - Gowanus Futures</title>
-  <link rel="stylesheet" href="../styles/gowanus98.css" />
-</head>
-<body>
-  <header class="chrome">
-    <div class="chrome-buttons">
-  <button class="chrome-btn" onclick="window.location.href='/'" title="Back to map">⬅</button>
-  <button class="chrome-btn" onclick="window.location.reload()" title="Refresh">⟲</button>
-</div>
-    <div class="address-bar">gowanus://community-meeting</div>
-    <div class="save-btn"></div>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Community Meeting - Gowanus Futures</title>
+    <link rel="stylesheet" href="../styles/map.css" />
+    <link rel="stylesheet" href="https://use.typekit.net/lik2wjj.css" />
+    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+  </head>
+  <body data-pusher-key="fcb48d0bea0e88fee65e" data-pusher-cluster="us2">
+    <div class="map-container">
+      <header class="map-header">
+        <h1>Feedbacks</h1>
+      </header>
 
-  <main class="meeting-container">
-    <div class="window shell wide">
-      <div class="window-title">EPA COMMUNITY MEETING - PUBLIC COMMENT PERIOD</div>
-      <div class="window-body">
-        <div class="terminal-section">
-          <div class="terminal-header">GOWANUS CANAL SUPERFUND SITE</div>
-          <div class="terminal-title">STAKEHOLDER INPUT SESSION</div>
-          <p style="font-size: 13px; line-height: 1.6;">
-            &gt; The Environmental Protection Agency invites community members to submit feedback
-            on the proposed remediation strategy for the Gowanus Canal Superfund Site.
-            All comments will be incorporated into the public record and future projections.
-          </p>
-        </div>
+      <div class="search-container">
+        <input
+          type="text"
+          id="feedback-input"
+          placeholder="Submit feedback..."
+          autocomplete="off"
+        />
+        <button id="submit-btn">Submit</button>
+        <button id="oracle-btn">Oracle →</button>
+      </div>
 
-        <div class="feedback-section">
-          <label class="feedback-label" for="comment-input">
-            SUBMIT YOUR FEEDBACK ON REMEDIATION:
-          </label>
-          <textarea
-            id="comment-input"
-            class="feedback-textarea"
-            placeholder="Share your thoughts on the Gowanus Canal remediation..."
-            rows="5"
-          ></textarea>
-          <button id="submit-feedback-btn" class="submit-btn">
-            SUBMIT COMMENT
-          </button>
-          <div id="status" class="status-message"></div>
-        </div>
+      <div id="submit-status"></div>
 
-        <div class="progress-divider"></div>
-
-        <div class="progress-message">
-          ⚠ Your voice has been recorded. The future is contaminated by community input.
-        </div>
-
-        <button id="proceed-oracle-btn" class="proceed-btn">
-          PROCEED TO 2050 ANALYSIS →
-        </button>
-
-        <div class="feedback-list-section">
-          <div class="feedback-list-title">COMMUNITY FEEDBACK LOG:</div>
-          <div id="feedback-list" class="feedback-list"></div>
+      <div class="map-canvas-wrapper">
+        <canvas id="feedback-canvas"></canvas>
+        <div id="feedback-panel" class="info-panel hidden">
+          <button id="close-panel">&times;</button>
+          <h3 id="panel-title">Community Feedback</h3>
+          <div id="panel-meta"></div>
+          <p id="panel-content"></p>
         </div>
       </div>
-    </div>
-  </main>
 
-  <script src="../scripts/community-meeting.js"></script>
-</body>
+      <div class="stats-bar">
+        <span id="feedback-count">Feedback nodes: 0</span>
+        <span id="your-contributions">Your contributions: 0</span>
+      </div>
+    </div>
+
+    <script src="../scripts/community-meeting.js"></script>
+  </body>
 </html>
