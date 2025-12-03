@@ -22,6 +22,11 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'Question and answer are required' });
     }
 
+    if (!process.env.DATABASE_URL) {
+      console.error('DATABASE_URL not configured');
+      return res.status(500).json({ error: 'Database not configured' });
+    }
+
     const sql = neon(process.env.DATABASE_URL);
 
     // Create table if not exists
@@ -35,10 +40,12 @@ module.exports = async (req, res) => {
       )
     `;
 
-    // Insert analysis
+    // Insert analysis - use current time if timestamp not provided
+    const createdAt = timestamp ? new Date(timestamp) : new Date();
+
     const result = await sql`
       INSERT INTO oracle_analyses (question, answer, contamination, created_at)
-      VALUES (${question}, ${answer}, ${contamination || 50}, ${timestamp || 'NOW()'})
+      VALUES (${question}, ${answer}, ${contamination || 50}, ${createdAt})
       RETURNING id
     `;
 

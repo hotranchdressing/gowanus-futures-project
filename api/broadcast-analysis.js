@@ -24,6 +24,12 @@ module.exports = async (req, res) => {
   }
 
   try {
+    // Check if Pusher is configured
+    if (!process.env.PUSHER_APP_ID || !process.env.PUSHER_KEY || !process.env.PUSHER_SECRET) {
+      console.warn('Pusher not configured, skipping broadcast');
+      return res.status(200).json({ success: true, warning: 'Broadcast disabled' });
+    }
+
     const { id, question, answer, contamination, timestamp } = req.body;
 
     // Broadcast to all connected clients
@@ -38,6 +44,6 @@ module.exports = async (req, res) => {
     return res.status(200).json({ success: true });
   } catch (error) {
     console.error('Broadcast error:', error);
-    return res.status(500).json({ error: 'Failed to broadcast' });
+    return res.status(200).json({ success: true, warning: 'Broadcast failed' });
   }
 };
