@@ -666,6 +666,17 @@ function closePanel() {
 
 // Global function for opening source windows
 window.openSourceWindow = function(url, title) {
+  // Check if it's an internal file (starts with /)
+  if (url.startsWith('/assets/') || url.startsWith('/')) {
+    // Internal files - use iframe
+    createIframeWindow(url, title);
+  } else {
+    // External links - open in new tab
+    window.open(url, '_blank');
+  }
+};
+
+function createIframeWindow(url, title) {
   // Create overlay
   const overlay = document.createElement('div');
   overlay.id = 'source-overlay';
@@ -738,4 +749,4 @@ window.openSourceWindow = function(url, title) {
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) closeWindow();
   });
-};
+}
