@@ -5,6 +5,7 @@ const CONFIG = {
   nodeColor: '#81B29A',
   yourNodeColor: '#E07A5F',
   connectionColor: '#DEB887',
+  connectionWidth: 2,
   labelOffset: 15,
   driftSpeed: 0.08,
   waveAmplitude: 0.015,
@@ -23,6 +24,9 @@ let selectedNode = null;
 let yourContributions = 0;
 let speechInstances = new Map(); // Track speech by node ID
 let clickedNodesCount = 0;
+let clickSequence = []; // Array of node IDs in order clicked
+let connections = []; // Array of {fromNode, toNode, color} for connections
+let clickedNodeIds = new Set(); // Set of clicked node IDs for quick lookup
 
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
@@ -285,6 +289,19 @@ function updateNodePositions() {
   });
 }
 
+function drawConnection(fromNode, toNode, color, width) {
+  if (!fromNode || !toNode) return;
+
+  ctx.strokeStyle = color;
+  ctx.lineWidth = width;
+  ctx.globalAlpha = 0.6;
+  ctx.beginPath();
+  ctx.moveTo(fromNode.x, fromNode.y);
+  ctx.lineTo(toNode.x, toNode.y);
+  ctx.stroke();
+  ctx.globalAlpha = 1;
+}
+
 function draw() {
   if (!ctx) return;
 
@@ -298,6 +315,11 @@ function draw() {
 
   // Draw faint grid for infinite field effect
   drawGrid(displayWidth, displayHeight);
+
+  // Draw connections between clicked nodes
+  connections.forEach(conn => {
+    drawConnection(conn.fromNode, conn.toNode, conn.color, CONFIG.connectionWidth);
+  });
 
   // Draw all feedback nodes
   feedbackNodes.forEach(node => {
@@ -349,9 +371,10 @@ function drawNode(node) {
   ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
   ctx.fill();
 
-  // Draw border
-  ctx.strokeStyle = '#5C4033';
-  ctx.lineWidth = 2;
+  // Draw border - thicker for clicked nodes
+  const isClicked = clickedNodeIds.has(node.id);
+  ctx.strokeStyle = isClicked ? '#DEB887' : '#5C4033';
+  ctx.lineWidth = isClicked ? 3 : 2;
   ctx.stroke();
 
   // Draw label (shortened comment)
@@ -405,8 +428,31 @@ function handleCanvasClick(e) {
     // Stop the speech for this node
     stopNodeSpeech(clickedNode.id);
 
-    // Increment click counter
-    clickedNodesCount++;
+    // Only increment counter and create connections if this is a new click
+    if (!clickedNodeIds.has(clickedNode.id)) {
+      // Mark as clicked
+      clickedNodeIds.add(clickedNode.id);
+
+      // Add to click sequence
+      clickSequence.push(clickedNode.id);
+
+      // Increment click counter
+      clickedNodesCount++;
+
+      // If there's a previous node, create connection
+      if (clickSequence.length > 1) {
+        const prevNodeId = clickSequence[clickSequence.length - 2];
+        const prevNode = feedbackNodes.find(n => n.id === prevNodeId);
+
+        if (prevNode) {
+          connections.push({
+            fromNode: prevNode,
+            toNode: clickedNode,
+            color: CONFIG.connectionColor
+          });
+        }
+      }
+    }
 
     selectedNode = clickedNode;
     showFeedbackInfo(clickedNode);
