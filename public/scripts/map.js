@@ -564,16 +564,37 @@ function showNodeInfo(node) {
     <div>${node.stuck ? 'Collected' : 'Drifting'}</div>
   `;
   
-  // Add action button for special nodes
-  if (node.id === 21) {
+  // Show community meeting invitation after 10+ clicks
+  if (clickSequence.length >= 10) {
     statsHTML += `
-      <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #DEB887;">
+      <div style="margin-top: 20px; padding-top: 15px;">
+        <p style="font-size: 13px; margin-bottom: 10px; line-height: 1.5;">
+          Do you have an opinion about this? Click to voice your thoughts.
+        </p>
         <button onclick="window.location.href='/community'" style="
           width: 100%;
           padding: 12px;
-          background: #E07A5F;
-          border: 2px solid #8B4513;
-          color: #fff;
+          background: #fefefeff;
+          border: 2px solid #000000ff;
+          color: #000000ff;
+          font-weight: bold;
+          cursor: pointer;
+          font-size: 14px;
+        ">VOICE YOUR THOUGHTS →</button>
+      </div>
+    `;
+  }
+  
+  // Keep the special portal nodes (21, 22) for direct access
+  if (node.id === 21) {
+    statsHTML += `
+      <div style="margin-top: 15px; padding-top: 15px;">
+        <button onclick="window.location.href='/community'" style="
+          width: 100%;
+          padding: 12px;
+          background: #ffffffff;
+          border: 2px solid #000000ff;
+          color: #000000ff;
           font-weight: bold;
           cursor: pointer;
           font-size: 14px;
@@ -582,17 +603,17 @@ function showNodeInfo(node) {
     `;
   } else if (node.id === 22) {
     statsHTML += `
-      <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #DEB887;">
+      <div style="margin-top: 15px; padding-top: 15px;">
         <button onclick="window.location.href='/oracle'" style="
           width: 100%;
           padding: 12px;
-          background: #3D5A80;
-          border: 2px solid #8B4513;
-          color: #fff;
+          background: #ffffffff;
+          border: 2px solid #000000ff;
+          color: #000000ff;
           font-weight: bold;
           cursor: pointer;
           font-size: 14px;
-        ">CONSULT THE ORACLE →</button>
+        ">PROCEED TO 2050</button>
       </div>
     `;
   }
