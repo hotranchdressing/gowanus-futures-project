@@ -7,7 +7,7 @@ const CONFIG = {
   otherUserColor: '#81B29A',
   connectionWidth: 1.5,
   labelOffset: 15,
-  driftSpeed: 0.3, // pixels per frame (60fps = ~20s to cross 1920px screen)
+  driftSpeed: 0.15, // pixels per frame
   waveAmplitude: 0.5,
   waveFrequency: 0.001
 };
@@ -479,9 +479,9 @@ function showNodeInfo(node) {
   document.getElementById('panel-content').textContent = node.content;
   
   let statsHTML = `
-    <div>🔍 Revealed ${node.searches} time${node.searches !== 1 ? 's' : ''}</div>
-    <div>👁️ Viewed ${node.views} time${node.views !== 1 ? 's' : ''}</div>
-    <div>${node.stuck ? '📌 Collected' : '🌊 Drifting'}</div>
+    <div>Revealed ${node.searches} time${node.searches !== 1 ? 's' : ''}</div>
+    <div>Viewed ${node.views} time${node.views !== 1 ? 's' : ''}</div>
+    <div>${node.stuck ? 'Collected' : 'Drifting'}</div>
   `;
   
   // Add action button for special nodes
