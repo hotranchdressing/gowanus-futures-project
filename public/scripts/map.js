@@ -351,8 +351,8 @@ async function handleSearch() {
       }
     });
 
-    // Check if less than 3 results - show encouragement popup
-    if (matches.length < 3) {
+    // Check if less than 2 results - show encouragement popup
+    if (matches.length < 2) {
       showContinueSearchingPopup(matches.length);
       document.getElementById('search-feedback').textContent =
         `Found ${matches.length} node${matches.length > 1 ? 's' : ''} matching "${query}"`;
@@ -361,6 +361,9 @@ async function handleSearch() {
         `Found ${matches.length} node${matches.length > 1 ? 's' : ''} matching "${query}"`;
     }
   } else {
+    // No matches found - show popup
+    showContinueSearchingPopup(0);
+
     const unrevealed = nodes.filter(n => !n.revealed);
     const randomCount = Math.min(3, unrevealed.length);
 
@@ -422,9 +425,8 @@ function showContinueSearchingPopup(resultsCount) {
   popup.id = 'continue-search-popup';
   popup.style.cssText = `
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    bottom: 30px;
+    right: 360px;
     background: #FFFEF7;
     border: 2px solid #000000;
     box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
@@ -433,11 +435,11 @@ function showContinueSearchingPopup(resultsCount) {
     font-family: "MS Sans Serif", sans-serif;
     text-align: center;
     min-width: 300px;
-    animation: fadeInScale 0.3s ease-out;
+    animation: slideInFromRight 0.3s ease-out;
   `;
 
   const message = resultsCount === 0
-    ? 'No results found. Try searching with different terms!'
+    ? 'Limited search results.Keep exploring!'
     : `Only ${resultsCount} result${resultsCount > 1 ? 's' : ''} found. Keep exploring with more searches!`;
 
   popup.innerHTML = `
@@ -481,14 +483,14 @@ function showContinueSearchingPopup(resultsCount) {
 // Add CSS animation for popup
 const style = document.createElement('style');
 style.textContent = `
-  @keyframes fadeInScale {
+  @keyframes slideInFromRight {
     from {
       opacity: 0;
-      transform: translate(-50%, -50%) scale(0.9);
+      transform: translateX(50px);
     }
     to {
       opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
+      transform: translateX(0);
     }
   }
 `;
