@@ -10,7 +10,7 @@ const CONFIG = {
   connectionWidth: 2,
   otherConnectionWidth: 1,
   labelOffset: 15,
-  driftSpeed: 0.18,
+  driftSpeed: 0.25,
   waveAmplitude: 0.01,
   waveFrequency: 0.001
 };
