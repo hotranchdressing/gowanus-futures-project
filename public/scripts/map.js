@@ -811,7 +811,7 @@ function showNodeInfo(node) {
   if (node.sourceUrl) {
     const escapedTitle = node.title.replace(/'/g, "\\'");
     document.getElementById('panel-title').innerHTML =
-      `<a href="${node.sourceUrl}" onclick="openSourceWindow('${node.sourceUrl}', '${escapedTitle}'); return false;" style="color: #5C4033; text-decoration: underline; cursor: pointer;">${node.title}</a>`;
+      `<a href="${node.sourceUrl}" onclick="openSourceWindow('${node.sourceUrl}', '${escapedTitle}'); return false;" style="color: #000000ff; text-decoration: underline; cursor: pointer;">${node.title}</a>`;
   } else {
     document.getElementById('panel-title').textContent = node.title;
   }
@@ -949,7 +949,6 @@ function createIframeWindow(url, title) {
     <span>${title}</span>
     <button id="close-source" style="
       background: #000000ff;
-      border: 1px solid #8B4513;
       width: 28px;
       height: 28px;
       font-size: 18px;
