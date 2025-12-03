@@ -10,7 +10,7 @@ const CONFIG = {
   connectionWidth: 2,
   otherConnectionWidth: 1,
   labelOffset: 15,
-  driftSpeed: 0.09,
+  driftSpeed: 0.18,
   waveAmplitude: 0.01,
   waveFrequency: 0.001
 };
@@ -322,18 +322,18 @@ function updateActiveUsers() {
 async function handleSearch() {
   const query = document.getElementById('search-input').value.trim().toLowerCase();
   if (!query) return;
-  
+
   searchCount++;
-  
-  const matches = nodes.filter(node => 
+
+  const matches = nodes.filter(node =>
   node.keywords.some(keyword => keyword.toLowerCase().includes(query)) ||
   node.title.toLowerCase().includes(query) ||
   (node.blurb && node.blurb.toLowerCase().includes(query)) ||
   (node.content && node.content.toLowerCase().includes(query))
 );
-  
+
   const revealedIds = [];
-  
+
   if (matches.length > 0) {
     matches.forEach(node => {
       if (!revealedNodeIds.has(node.id)) {
@@ -350,13 +350,20 @@ async function handleSearch() {
         highlightNode(node);
       }
     });
-    
-    document.getElementById('search-feedback').textContent = 
-      `Found ${matches.length} node${matches.length > 1 ? 's' : ''} matching "${query}"`;
+
+    // Check if less than 3 results - show encouragement popup
+    if (matches.length < 3) {
+      showContinueSearchingPopup(matches.length);
+      document.getElementById('search-feedback').textContent =
+        `Found ${matches.length} node${matches.length > 1 ? 's' : ''} matching "${query}"`;
+    } else {
+      document.getElementById('search-feedback').textContent =
+        `Found ${matches.length} node${matches.length > 1 ? 's' : ''} matching "${query}"`;
+    }
   } else {
     const unrevealed = nodes.filter(n => !n.revealed);
     const randomCount = Math.min(3, unrevealed.length);
-    
+
     for (let i = 0; i < randomCount; i++) {
       const randomIndex = Math.floor(Math.random() * unrevealed.length);
       const node = unrevealed.splice(randomIndex, 1)[0];
@@ -368,11 +375,11 @@ async function handleSearch() {
       node.x = -50;
       node.y = Math.random() * canvas.clientHeight * 0.8 + canvas.clientHeight * 0.1;
     }
-    
-    document.getElementById('search-feedback').textContent = 
+
+    document.getElementById('search-feedback').textContent =
       `No exact matches found. Revealing ${randomCount} related nodes.`;
   }
-  
+
   // Broadcast to other users
   try {
     await fetch('/api/broadcast-search', {
@@ -387,21 +394,105 @@ async function handleSearch() {
   } catch (error) {
     console.warn('Failed to broadcast search:', error);
   }
-  
+
   updateStats();
 }
 
 function highlightNode(node) {
   // Store original color
   const originalRevealedBy = node.revealedBy;
-  
+
   // Pulse effect
   node.revealedBy = 'highlight';
-  
+
   setTimeout(() => {
     node.revealedBy = originalRevealedBy;
   }, 1000);
 }
+
+function showContinueSearchingPopup(resultsCount) {
+  // Remove any existing popup
+  const existingPopup = document.getElementById('continue-search-popup');
+  if (existingPopup) {
+    existingPopup.remove();
+  }
+
+  // Create popup element
+  const popup = document.createElement('div');
+  popup.id = 'continue-search-popup';
+  popup.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #FFFEF7;
+    border: 2px solid #000000;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 20px 30px;
+    z-index: 200;
+    font-family: "MS Sans Serif", sans-serif;
+    text-align: center;
+    min-width: 300px;
+    animation: fadeInScale 0.3s ease-out;
+  `;
+
+  const message = resultsCount === 0
+    ? 'No results found. Try searching with different terms!'
+    : `Only ${resultsCount} result${resultsCount > 1 ? 's' : ''} found. Keep exploring with more searches!`;
+
+  popup.innerHTML = `
+    <div style="font-size: 16px; font-weight: bold; margin-bottom: 12px; color: #000000;">
+      ${message}
+    </div>
+    <button id="close-popup-btn" style="
+      padding: 8px 20px;
+      background: #FFFEF7;
+      color: #000000;
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+      border: 2px solid #000000;
+      font-family: 'warbler-banner', sans-serif;
+      font-weight: 300;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      margin-top: 10px;
+    ">Continue Searching</button>
+  `;
+
+  document.body.appendChild(popup);
+
+  // Close button functionality
+  document.getElementById('close-popup-btn').addEventListener('click', () => {
+    popup.remove();
+    // Clear the search input and refocus it to show prompts
+    const searchInput = document.getElementById('search-input');
+    searchInput.value = '';
+    searchInput.blur(); // Blur to re-enable sliding prompts
+  });
+
+  // Auto-close after 5 seconds
+  setTimeout(() => {
+    if (document.getElementById('continue-search-popup')) {
+      popup.remove();
+    }
+  }, 5000);
+}
+
+// Add CSS animation for popup
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+`;
+document.head.appendChild(style);
 
 function clearRevealed() {
   revealedNodeIds.clear();
@@ -663,7 +754,7 @@ const clickedNode = nodes.find(node => {
       
       // Add to click sequence
       clickSequence.push(clickedNode.id);
-      
+
       // If there's a previous node, create connection
       if (clickSequence.length > 1) {
         const prevNodeId = clickSequence[clickSequence.length - 2];
@@ -672,7 +763,7 @@ const clickedNode = nodes.find(node => {
           to: clickedNode.id,
           color: CONFIG.revealedNodeColor
         });
-        
+
         // Broadcast this connection to other users
         try {
           await fetch('/api/broadcast-connection', {
@@ -688,7 +779,14 @@ const clickedNode = nodes.find(node => {
           console.warn('Failed to broadcast connection:', error);
         }
       }
-      
+
+      // After 5 clicks, transition to community meeting
+      if (clickSequence.length >= 5) {
+        setTimeout(() => {
+          window.location.href = '/community';
+        }, 1500); // Short delay to show the final connection
+      }
+
       updateStats();
     }
     
@@ -740,36 +838,6 @@ function showNodeInfo(node) {
 
   if (node.wordCount) {
     statsHTML += `<div>${node.wordCount.toLocaleString()} words</div>`;
-  }
-
-  // Always show submit feedback button after any node click
-  statsHTML += `
-    <div style="margin-top: 20px; padding-top: 15px; border-top: 2px solid #DEB887;">
-      <p style="font-size: 13px; margin-bottom: 10px; line-height: 1.5;">
-        Do you have thoughts on this? Submit your feedback.
-      </p>
-      <button onclick="window.location.href='/community'" style="
-        width: 100%;
-        padding: 12px;
-        background: #E07A5F;
-        border: 2px solid #8B4513;
-        color: #fff;
-        font-weight: bold;
-        cursor: pointer;
-        font-size: 14px;
-      ">SUBMIT FEEDBACK →</button>
-    </div>
-  `;
-
-  // Show community meeting invitation after 10+ clicks
-  if (clickSequence.length >= 10) {
-    statsHTML += `
-      <div style="margin-top: 10px;">
-        <p style="font-size: 12px; font-style: italic; color: #5C4033;">
-          You've collected ${clickSequence.length} nodes. Your voice matters.
-        </p>
-      </div>
-    `;
   }
   
   // Portal nodes
