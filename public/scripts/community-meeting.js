@@ -21,6 +21,8 @@ let canvas, ctx;
 let animationId = null;
 let selectedNode = null;
 let yourContributions = 0;
+let speechInstances = new Map(); // Track speech by node ID
+let clickedNodesCount = 0;
 
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
@@ -36,9 +38,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   animate();
 
   document.getElementById('submit-btn').addEventListener('click', handleSubmit);
-  document.getElementById('oracle-btn').addEventListener('click', () => {
-    window.location.href = '/oracle';
-  });
   document.getElementById('feedback-input').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') handleSubmit();
   });
@@ -65,6 +64,30 @@ function resizeCanvas() {
   ctx.scale(dpr, dpr);
 }
 
+// Text-to-Speech Functions
+function speakFeedback(node) {
+  if (!node.comment || speechInstances.has(node.id)) return;
+
+  const utterance = new SpeechSynthesisUtterance(node.comment);
+  utterance.rate = 0.9;
+  utterance.pitch = 1.0;
+  utterance.volume = 0.8;
+
+  utterance.onend = () => {
+    speechInstances.delete(node.id);
+  };
+
+  speechInstances.set(node.id, utterance);
+  window.speechSynthesis.speak(utterance);
+}
+
+function stopNodeSpeech(nodeId) {
+  if (speechInstances.has(nodeId)) {
+    window.speechSynthesis.cancel(); // Stop all current speech
+    speechInstances.delete(nodeId);
+  }
+}
+
 async function loadFeedback() {
   try {
     const response = await fetch('/api/get-feedback');
@@ -83,6 +106,11 @@ async function loadFeedback() {
     }));
 
     updateStats();
+
+    // Start speaking feedback nodes with random delays
+    feedbackNodes.forEach((node, index) => {
+      setTimeout(() => speakFeedback(node), index * 3000 + Math.random() * 2000);
+    });
   } catch (error) {
     console.error('Error loading feedback:', error);
   }
@@ -127,6 +155,9 @@ function handleNewFeedback(data) {
 
   feedbackNodes.push(newNode);
   updateStats();
+
+  // Speak the new feedback after a short delay
+  setTimeout(() => speakFeedback(newNode), 500);
 
   // Show floating notification
   showFloatingNotification('New feedback received');
@@ -186,6 +217,9 @@ async function handleSubmit() {
       feedbackNodes.push(newNode);
       yourContributions++;
       updateStats();
+
+      // Speak the new feedback
+      setTimeout(() => speakFeedback(newNode), 500);
 
       // Broadcast to other users
       try {
@@ -368,8 +402,22 @@ function handleCanvasClick(e) {
   });
 
   if (clickedNode) {
+    // Stop the speech for this node
+    stopNodeSpeech(clickedNode.id);
+
+    // Increment click counter
+    clickedNodesCount++;
+
     selectedNode = clickedNode;
     showFeedbackInfo(clickedNode);
+
+    // Auto-transition to Oracle after 8 clicks
+    if (clickedNodesCount >= 8) {
+      showFloatingNotification('Transitioning to Oracle...');
+      setTimeout(() => {
+        window.location.href = '/oracle';
+      }, 1500);
+    }
   }
 }
 
