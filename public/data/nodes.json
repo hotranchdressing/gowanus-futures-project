@@ -1,900 +1,520 @@
 {
-  "id": 1,
-  "title": "Massive luxury ‘wellness’ mecca coming to Gowanus",
-  "type": "gossip",
-  "year": 2025,
-  "blurb": "Brooklyn’s Gowanus Canal, the once-smelly waterway that was long a punch line for comedians, will soon welcome one of the Big Apple’s largest and most glamorous “wellness” centers.",
-  "sourceUrl": "https://nypost.com/2025/11/30/business/massive-wellness-mecca-coming-to-gowanus/",
-  "wordCount": 496,
-},
-{
-  "id": 2,
-  "title": "Real-life Kramer slices through fecal-infested Red Hook channel every day: ‘It calms me’",
-  "type": "gossip",
-  "year": 2025,
-  "blurb": "A Little Italy man with a taste for thrills has turned the polluted and Staten Island Ferry-littered waters of the Upper New York Bay into his very own sanctuary. Sante Scardillo, who declined to give his age but admitted he qualifies for an MTA discount, swims in the choppy waters of the bay from June through November in nothing but his bathing suit and a swim cap. 'Sometimes two,' he told the Post, 'if it’s a very cold day.'",
-  "sourceUrl": "https://nypost.com/2025/11/08/us-news/sante-scardillo-swims-in-red-hook-channel-every-day/",
-  "wordCount": 566,
-},
-{
-  "id": 3,
-  "title": "Cancer-causing toxins could be spread over trendy NYC neighborhood by Gowanus Canal dredging project, experts warn",
-  "type": "gossip",
-  "year": 2025,
-  "blurb": "It’s a murky situation.
-
-Experts are sounding alarms about the EPA’s plan to excavate the Gowanus Canal without covering the foul-smelling sludge — as residents allege they’re suffering from putrid air and fear more toxins could be released into their tony neighborhood.",
-  "sourceUrl": "https://nypost.com/2025/02/12/us-news/experts-deeply-concerned-over-next-phase-of-gowanus-canal-dig-warn-carcinogens-could-be-released/",
-  "wordCount": 866,
-},
-{
-  "id": 4,
-  "title": "Gowanus Canal’s toxic sludge will be trucked through NYC neighborhoods — leaving locals fearing stomach-turning stench",
-  "type": "gossip",
-  "year": 2024,
-  "blurb": "It’s Eau de Gowanus delivered to your doorstep.",
-  "sourceUrl": "https://nypost.com/2024/12/12/us-news/gowanus-canals-toxic-sludge-will-be-trucked-through-nyc-neighborhoods-leaving-locals-fearing-stomach-turning-stench/",
-  "wordCount": 1014,
-},
-{
-  "id": 5,
-  "title": "NYC sprays ‘Christmas’ perfume near stinky Gowanus Canal ",
-  "type": "gossip",
-  "year": 2024,
-  "blurb": "Well, that stinks.
-
-The city sprayed 'Christmas'-scented perfume around the Gowanus Canal — but it’ll take a lot more than holiday cheer to neutralize the stench seeping from the notorious polluted Brooklyn waterway.
-
-During the odorous operation, which began in February and ended last month, the city Department of Environmental Protection unleashed the Yuletide and citrus fragrances using misters around the perimeter of the 'Superfund site.'",
-  "sourceUrl": "https://nypost.com/2024/08/29/us-news/nyc-sprays-christmas-perfume-near-gowanus-canal-but-waste-site-still-stinks/",
-  "wordCount": 911,
-},
-{
-  "id": 6,
-  "title": "‘Stinking sh-tberg’",
-  "type": "gossip",
-  "year": 2024,
-  "blurb": "Beware the blob.
-
-A huge smelly blob of black sludge was unearthed this week at a construction site for new housing going up along Brooklyn’s toxic Gowanus Canal, and concerned neighbors said the noxious material was left exposed for days, feet from a busy intersection and school.",
-  "sourceUrl": "https://nypost.com/2024/09/28/us-news/toxic-blob-left-at-brooklyn-construction-site-for-days/",
-  "wordCount": 753,
-},
-{
-  "id": 7,
-  "title": "Church that hosted Al Capone’s wedding",
-  "type": "gossip",
-  "year": 2024,
-  "blurb": "A famous church that once hosted Al Capone’s wedding, along with 20 other sites near Brooklyn’s toxic Gowanus Canal, are in need of one hell of a clean-up after testing positive for dangerously unsafe air, The Post has learned.",
-  "sourceUrl": "https://nypost.com/2024/06/22/us-news/famed-brooklyn-church-20-other-sites-by-gowanus-canal-test-toxic-by-state/",
-  "wordCount": 1020,
-},
-{
-  "id": 8,
-  "title": "At least it wasn’t more bodies.",
-  "type": "gossip",
-  "year": 2020,
-  "blurb": "Federal environmental officials cleaning up Brooklyn’s Gowanus Canal just dredged up two cars from the notorious waterway in less than a week.
-
-On Dec. 4, a sedan — possibly a Mercedes — was excavated from the canal, an infamous Superfund site contaminated by everything from industrial waste to sewage overflow and even human corpses, according to neighborhood blog Pardon Me For Asking.",
-  "sourceUrl": "https://nypost.com/2020/12/11/two-cars-pulled-from-gowanus-canal-in-brooklyn/",
-  "wordCount": 212,
-},
-{
-  "id": 9,
-  "title": "love in the muck",
-  "type": "date night",
-  "year": 2020,
-  "blurb": "Despite its notorious reputation for being a polluted pool of stagnant filth, the Gowanus Canal was recently the site of a marriage proposal — and she said yes.
-
-Gowanus residents Emma Borochoff, 30, and Jamison Pence, 32, have been dating for three-and-a-half years, lived in the neighborhood for two, and frequently go on walks over the Superfund-designated waterway’s bridges, a pleasure they’ve been enjoying even more frequently in quarantine.",
-  "sourceUrl": "https://nypost.com/2020/09/01/brooklyn-couple-gets-engaged-on-gowanus-canal/",
-  "wordCount": 404,
-},
-{
-  "id": 10,
-  "title": "a fun venue for the summer of COVID-19",
-  "type": "picnic ideas",
-  "year": 2020,
-  "blurb": "Floating toward the bay, the setting sun illuminates a rainbow oil sheen. I stick my paddle in it and it shimmers, then dissipates. A pair of strangers gently bob to my left, and our group’s leader talks about Dutch settlers and oysters before becoming momentarily distracted by a dead, bloated fish drifting by.
-
-The Gowanus Canal is famously filthy, but my recent tour of it with the Gowanus Dredgers Canoe Club felt like an escapist fantasy: Maskless on the water, insulated from city sounds by the wall of industry that lines the canal, the water droplets occasionally splashing onto my bare legs were, momentarily, the only threat of disease I could fathom.",
-  "sourceUrl": "https://nypost.com/2020/07/24/nycs-gowanus-canal-now-a-pandemic-safe-venue-for-summer-fun/",
-  "wordCount": 791,
-},
-{
-  "id": 11,
-  "title": "historic treasures",
-  "type": "fortune telling",
-  "year": 2018,
-  "blurb": "Now, as the EPA dredges the fetid waterway amid a $506 million federal Superfund cleanup, workers are unearthing relics from Brooklyn’s industrial heyday to its hipster-haven present — including a World War II-era “crash boat,” massive wooden textile spools and wagon wheels from when Brooklyn was its own city.",
-  "sourceUrl": "https://nypost.com/2018/08/13/gowanus-canal-cleanup-has-unearthed-historic-treasures-covered-in-toxic-goo/",
-  "wordCount":1680,
-},
-{
-  "id": 12,
-  "title": "Fugitive’s plunge into toxic Gowanus Canal was a terrible decision",
-  "type": "gossip",
-  "year": 2018,
-  "blurb": "He’s hooked on heroin and could have killed a cop — but the worst thing for this upstate fugitive’s well-being may have been his recent plunge into the toxic Gowanus Canal.",
-  "sourceUrl": "https://nypost.com/2018/10/02/fugitives-plunge-into-toxic-gowanus-canal-was-a-terrible-decision/",
-  "wordCount":586,
-},
-{
-  "id": 13,
-  "title": "three-eyed fish",
-  "type": "cryptids",
-  "year": 2015,
-  "blurb": "Update:Ichthyologists are dubious.
-
-It was always only a matter of time until the putrid toxic waters of the Gowanus Canal spit out some mutant hellspawn determined to seek revenge on humanity for decades of nonstop pollution. All this time, we assumed it'd be some sort of mud, poop, grass, gas and discarded bicycle hybrid. But if the man in the video is to be believed, the first Gowanus Canal monster is just your regular run-of-the-mill three-eyed fish. That's right: NYC may have its first Blinky.",
-  "sourceUrl": "https://gothamist.com/food/video-man-claims-he-caught-three-eyed-fish-in-gowanus-canal",
-  "wordCount":248,
-},
-{
-  "id": 14,
-  "title": "Cautious optimism on the Gowanus smell",
-  "type": "controversy",
-  "year": 2025,
-  "blurb": "According to the data collected around the tank site, levels of naphthalene, a carcinogen chemical that smells like mothballs, were below a health-based level of concern. Naphthalene can have a strong odor, meaning that even at levels far below what would constitute a health hazard, it can still be smelt in the air, Dr. Smith noted.",
-  "sourceUrl": "https://www.star-revue.com/the-new-york-city-department-of-environmental-protection-dep/",
-  "wordCount":1132,
-},
-{
-  "id": 15,
-  "title": "calls for moratorium on new construction",
-  "type": "controversy",
-  "year": 2024,
-  "blurb": "The community advocacy group Voice of Gowanus and Toxics Targeting, an Ithaca-based environmental data firm that tracks contaminated sites in New York state, are calling on Governor Kathy Hochul to put a pause on new construction on brownfield sites before all contamination is comprehensively cleaned up. The call comes after Toxics Targeting uncovered that the New York State Department of Environmental Conservation had found elevated levels of trichloroethylene, an industrial chemical linked to cancer and Parkinson’s disease, in the indoor air of several buildings along the canal.",
-  "sourceUrl": "https://www.star-revue.com/findings-of-toxic-fumes-in-gowanus-prompt-calls-for-moratorium-on-new-construction-by-oscar-fock/",
-  "wordCount":1586,
-},
-{
-  "id": 16,
-  "title": "The Gowanus Shitshow",
-  "type": "controversy",
-  "year": 2023,
-  "blurb": "I used to talk with Buddy Scotto, the great Carroll Gardens community leader, about Gowanus. It’s an area he knew well. Buddy’s greatest claim to fame is likely getting rid of the stench from the Gowanus Canal that would permeate Carroll Gardens whenever the wind shifted.
-
-The smell — which we’ll come back to again shortly — came from still canal waters that collected raw sewage whenever it rained. The reason was the pump that cycled water through the 12-foot-wide Gowanus Flushing Tunnel, which dates back to 1911, broke down in the ‘60s.",
-  "sourceUrl": "https://www.star-revue.com/the-gowanus-shitshow-by-george-fiala/",
-  "wordCount":1041,
-},
-{
-  "id": 17,
-  "title": "Buyer Beware on Gowanus Rezoning",
-  "type": "controversy",
-  "year": 2021,
-  "blurb": "The City has been fighting the Superfund process from the beginning, initially trying to prevent it from ever happening. The Bloomberg administration maintained that it could clean the Canal and prevent recontamination using a combination of tree planting and sticking holes in the ground, enabling stormwater to seep into the ground instead of overflowing the sewers and send waste materials into the canals during storms.",
-  "sourceUrl": "https://www.star-revue.com/superfund-lawyer-says-buyer-beware-on-gowanus-rezoning-by-george-fiala/",
-  "wordCount":767,
-},
-{
-  "id": 18,
-  "title": "a milestone in the Superfund cleanup",
-  "type": "science project",
-  "year": 2021,
-  "blurb": "After more than 160 years as a repository of human and industrial waste, the Gowanus Canal is leaving its toxic legacy behind—or under. Last month marked a milestone in the Superfund cleanup of the waterway, as the bottom of the canal north of the 3rd Street Bridge was successfully injected with a five-foot layer of cement in a process known as in-situ stabilization. The procedure, overseen by the Environmental Protection Agency (EPA), follows dredging works done earlier this year and will prevent remaining pollutants in the canal’s sediment from recontaminating the water above.",
-  "sourceUrl": "https://www.star-revue.com/catching-up-with-the-gowanus-canal-by-jorge-bello/",
-  "wordCount":919,
-},
-{
-  "id": 19,
-  "title": "Weekly ‘hour of action’ brings climate advocates together",
-  "type": "date night",
-  "year": 2025,
-  "blurb": "Known as the Climate Changemakers, the group, whose members range in age from 26 to 35, is part of a broader climate advocacy network. They host a weekly “hour of action,” providing attendees with everything they need to participate. DeBare, a co-founder of the Brooklyn chapter, said typical tasks in the lead-up to an election month include phone banking, drafting personalized emails to local assembly members, and reading educational briefings on relevant laws. He said the goal is to equip people with enough resources to act without expecting them to be experts.",
-  "sourceUrl": "https://www.brooklynpaper.com/climate-changemakers-meet-weekly-gowanus/",
-  "wordCount":843,
-},
-{
-  "id": 20,
-  "title": "Artists open their doors",
-  "type": "date night",
-  "year": 2025,
-  "blurb": "Rapidly-changing Gowanus has long been an artists haven, frequently decked out with public art displays and gallery shows, but the creators themselves often work behind closed doors, tucked away in converted industrial buildings and studio collectives. Open Studios is an annual celebration of local artists, and a chance for residents to truly get to know them.",
-  "sourceUrl": "https://www.brooklynpaper.com/artists-open-doors-gowanus-open-studios-2025/",
-  "wordCount":838,
-},
-{
-  "id": 21,
-  "title": "The Shop Workspace opens coworking hub in Gowanus",
-  "type": "fortune telling",
-  "year": 2025,
-  "blurb": "Memberships start at $450 monthly for Commons access, including 3,000 square feet of coworking space, unlimited coffee and access to networking events. Private suites for individuals or teams of up to ten, beginning at $1,400 monthly, with flexible terms available. Day passes and hourly bookings for meeting and event spaces are also offered, starting at $40 per day. ",
-  "sourceUrl": "https://www.brooklynpaper.com/the-shop-workspace-gowanus/",
-  "wordCount":521,
-},
-{
-  "id": 22,
-  "title": "‘The Heartbeat of Gowanus’: New Groundswell mural",
-  "type": "art projects",
-  "year": 2025,
-  "blurb": "On Thursday, Aug. 21, FAC and Groundswell Community Mural Project unveiled “The Heartbeat of Gowanus,” a large-scale community mural created by lead artists Kristy McCarthy and Yolande Delius in collaboration with 13 youth artists from Groundswell’s Voices Her’d Visionaries program, local leaders and neighborhood residents.
-
-The mural, spanning the building’s facade, pays tribute to the resilience and advocacy of Gowanus organizers and residents who have shaped the neighborhood through decades of struggle and transformation. It was created after months of research, interviews, a community listening session and on-the-street interviews with locals.",
-  "sourceUrl": "https://www.brooklynpaper.com/the-heartbeat-of-gowanus-mural-fac-groundswell/",
-  "wordCount":826,
-},
-{
-  "id": 23,
-  "title": "flooding and community resilience",
-  "type": "weather report",
-  "year": 2025,
-  "blurb": "“The Dear Neighbor Project,” a multi-site visual art exhibition by Brooklyn-based artist Tiffany Baker in collaboration with the Van Alen Institute, aims to raise public awareness of flooding in Gowanus. The project captures residents’ experiences during flood events through murals and outdoor sculptures at eight locations throughout the neighborhood.
-
-Each mural is paired with audio stories by longtime residents, students, small business owners and community leaders, who share what it’s like to live in a flood-prone neighborhood, the aftermath of storms and the emotional toll of disaster. Many installations feature QR codes linking to the project’s website, offering a deeper look at the stories and how the work came together.",
-  "sourceUrl": "https://www.brooklynpaper.com/gowanus-art-project-flooding-community-resilience/",
-  "wordCount":953,
-},
-{
-  "id": 24,
-  "title": "T4T celebrates three years of transgender comedy",
-  "type": "date night",
-  "year": 2025,
-  "blurb": "Brooklyn’s original all-trans stand-up comedy show, T4T — short for “trans-for-trans” — is celebrating its third anniversary with a transgender comedy spectacular at the Bell House on Monday, June 16.",
-  "sourceUrl": "https://www.brooklynpaper.com/t4t-three-years-of-transgender-comedy/",
-  "wordCount":813,
-},
-{
-  "id": 25,
-  "title": "BIG design for Gowanus parking lot",
-  "type": "date night",
-  "year": 2025,
-  "blurb": "An attention-grabbing design by prominent Brooklyn architecture firm Bjarke Ingels Group, or BIG, for a parking lot on the corner of Third Avenue and Third Street in Gowanus seems unlikely to move forward now that the property has changed hands.
-
-While the new owners declined to comment specifically on their plans for the design, commissioned by the site’s previous owner, they did tell Brownstoner they intend to build a 1,000-unit residential development with 1 million square feet — more than twice the size of the previous project.",
-  "sourceUrl": "https://www.brooklynpaper.com/big-gowanus-parking-lot-design/",
-  "wordCount":605,
-},
-{
-  "id": 26,
-  "title": "Meet the microbes cleaning up the Gowanus Canal",
-  "type": "cryptids",
-  "year": 2025,
-  "blurb": "The bottom of the Gowanus Canal is not, strictly speaking, a hospitable environment. 
-
-It’s covered in a thick layer of contaminated sediment, the product of more than 150 years of industrial pollution and combined sewer overflow. The toxic sludge, nicknamed “black mayonnaise, is packed with coal tar, heavy metals, and long-banned industrial chemicals. 
-
-Even with the federal Superfund cleanup about one-third complete, there are still tens of thousands of cubic yards of black mayonnaise at the bottom of the Gowanus. When it rains, combined sewer overflow dumps gallons of untreated sewage into the water.
-
-Despite it all, there’s a thriving miniature ecosystem of billions of microbes just atop the sediment. What’s more, researchers have found, those microbes are — very slowly — cleaning the canal themselves.",
-  "sourceUrl": "https://www.brooklynpaper.com/small-world-microbes-cleaning-gowanus-canal/",
-  "wordCount":1299,
-},
-{
-  "id": 27,
-  "title": "Affordable housing lottery opens in Gowanus",
-  "type": "fortune telling",
-  "year": 2025,
-  "blurb": "An affordable housing lottery has debuted for an under-construction tower on Gowanus’ 4th Avenue, the latest of several lottery launches tied to the neighborhood’s rezoning. Built on the site of a former taxi stand and garage at 380 4th Ave., the Longview will stand 175 feet tall with 17 stories and 197 apartments, according to city records.
-
-Included in the lottery are 50 units, all rent stabilized and income restricted, 40 of which could be deemed truly affordable. Those are targeted at households of one to five people earning between $35,589 and $100,620 a year, or 40-60% of Area Median Income, according to the listing.",
-  "sourceUrl": "https://www.brooklynpaper.com/affordable-housing-lotto-longview-gowanus/",
-  "wordCount":590,
-},
-{
-  "id": 28,
-  "title": "artists turn an old Gowanus water tank into something beautiful",
-  "type": "art projects",
-  "year": 2025,
-  "blurb": "How much can a water tower mean to a neighborhood?
-
-Quite a bit, according to the artists of Gowanus. Last weekend, Arts Gowanus opened its fourth annual “Tower Show,” featuring nearly 200 individual works of art all depicting the same object: the old water tower that serves as the org’s logo.",
-  "sourceUrl": "https://www.brooklynpaper.com/tower-show-gowanus-tank-into-art/",
-  "wordCount":685,
-},
-{
-  "id": 29,
-  "title": "Construction of long-delayed Gowanus Canal CSO tank",
-  "type": "art projects",
-  "year": 2025,
-  "blurb": "A long-delayed project critical to the success of the Gowanus Canal Superfund cleanup reached an early milestone this week, as the city finished excavating space for a massive underground sewer overflow tank.
-
-The Red Hook tank — formerly known as the Head End tank — will catch 8 million gallons of rainwater and combined sewer overflow during storms, preventing it from flowing right back into the freshly scrubbed canal.",
-  "sourceUrl": "https://www.brooklynpaper.com/excavation-complete-gowanus-canal-cso-tank/",
-  "wordCount":800,
-},
-{
-  "id": 30,
-  "title": "Premium grocery store, pottery studio",
-  "type": "fortune telling",
-  "year": 2025,
-  "blurb": "Two new businesses, a high-end grocery store and a pottery studio, are set to open in Gowanus this summer.
-
-Gowanus Marketplace and Hey Clay will both debut on the ground floor of a new mixed-use development, 420 Carroll, developers announced Thursday. The businesses will join hundreds of residential units, affordable artist studios, and a coworking space. ",
-  "sourceUrl": "https://www.brooklynpaper.com/grocery-and-pottery-studio-to-open-gowanus/",
-  "wordCount":469,
-},
-{
-  "id": 31,
-  "title": "Affordable housing lottery",
-  "type": "fortune telling",
-  "year": 2025,
-  "blurb": "A newly constructed 17-story apartment tower on Gowanus’ Fourth Avenue, made possible by the neighborhood’s recent rezoning, has officially launched an affordable housing lottery for eligible renters.
-
-The Douglass Street Apartments building, which replaces a BP gas station, will have a total of 188 apartments and climbs to 175 feet, according to building permits.
-
-The lottery for the under-construction development at 164 Fourth Ave. (also 366 Douglass St.) includes 48 units, all rent-stabilized and income-restricted, 38 of which could be deemed truly affordable. According to the listing, those are targeted at households of one to five people earning between $33,875 and $67,080 a year, or 40% of Area Median Income.",
-  "sourceUrl": "https://www.brooklynpaper.com/affordable-housing-gowanus-tower/",
-  "wordCount":596,
-},
-{
-  "id": 32,
-  "title": "industrial heritage",
-  "type": "art projects",
-  "year": 2025,
-  "blurb": "A limited-run art exhibition at a new luxury development in Gowanus marries the nabe’s industrial history with its more high-end future. 
-
-“Tides at Gowanus Wharf,” featuring works by five local artists, will run for three days at the new Union Channel building on Third Avenue starting Jan. 24. Union Channel, the first of four residential buildings at Gowanus Wharf, is set to open this spring.",
-  "sourceUrl": "https://www.brooklynpaper.com/tides-at-gowanus-whart-exhibit-opens/",
-  "wordCount":536,
-},
-{
-  "id": 33,
-  "title": "affordable artist studios",
-  "type": "fortune telling",
-  "year": 2025,
-  "blurb": "A lottery for six affordable artist studios in Gowanus— the first of more than 100 such studios slated to come to the neighborhood in the next few years — is now open. 
-
-The studios, built as part of a Community Benefits Agreement signed ahead of the Gowanus rezoning, are set to open this spring at a new coworking space, The Shop, at 420 Carroll St. 
-
-Priced at around $1.66 per square foot per month, the studios will rent for between $275 and $331 per month, or $3,300 and $3,800 annually. Per the CBA, rents can only increase by 2% per year. ",
-  "sourceUrl": "https://www.brooklynpaper.com/lottery-affordable-artist-studios-gowanus/",
-  "wordCount":1125,
-},
-{
-  "id": 34,
-  "title": "holiday pies",
-  "type": "weather report",
-  "year": 2025,
-  "blurb": "While many New Yorkers prepare for holiday gatherings this week, 34 families in Gowanus Houses face a grim reality due to a gas line shutdown that has plagued three NYCHA buildings for weeks.
-
-To spread some holiday cheer, Council Member Shahana Hanif (D-Brooklyn), her staff, members of the Youth Fellowship Council, and the Gowanus Houses Tenant Association distributed 37 freshly made holiday pies from Four & Twenty Blackbirds bakery.",
-  "sourceUrl": "https://www.brooklynpaper.com/hanif-gowanus-houses-pies/",
-  "wordCount":960,
-},
-{
-  "id": 35,
-  "title": "Luxury apartments",
-  "type": "fortune telling",
-  "year": 2024,
-  "blurb": "A sleek new addition to the Gowanus-Park Slope border, 655 Union Street is nearing completion and set to welcome residents in early 2025, just steps from the Union Street subway station.
-
-Brian Ezra, principal and co-founder of Avery Hall, a Brooklyn-based real estate development company, told Brooklyn Paper that he was excited about completing the high-end mixed-use building, which broke ground in 2023.
-
-The team purchased the half-acre parcel, once home to a gas station, in partnership with Gindi Capital in 2019. Ezra shared that the team had long eyed the site for its strategic and attractive development potential for residential space.",
-  "sourceUrl": "https://www.brooklynpaper.com/655-union-street-gowanus-park-slope/",
-  "wordCount":684,
-},
-{
-  "id": 36,
-  "title": "protect biz, longtime residents",
-  "type": "weather report",
-  "year": 2024,
-  "blurb": "Three years after the Gowanus rezoning was formally approved, its impacts are sweeping through the neighborhood. Construction is underway at dozens of sites across the neighborhood and some all-new buildings have already topped out and filled with tenants. 
-
-But the rezoning included more than just new residential buildings. When politicians green-lit the upzoning in 2021, they also agreed to abide by 56 Points of Agreement — things the city would do to ensure it would benefit the existing residents of the neighborhood, not just the approximately 20,000 new ones expected to move in as a result of the rezoning.",
-  "sourceUrl": "https://www.brooklynpaper.com/gowanusians-move-form-bid-biz-residents/",
-  "wordCount":1395,
-},
-{
-  "id": 37,
-  "title": "National Grid says it pays ‘more than its fair share’",
-  "type": "controversy",
-  "year": 2024,
-  "blurb": "Utility giant National Grid, one of the many parties responsible for turning the Gowanus Canal into a toxic Superfund site, is claiming its fellow polluters aren’t doing their fair share to clean up the canal — and that it can no longer shoulder the cost alone.
-
-Earlier this month, the company filed a federal lawsuit against 40 defendants — including the City of New York and Con Edison — urging the court to force them to participate in the cleanup and pay National Grid back for the money it’s spent so far.",
-  "sourceUrl": "https://www.brooklynpaper.com/national-grid-fair-share-gowanus-canal-suit/",
-  "wordCount":1025,
-},
-{
-  "id": 38,
-  "title": "art, culture and surprises",
-  "type": "date night",
-  "year": 2024,
-  "blurb": "Gowanus is a well-known haven for artists making the most of an industrial neighborhood, but their creations can be hard to find — unless you know where to look.
-
-On Oct. 19 and 20, Brooklynites will be welcomed into the inner sanctum at Arts Gowanus’ Gowanus Open Studios. Hundreds of artists will throw open their doors and invite locals to explore their studios, check out their work, and maybe take a piece or two home.",
-  "sourceUrl": "https://www.brooklynpaper.com/gowanus-open-studios-art-culture-2024/",
-  "wordCount":761,
-},
-{
-  "id": 39,
-  "title": "toxic chemicals beneath Gowanus school",
-  "type": "weather report",
-  "year": 2024,
-  "blurb": "A ventilation system to protect students at a Gowanus elementary school from contaminated air has passed its first round of testing, according to state officials, but isn’t set to be fully operational until at least after Christmas.
-
-Officials tested the air at P.S. 372 The Children’s School earlier this year as part of a larger Soil Vapor Intrusion study in the neighborhood surrounding the toxic Gowanus Canal Superfund site. 
-
-The results showed the air inside the school’s main building on Carroll Street was safe by state standards.
-
-But in the soil below the school’s annex building on First Street, officials found very high levels of oil-related chemicals including ethylbenzene, trimethylbenzene, and xylenes. Exposure to those chemicals over long periods of time, or at high concentrations, can lead to serious health effects.",
-  "sourceUrl": "https://www.brooklynpaper.com/system-contain-chemicals-gowanus-school-update-officials/",
-  "wordCount":1524,
-},
-{
-  "id": 40,
-  "title": "pickleball",
-  "type": "fortune telling",
-  "year": 2024,
-  "blurb": "A brand-new indoor pickleball facility is making itself at home in Gowanus.",
-  "sourceUrl": "https://www.brooklynpaper.com/pklyn-indoor-pickleball-open-gowanus/",
-  "wordCount":411,
-},
-{
-  "id": 41,
-  "title": "Fish Queen",
-  "type": "cryptids",
-  "year": 2024,
-  "blurb": "Before it was the subject of federal attention, the canal was rumored to be a favored dumping ground for mafiosos. Before that, it was a critical hub for shipping and industry. And long before that, it was a humble creek where Native Americans farmed and European settlers searched for oysters. 
-
-The full history will be recounted through song on Aug. 30, as Wes Braver’s new musical “The Fish Queen of the Gowanus Canal” debuts for two nights only on a floating stage on the surface of the canal. ",
-  "sourceUrl": "https://www.brooklynpaper.com/fish-queen-gowanus-canal-musical-debut/",
-  "wordCount":920,
-},
-{
-  "id": 42,
-  "title": "Creatures of the Canal",
-  "type": "cryptids",
-  "year": 2024,
-  "blurb": "Legend has it that back in the day, America’s most polluted canal was dumping ground for mobsters who met an unfortunate and untimely ending. In the 1950s, a shark accidentally wound up in the Gowanus Canal and met its demise when it became the target of shooting practice for the NYPD. In 2007, Sludgie, a 12-foot minke whale, took the wrong turn and ended up in the Gowanus, where it died. Sludgie’s death, however, wasn’t in vain, since it helped inspire the cleanup of the canal. ",
-  "sourceUrl": "https://www.brooklynpaper.com/creatures-canal-first-gowanus-art-parade/",
-  "wordCount":1043,
-},
-{
-  "id": 43,
-  "title": "citizen scientist",
-  "type": "weather report",
-  "year": 2024,
-  "blurb": "It looks like it’s raining in Gowanus. It could be — the sky is sunless and gray, and rings form on the surface of the Gowanus Canal  every so often — but it isn’t.
-
-The cause of the rings is methane gas, released by decomposing organic material, which lies on the bottom of the canal. Dead plants make up some of it, but mostly, it’s human feces, which ends up in the canal during rain storms when the combined sewer system can’t handle the increased water flow.",
-  "sourceUrl": "https://www.brooklynpaper.com/data-gary-francis-monitor-gowanus-canal/",
-  "wordCount":1836,
-},
-{
-  "id": 44,
-  "title": "GLOwanus Lantern",
-  "type": "cyborgs",
-  "year": 2024,
-  "blurb": "Gowanus is glowing, as a group of scientists and designers have come up with a device to warn residents of waterbody advisory alerts when too much rain and contaminated water from households mix in the Gowanus Canal. The lanterns allow neighbors to reduce their own impact by cutting down on their water usage during rainy days.",
-  "sourceUrl": "https://www.brooklynpaper.com/glowanus-lantern-cut-flooding-gowanus/",
-  "wordCount":835,
-},
-{
-  "id": 45,
-  "title": "one rather small Greek immigrant",
-  "type": "weather report",
-  "year": 2023,
-  "blurb": "According to the Superfund site’s website, a new Remedial Project Manager, Joel Singerman, will take the reins from Tsiamis, though Carr noted that additional team members will be brought on to fill the gap he will leave behind.
-
-“I expect that you will soon meet the new members of EPA’s team,” Carr wrote. “That it will take three project managers to fill the shoes of one rather small Greek immigrant says a lot.”",
-  "sourceUrl": "https://www.brooklynpaper.com/gowanus-canal-christos-tsiamis-retires/",
-  "wordCount":1043,
-},
-{
-  "id": 46,
-  "title": "Restauranteurs bet on the future",
-  "type": "fortune telling",
-  "year": 2023,
-  "blurb": "The new spot comes from the creators of another Japanese sensation, Bed-Stuy’s Trad Room. After living in New York for 15 years, Tatsumi Suyama, born in Japan, formed his dream team. He met his wife and his business partners, Chefs Max and Nori while working in the restaurant industry. They have now worked together for 10 years.
-
-The owners chose the location with a vision. 
-
-“I know that in two or three years, the streets in Gowanus are going to be busy with pedestrians,” said Suyama. “We are going to be hosting weddings and parties in our backyard.”",
-  "sourceUrl": "https://www.brooklynpaper.com/restaurant-gowanus-japanese-food-open/",
-  "wordCount":470,
-},
-{
-  "id": 47,
-  "title": "Powerhouse Arts",
-  "type": "fortune telling",
-  "year": 2023,
-  "blurb": "The architecturally curious were able to finally get a glimpse inside the long-awaited reincarnation of the Gowanus Batcave as Powerhouse Arts on Sunday.
-
-Years in the making, the former Brooklyn Rapid Transit Company Central Power Station Engine House building at 153 2nd St. was transformed into an arts hub that retains some of the old, including graffiti, with a new addition.",
-  "sourceUrl": "https://www.brooklynpaper.com/photos-gowanus-batcave-powerhouse-arts/",
-  "wordCount":313,
-},
-{
-  "id": 48,
-  "title": "Pig Beach",
-  "type": "weather report",
-  "year": 2022,
-  "blurb": "The owners of the popular Gowanus barbecue joint Pig Beach announced they will be closing the doors to their flagship Brooklyn location on Dec. 30.
-
-According a post shared on social media, the 480 Union St. restaurant was sold to local developer Tankhouse and MacArthur Holdings as part of the Gowanus Rezoning project. It’s not yet clear what will be built on the lot in place of the existing building.",
-  "sourceUrl": "https://www.brooklynpaper.com/pig-beach-bbq-to-close-gowanus/",
-  "wordCount":538,
-},
-{
-  "id": 49,
-  "title": "reclassified as swimmable",
-  "type": "fortune telling",
-  "year": 2025,
-  "blurb": "The state Department of Environmental Conservation is proposing to reclassify the Gowanus Canal, a federal Superfund site, to water quality standards that would direct the city to make it clean enough for swimming. The change would be a win for the city and real estate developers’ efforts to transform the surrounding community’s legacy of industrial pollution into a mixed-use neighborhood following the city’s 2021 rezoning of Gowanus.",
-  "sourceUrl": "https://www.crainsnewyork.com/climate/new-york-may-reclassify-gowanus-canal-swimmable",
-  "wordCount":372,
-},
-{
-  "id": 50,
-  "title": "a remote-controlled, camera-equipped robot",
-  "type": "cyborgs",
-  "year": 2013,
-  "blurb": "The team is using a remote-controlled Aquatic Robotic Vehicle that shifts around the depths, collecting data on temperature, salinity, oxygen and pH levels, transmitting it back to a website. The Brooklyn Atlantis, as the device is known, also has cameras above and below the water, giving the public a view of the canal it wouldn’t normally see.",
-  "sourceUrl": "https://www.fastcompany.com/1682186/a-robot-to-explore-brooklyns-epically-polluted-gowanus-canal",
-  "wordCount":347,
-},
-{
-  "id": 51,
-  "title": "gonorrhea could be so pretty",
-  "type": "art projects",
-  "year": 2013,
-  "blurb": "A photo essay about Brooklyn’s Gowanus Canal makes you wonder: Who knew that tar, PCBs, and traces of gonorrhea could be so pretty?",
-  "sourceUrl": "https://www.fastcompany.com/1671978/disgusting-but-gorgeous-pics-of-nycs-foulest-waterway",
-  "wordCount":411,
-},
-{
-  "id": 52,
-  "title": "Gowanus Atlas",
-  "type": "weather report",
-  "year": 2025,
-  "blurb": "Gowanus Atlas tells the story of the community around the Gowanus Canal, a neighborhood defined by its people, history, and diversity. It gives residents, business owners, organizations, activists, developers, and agencies access to quantitative and qualitative data about the area's rapidly changing conditions, its challenges, and the community's future. Gowanus Atlas is a resource for connection, participation, and activism.",
-  "sourceUrl": "https://atlas.gowanusbydesign.org/",
-},
-{
-  "id": 53,
-  "title": "Gowanus Smell Map",
-  "type": "smells",
-  "year": 2016,
-  "blurb": "An olfactory map designed by Annie Barrett as part of a design competition by nonprofit Gowanus By Design",
-  "sourceUrl": "/assets/images/smellmap.png",
-},
-{
-  "id": 54,
-  "title": "dolphin",
-  "type": "cryptids",
-  "year": 2021,
-  "blurb": "However, the unlucky local dolphin who wandered into Brooklyn’s Gowanus Canal in January 2013 was a reminder of how much cleanup remains to be done. The dolphin, whom the locals nicknamed Mucky, was old and very sick when he arrived. He was separated from his pod, clearly lost, and stranded in the worst possible waters.",
-  "sourceUrl": "https://www.bkmag.com/2021/03/17/the-ballad-of-mucky-the-unlucky-gowanus-dolphin/",
-  "wordCount":855,
-},
-{
-  "id": 55,
-  "title": "Safe Enough to Swim in Our Lifetimes",
-  "type": "fortune telling",
-  "year": 2025,
-  "blurb": "There may just be a non-dystopian future in which the Gowanus Canal goes from federal Superfund site to local swimming hole.",
-  "sourceUrl": "https://www.bkmag.com/2025/08/20/gowanus-canal-swimming-superfund-site-reclassification/",
-  "wordCount":367,
-},
-{
-  "id": 56,
-  "title": "Indoor Air Pollution",
-  "type": "controversy",
-  "year": 2023,
-  "blurb": "Almost an hour into the event, everything seemed to be going according to DEC’s plan, when Joseph Alexiou, author of “Gowanus: Brooklyn’s Curious Canal,” took to the center of the room to face off with department officials.
-
-“The DEC does not want a Q&A style session here because it will cover up the lies about the amount of coal tar under the ground,” he said, getting progressively louder as he went on. “I am tired of these meetings where you don’t just answer our goddamn questions.”",
-  "sourceUrl": "https://www.bkmag.com/2023/05/10/two-months-after-news-about-indoor-air-pollution-in-gowanus-canal-area-questions-linger/",
-  "wordCount":1945,
-},
-{
-  "id": 57,
-  "title": "Instagram Cake Star Clio Goodman",
-  "type": "weather report",
-  "year": 2023,
-  "blurb": "Now Goodman has opened a spacious brick and mortar version of By Clio, in a former design studio on Third Avenue in Gowanus, where she and her team not only sell her signature flower-topped, imprecisely decorated cakes, whole or by the slice, but also a selection of fabulous cookies, brownies, and other delights. 
-
-These are not your usual pastry suspects. On the morning we went, for example, the brownies came in either a slightly spicy mole flavor, or made as a thick and fudgy barfi, topped with a tangy frosting and a layer of pistachios for crunch. Delicious. ",
-  "sourceUrl": "https://www.bkmag.com/2023/01/19/by-clio/",
-  "wordCount":542,
-},
-{
-  "id": 58,
-  "title": "Mussel Population",
-  "type": "weather report",
-  "year": 2025,
-  "blurb": "Changes to the Gowanus Canal, part of a major cleanup project in the notoriously polluted waterway, are resulting in loss of mussel habitat. But community intervention could increase the Atlantic ribbed mussel population, with promising implications for the Canal’s future.",
-  "sourceUrl": "https://citylimits.org/community-led-project-looks-to-grow-gowanus-canals-mussel-population/",
-  "wordCount":1018,
-},
-{
-  "id": 59,
-  "title": "Underground Tank",
-  "type": "weather report",
-  "year": 2025,
-  "blurb": "Work Finished 6 Months Ahead of Schedule
-Project Will Create New Public Open Space in Brooklyn; Keep Mixed Sewage from Overflowing into the Gowanus Canal During Storms",
-  "sourceUrl": "https://www.nyc.gov/site/dep/news/25-011/dep-completes-major-phase-construction-building-underground-tank-protect-gowanus-canal#/0",
-  "wordCount":1034,
-},
-{
-  "id": 60,
-  "title": "Paddle-In Movie Series",
-  "type": "date night",
-  "year": 2025,
-  "blurb": "This weekend, brave cinema lovers can enjoy a Creature Feature paddle-in movie series with Gowanus Dredgers. Yes, that means you'll get to watch a movie while floating in a canoe for $23/person (or from the shore for free, if you prefer).",
-  "sourceUrl": "https://www.timeout.com/newyork/things-to-do/creature-feature-on-the-gowanus-canal",
-  "wordCount":147,
-},
-{
-  "id": 61,
-  "title": "eyesore to eye-popping",
-  "type": "fortune telling",
-  "year": 2025,
-  "blurb": "It’s been 20 years since The New York Times reported that city officials voted “to let developers turn the decaying north Brooklyn waterfront, with its relics of Brooklyn’s industrial past, into a neighborhood of residential towers with a parklike esplanade along the East River.” In the two decades since, this version of Williamsburg was replaced by the first generation of “hipsters,” glassy condo towers with Manhattan views, and throngs of Manhattanites crowding the L train to hit up Union Pool and Maison Premiere.
-
-Now, a new rezoning is putting another Brooklyn neighborhood on the same path. This time, the waterfront is the once-toxic Superfund-designated Gowanus Canal.",
-  "sourceUrl": "https://www.6sqft.com/the-next-williamsburg-gowanus-canal-development/",
-  "wordCount":1322,
-},
-{
-  "id": 62,
-  "title": "An Acoustic Playground Gets Dirty",
-  "type": "weather report",
-  "year": 2025,
-  "blurb": "For anyone who hasn’t been to the Gowanus Canal lately, the scene may come as a shock: Tall apartment buildings line the banks of the formerly fetid industrial waterway, with plywood construction sheds and the clang of foundation-digging heralding more on their way.
-
-After the work crews clock out, other sounds take over: classic hip-hop from Bluetooth speakers, kids on bikes pretending they don’t hear their adults, and, where the sidewalk ends, an acoustic playground for old-time music players.",
-  "sourceUrl": "https://www.thecity.nyc/2025/08/28/jug-band-jam-gowanus-music-free-event/",
-  "wordCount":1164,
-},
-{
-  "id": 63,
-  "title": "Banjo Toss",
-  "type": "weather report",
-  "year": 2025,
-  "blurb": "Each year, as part of the Brooklyn Folk Festival , contestants gather on the banks of the fetid Gowanus Canal to see who can throw a banjo the farthest in the – BANJO TOSS: BANJO THROWING COMPETITION!",
-  "sourceUrl": "https://gowanusdredgers.org/event/brooklyn-folk-festival-banjo-toss-competition-2/",
-  "wordCount":210,
-},
-{
-  "id": 64,
-  "title": "Black Mayonnaise",
-  "type": "fortune telling",
-  "year": 2025,
-  "blurb": "Gowanus has always been more than a canal. Once tidal marshlands stewarded by the Lenape, later the busiest industrial canal in America, it embodies cycles of exploitation, abandonment, and reinvention. Today it stands at a crossroads: will it be remembered as a model of climate-resilient renewal that integrates equity, or as another case where sustainability goals advanced without sufficient attention to who benefits?",
-  "sourceUrl": "https://citylimits.org/opinion-when-black-mayonnaise-becomes-real-estate-gold-and-the-equity-challenges-of-gowanus/",
-  "wordCount":1139,
-},
-{
-  "id": 65,
-  "title": "Microorganisms with extreme abilities",
-  "type": "cryptids",
-  "year": 2025,
-  "blurb": "Microorganisms with extreme abilities have laid the groundwork for decades of biotechnologies from the PCR technique that enables amplification of DNA for diagnostics and drug development to the gene editing tool CRISPR, and now researchers supported by the U.S. National Science Foundation have found a trove of these microbes in a somewhat unlikely location — the Gowanus Canal in Brooklyn. The team identified more than 450 species with over 60 different biochemical pathways to deal with pollutants and 1,171 genes that can aid in processing heavy metals, offering potential for bio-based and cheaper methods of industrial clean-up, the costs of which are estimated to be more than $645 billion.",
-  "sourceUrl": "https://www.nsf.gov/news/microbes-brooklyn-could-help-mitigate-industrial",
-  "wordCount":284,
-},
-{
-  "id": 66,
-  "title": "Pollution-eating microbes",
-  "type": "cryptids",
-  "year": 2025,
-  "blurb": "The silver lining of the slo-mo environmental disaster is that engineers and biologists might have the chance to harness these superfund superbugs to help detoxify the Gowanus and polluted sites elsewhere.",
-  "sourceUrl": "https://www.popsci.com/environment/pollution-eating-microbes-gowanus-canal/",
-  "wordCount":1283,
-},
-{
-  "id": 67,
-  "title": "unmanned water vehicle",
-  "type": "cyborgs",
-  "year": 2015,
-  "blurb": "Conversations about the Gowanus Canal are usually accompanied with a quip about STDs or mutant dolphins, but all joking aside, there’s no denying its murky waters also carry quite a bit of mystery and allure. The infrastructure, the architecture, and of course what’s floating within, is nothing short of intriguing, because really, what’s actually down there? Researchers at the Brooklyn Atlantis Project are just as curious as we are and they’ve constructed an unmanned water vehicle to go where no sane man dare go.",
-  "sourceUrl": "https://www.6sqft.com/you-can-now-tour-the-gowanus-canal-without-catching-syphilis-or-other-ailments/",
-  "wordCount":247,
-},
-{
-  "id": 68,
-  "title": "Gowanus monster",
-  "type": "cyborgs",
-  "year": 2015,
-  "blurb": "Today, Bold Machines has unveiled yet another character, perhaps the most interesting and mysterious of them all! Say hello to the Gowanus Monster!",
-  "sourceUrl": "https://3dprint.com/71584/gowanus-monster-margo/",
-  "wordCount":644,
-},
-{
-  "id": 69,
-  "title": "robotic super fish",
-  "type": "cyborgs",
-  "year": 2012,
-  "blurb": "Brooklyn brainiacs are building a robotic super fish that would play savior to its aquatic brethren, leading schools of fish away from danger.",
-  "sourceUrl": "https://www.nydailynews.com/2012/05/31/polytech-researchers-in-brooklyn-build-robotic-super-fish-to-save-other-fish-from-danger/",
-  "wordCount":72,
-},
-{
-  "id": 70,
-  "title": "extremophiles",
-  "type": "cryptids",
-  "year": 2022,
-  "blurb": "And these extremophiles, Hénaff and her colleagues found, aren’t simply surviving in the hazardous liquid — rather, they’ve developed a miraculous ability to break down the canal’s noxious substances into its less toxic components.",
-  "sourceUrl": "https://www.curbed.com/2022/04/gowanus-canal-cleanup.html",
-  "wordCount":2090,
-},
-{
-  "id": 71,
-  "title": "poonamis",
-  "type": "cryptids",
-  "year": 2021,
-  "blurb": "Rising sea levels could trigger toxin-laced flooding and frequent waves of human waste, dubbed “poonamis,” near the Gowanus Canal, according to scientists critical of the city’s plan to rezone 82 blocks around the filthy Brooklyn waterway.",
-  "sourceUrl": "https://citylimits.org/gowanus-rezoning-critics-highlight-impact-of-climate-on-future-flooding-as-public-review-moves-forward/",
-  "wordCount":1265,
-},
-{
-  "id": 72,
-  "title": "Wayward Dolphin",
-  "type": "cryptids",
-  "year": 2013,
-  "blurb": "We've got some sad news, this evening: The AP is reporting that the dolphin that somehow found its way into a polluted New York City canal has died.",
-  "sourceUrl": "https://www.npr.org/sections/thetwo-way/2013/01/25/170308204/wayward-dolphin-in-polluted-new-york-canal-dies",
-  "wordCount":372,
-},
-{
-  "id": 73,
-  "title": "A Brief History of Slime",
-  "type": "weather report",
-  "year": 2009,
-  "blurb": "Once known as the “Gashouse District,” the area around the Gowanus Canal is the only underdeveloped section of brownstone Brooklyn, for good reason: The canal is disgusting. The EPA wants to label it a Superfund site and decontaminate it, but Mayor Bloomberg is fighting that stigma, arguing that his alternative cleanup plan will be faster and less bureaucratic. Here, the canal’s foul past and potential future.",
-  "sourceUrl": "https://nymag.com/news/intelligencer/topic/57886/",
-"wordCount":619,
-},
-{
-  "id": 74,
-  "title": "Super Fun Superfund",
-  "type": "date night",
-  "year": 2013,
-  "blurb": "Having grown up in Brooklyn just a few blocks away, the stench of Gowanus water reminds me of my childhood, but for all the time I’ve spent smelling the canal I never imagined I’d one day go canoeing on it — and then, this October, I did.",
-  "sourceUrl": "https://www.atlasobscura.com/articles/surfin-superfunds-canoeing-on-the-gowanus",
-"wordCount":959,
-},
-{
-  "id": 75,
-  "title": "Spokescreature",
-  "type": "cryptids",
-  "year": 2012,
-  "blurb": "New York City has Pearl the Squirrel to better illustrate the Parks Department's goals, and our personal favorite, Warmy, to ease us through the pothole-filling process. But what mascot should the Gowanus have during its cleanup? "The cleanup will be long, boring and probably disgusting, so we want to make sure people are aware of what's going on in an easy and fun way," Gowanus Community Advisory Group member Eymund Diegel told the Post. ",
-  "sourceUrl": "https://gothamist.com/news/gowanus-canal-cleanup-may-get-mascot-spokescreature",
-"wordCount":246,
-},
-{
-  "id": 76,
-  "title": "Gowanda the Seal",
-  "type": "cryptids",
-  "year": 2003,
-  "blurb": "Dead bodies, oildrums, garbage from 1964, these are things that you'd expect to find in the Gowanus Canal. But not a harp seal. The Times reports on the 1 year-old harp seal who has defied the laws of science by living and apparently surviving in the Gowanus.",
-  "sourceUrl": "https://gothamist.com/arts-entertainment/gowanus-canal-hip-new-area-for-seals",
-"wordCount":195,
-},
-{
-  "id": 77,
-  "title": "Alligator Eating Trump",
-  "type": "cryptids",
-  "year": 2020,
-  "blurb": "Knit creatures devouring Donald Trump that have appeared around Brooklyn and Manhattan will culminate with an art exhibit on Saturday.",
-  "sourceUrl": "https://patch.com/new-york/parkslope/8-foot-knit-alligator-eating-trump-appear-over-gowanus-canal",
-"wordCount":388,
-},
-{
-  "id": 78,
-  "title": "Angry Trump Statue",
-  "type": "art projects",
-  "year": 2019,
-  "blurb": "You'd be mad too if someone threw you into the Gowanus.",
-  "sourceUrl": "https://patch.com/new-york/parkslope/angry-trump-statue-found-floating-gowanus-canal",
-"wordCount":401,
-},
-{
-  "id": 79,
-  "title": "Gowanus is now one of NYC’s most expensive neighborhoods",
-  "type": "weather report",
-  "year": 2016,
-  "blurb": "Gowanus doesn’t welcome bargain hunters anymore, it seems. The up-and-coming Brooklyn neighborhood, where the local canal remains a superfund site, has rocketed to spot 14 of the city’s 50 most expensive neighborhoods, according to Property Shark’s final quarterly report for 2016.",
-  "sourceUrl": "https://www.6sqft.com/gowanus-is-now-one-of-nycs-most-expensive-neighborhoods/",
-"wordCount":65,
-},
-{
-  "id": 80,
-  "title": "Superfund Proposed Plan",
-  "type": "red tape",
-  "year": 2012,
-  "blurb": "This Proposed Plan describes the remedial alternatives considered for the Gowanus Canal Superfund site and identifies the preferred remedy with the rationale for this preference.",
-  "sourceUrl": "/assets/documents/superfundproposedplan.pdf",
-},
-{
-  "id": 81,
-  "title": "What is Superfund?",
-  "type": "red tape",
-  "year": 2025,
-  "blurb": "CERCLA is informally called Superfund. It allows EPA to clean up contaminated sites. It also forces the parties responsible for the contamination to either perform cleanups or reimburse the government for EPA-led cleanup work.",
-  "sourceUrl": "https://www.epa.gov/superfund/what-superfund",
-"wordCount":186,
-},
-{
-  "id": 82,
-  "title": "Superfund Site: GOWANUS CANAL BROOKLYN, NY",
-  "type": "red tape",
-  "year": 2025,
-  "blurb": "Announcements and Key Topics",
-  "sourceUrl": "https://cumulis.epa.gov/supercpad/cursites/csitinfo.cfm?id=0206222",
-"wordCount":108,
-},
-{
-  "id": 83,
-  "title": "Gowanus Canal Superfund Site Group",
-  "type": "weather report",
-  "year": 2025,
-  "blurb": "On November 1, 2021 EPA will no longer serve as administrator and moderator of this Gowanus Canal Facebook Group. A Gowanus Community Advisory Group member will act as the new administrator and moderator.
-
-EPA will continue to share updates on our R2 Facebook page (https://www.facebook.com/eparegion2/) and our website: www.epa.gov/superfund/gowanus-canal.
-
-If you have any questions for EPA, please contact the site’s Community Involvement Coordinator, Natalie Loney, loney.natalie@epa.gov.
-
-Please note the page has been renamed since it is will no longer be managed by EPA.",
-  "sourceUrl": "https://www.facebook.com/groups/195975002808",
-},
-{
-  "id": 84,
-  "title": "Hazard Ranking System Report",
-  "type": "red tape",
-  "year": 2009,
-  "blurb": "...Despite the ongoing pollution problems, some city dwellers have begun to use the Gowanus Canal for recreational
-purposes such as canoeing, diving, and swimming [Ref. 7, p. 3; 8, p. 3; 13, p. 1; 38, p. 1; 39, pp. 1, 3; 40, p. 2; 41, pp. 1-
-3; 42, p. 1; 43, p. 2; 44, pp. 1-2]. People also use the canal for fishing and crabbing, and several sources have reported
-fishing for human consumption [Ref. 13, p. 1; 14, p. 1; 15, pp. 1-2; 39, p. 3; 40, p. 2; 43, pp. 1-3; 45, pp. 1-2; 46, p. 3; 47,
-p. 1]. It is reported that a handful of people catch fish at the 3rd Street Bridge and at other bridges along the canal, take
-the fish home, and eat them [Figure 2 of this HRS documentation record; Ref. 13, p. 1; 14, p. 1; 15, p. 1]. Residents also
-catch fish for consumption from the Gowanus Bay, just downstream of the site, and the rest of the New York-New Jersey
-Harbor Estuary [Ref. 9, p. 2; 14, p. 1; 46, pp. 1-2; 48, pp. 8-12; 49, p. 1; 50, p. 1]",
-  "sourceUrl": "/assets/documents/hazardrankingsystemreport.pdf",
-},
-{
-  "id": 85,
-  "title": "NY State Department of Health: Public Health Assessment",
-  "type": "red tape",
-  "year": 2017,
-  "blurb": "The New York State Department of Health (DOH) and Agency for Toxic Substances and Disease Registry (ATSDR) wish to ensure that the community around the Gowanus Canal has the best information possible about how contaminants in the canal might affect their health.
-Some city residents use the Gowanus Canal for canoeing, scuba diving, and swimming,and some catch and eat fish and crabs from the canal.
-To evaluate how people's health might be affected, DOH and ATSDR used data from an environmental investigation of the Gowanus Canal conducted by GEI Consultants, Inc. for KeySpan Corporation in 2007 and from the remedial investigation conducted by the United States Environmental Protection Agency (EPA) in 2010 through 2011.",
-  "sourceUrl": "/assets/documents/publichealthassessment.pdf",
-},
-
-
-
-
-
-
-
-
-
-
-
-
-
+  "nodes": [
     {
-  "id": 21,
-  "title": "Community Meeting Portal",
-  "type": "interactive",
-  "year": 2025,
-  "content": "EPA Community Meeting - Public Comment Period. Submit your feedback on the Gowanus Canal remediation strategy. All comments will be recorded and incorporated into future projections.",
-  "keywords": ["community", "meeting", "feedback", "input", "comment", "voice", "participation", "EPA", "public"],
-  "x": 350,
-  "y": 650
-},
-
-{
-  "id": 22,
-  "title": "2050 Oracle Portal",
-  "type": "speculative",
-  "year": 2050,
-  "content": "QuickScore Predictive Analysis System. Query the contaminated oracle about potential futures for the Gowanus Canal. Predictions generated from EPA documents, community input, and speculative contamination.",
-  "keywords": ["oracle", "future", "2050", "prediction", "speculation", "analysis", "forecast", "vision"],
-  "x": 550,
-  "y": 650
-}
+      "id": 1,
+      "title": "Massive luxury 'wellness' mecca coming to Gowanus",
+      "type": "gossip",
+      "year": 2025,
+      "blurb": "Brooklyn's Gowanus Canal, the once-smelly waterway that was long a punch line for comedians, will soon welcome one of the Big Apple's largest and most glamorous "wellness" centers.",
+      "sourceUrl": "https://nypost.com/2025/11/30/business/massive-wellness-mecca-coming-to-gowanus/",
+      "wordCount": 496,
+      "keywords": ["wellness", "luxury", "development", "Brooklyn", "waterway", "smelly", "comedians", "glamorous", "mecca", "center"],
+      "x": -120,
+      "y": 450
+    },
+    {
+      "id": 2,
+      "title": "Real-life Kramer slices through fecal-infested Red Hook channel every day: 'It calms me'",
+      "type": "gossip",
+      "year": 2025,
+      "blurb": "A Little Italy man with a taste for thrills has turned the polluted and Staten Island Ferry-littered waters of the Upper New York Bay into his very own sanctuary. Sante Scardillo, who declined to give his age but admitted he qualifies for an MTA discount, swims in the choppy waters of the bay from June through November in nothing but his bathing suit and a swim cap. 'Sometimes two,' he told the Post, 'if it's a very cold day.'",
+      "sourceUrl": "https://nypost.com/2025/11/08/us-news/sante-scardillo-swims-in-red-hook-channel-every-day/",
+      "wordCount": 566,
+      "keywords": ["swimming", "polluted", "Red Hook", "Sante Scardillo", "fecal", "bay", "sanctuary", "bathing", "MTA", "waters"],
+      "x": -85,
+      "y": 520
+    },
+    {
+      "id": 3,
+      "title": "Cancer-causing toxins could be spread over trendy NYC neighborhood by Gowanus Canal dredging project, experts warn",
+      "type": "gossip",
+      "year": 2025,
+      "blurb": "It's a murky situation. Experts are sounding alarms about the EPA's plan to excavate the Gowanus Canal without covering the foul-smelling sludge — as residents allege they're suffering from putrid air and fear more toxins could be released into their tony neighborhood.",
+      "sourceUrl": "https://nypost.com/2025/02/12/us-news/experts-deeply-concerned-over-next-phase-of-gowanus-canal-dig-warn-carcinogens-could-be-released/",
+      "wordCount": 866,
+      "keywords": ["cancer", "toxins", "dredging", "EPA", "excavate", "sludge", "carcinogens", "residents", "air quality", "warning"],
+      "x": -160,
+      "y": 380
+    },
+    {
+      "id": 4,
+      "title": "Gowanus Canal's toxic sludge will be trucked through NYC neighborhoods — leaving locals fearing stomach-turning stench",
+      "type": "gossip",
+      "year": 2024,
+      "blurb": "It's Eau de Gowanus delivered to your doorstep.",
+      "sourceUrl": "https://nypost.com/2024/12/12/us-news/gowanus-canals-toxic-sludge-will-be-trucked-through-nyc-neighborhoods-leaving-locals-fearing-stomach-turning-stench/",
+      "wordCount": 1014,
+      "keywords": ["sludge", "trucking", "neighborhoods", "stench", "toxic", "smell", "locals", "delivery", "fear", "odor"],
+      "x": -95,
+      "y": 310
+    },
+    {
+      "id": 5,
+      "title": "NYC sprays 'Christmas' perfume near stinky Gowanus Canal",
+      "type": "gossip",
+      "year": 2024,
+      "blurb": "Well, that stinks. The city sprayed 'Christmas'-scented perfume around the Gowanus Canal — but it'll take a lot more than holiday cheer to neutralize the stench seeping from the notorious polluted Brooklyn waterway. During the odorous operation, which began in February and ended last month, the city Department of Environmental Protection unleashed the Yuletide and citrus fragrances using misters around the perimeter of the 'Superfund site.'",
+      "sourceUrl": "https://nypost.com/2024/08/29/us-news/nyc-sprays-christmas-perfume-near-gowanus-canal-but-waste-site-still-stinks/",
+      "wordCount": 911,
+      "keywords": ["perfume", "Christmas", "smell", "DEP", "misters", "fragrance", "odor", "Superfund", "stench", "citrus"],
+      "x": -145,
+      "y": 590
+    },
+    {
+      "id": 6,
+      "title": "'Stinking sh-tberg'",
+      "type": "gossip",
+      "year": 2024,
+      "blurb": "Beware the blob. A huge smelly blob of black sludge was unearthed this week at a construction site for new housing going up along Brooklyn's toxic Gowanus Canal, and concerned neighbors said the noxious material was left exposed for days, feet from a busy intersection and school.",
+      "sourceUrl": "https://nypost.com/2024/09/28/us-news/toxic-blob-left-at-brooklyn-construction-site-for-days/",
+      "wordCount": 753,
+      "keywords": ["blob", "sludge", "construction", "housing", "toxic", "exposed", "school", "noxious", "black", "neighbors"],
+      "x": -75,
+      "y": 660
+    },
+    {
+      "id": 7,
+      "title": "Church that hosted Al Capone's wedding",
+      "type": "gossip",
+      "year": 2024,
+      "blurb": "A famous church that once hosted Al Capone's wedding, along with 20 other sites near Brooklyn's toxic Gowanus Canal, are in need of one hell of a clean-up after testing positive for dangerously unsafe air, The Post has learned.",
+      "sourceUrl": "https://nypost.com/2024/06/22/us-news/famed-brooklyn-church-20-other-sites-by-gowanus-canal-test-toxic-by-state/",
+      "wordCount": 1020,
+      "keywords": ["church", "Al Capone", "wedding", "toxic air", "testing", "unsafe", "cleanup", "historic", "contamination", "sites"],
+      "x": -180,
+      "y": 280
+    },
+    {
+      "id": 8,
+      "title": "At least it wasn't more bodies.",
+      "type": "gossip",
+      "year": 2020,
+      "blurb": "Federal environmental officials cleaning up Brooklyn's Gowanus Canal just dredged up two cars from the notorious waterway in less than a week. On Dec. 4, a sedan — possibly a Mercedes — was excavated from the canal, an infamous Superfund site contaminated by everything from industrial waste to sewage overflow and even human corpses, according to neighborhood blog Pardon Me For Asking.",
+      "sourceUrl": "https://nypost.com/2020/12/11/two-cars-pulled-from-gowanus-canal-in-brooklyn/",
+      "wordCount": 212,
+      "keywords": ["cars", "dredging", "Mercedes", "bodies", "corpses", "excavation", "Superfund", "sewage", "industrial waste", "cleanup"],
+      "x": -110,
+      "y": 750
+    },
+    {
+      "id": 9,
+      "title": "love in the muck",
+      "type": "date night",
+      "year": 2020,
+      "blurb": "Despite its notorious reputation for being a polluted pool of stagnant filth, the Gowanus Canal was recently the site of a marriage proposal — and she said yes. Gowanus residents Emma Borochoff, 30, and Jamison Pence, 32, have been dating for three-and-a-half years, lived in the neighborhood for two, and frequently go on walks over the Superfund-designated waterway's bridges, a pleasure they've been enjoying even more frequently in quarantine.",
+      "sourceUrl": "https://nypost.com/2020/09/01/brooklyn-couple-gets-engaged-on-gowanus-canal/",
+      "wordCount": 404,
+      "keywords": ["proposal", "engagement", "romance", "quarantine", "bridges", "couple", "neighborhood", "walks", "love", "residents"],
+      "x": -55,
+      "y": 480
+    },
+    {
+      "id": 10,
+      "title": "a fun venue for the summer of COVID-19",
+      "type": "picnic ideas",
+      "year": 2020,
+      "blurb": "Floating toward the bay, the setting sun illuminates a rainbow oil sheen. I stick my paddle in it and it shimmers, then dissipates. A pair of strangers gently bob to my left, and our group's leader talks about Dutch settlers and oysters before becoming momentarily distracted by a dead, bloated fish drifting by. The Gowanus Canal is famously filthy, but my recent tour of it with the Gowanus Dredgers Canoe Club felt like an escapist fantasy: Maskless on the water, insulated from city sounds by the wall of industry that lines the canal, the water droplets occasionally splashing onto my bare legs were, momentarily, the only threat of disease I could fathom.",
+      "sourceUrl": "https://nypost.com/2020/07/24/nycs-gowanus-canal-now-a-pandemic-safe-venue-for-summer-fun/",
+      "wordCount": 791,
+      "keywords": ["COVID", "canoeing", "Dredgers", "pandemic", "recreation", "oil sheen", "fish", "Dutch settlers", "oysters", "tour"],
+      "x": -130,
+      "y": 700
+    },
+    {
+      "id": 11,
+      "title": "historic treasures",
+      "type": "fortune telling",
+      "year": 2018,
+      "blurb": "Now, as the EPA dredges the fetid waterway amid a $506 million federal Superfund cleanup, workers are unearthing relics from Brooklyn's industrial heyday to its hipster-haven present — including a World War II-era "crash boat," massive wooden textile spools and wagon wheels from when Brooklyn was its own city.",
+      "sourceUrl": "https://nypost.com/2018/08/13/gowanus-canal-cleanup-has-unearthed-historic-treasures-covered-in-toxic-goo/",
+      "wordCount": 1680,
+      "keywords": ["artifacts", "crash boat", "WWII", "textile", "spools", "wagon wheels", "industrial", "history", "relics", "excavation"],
+      "x": -170,
+      "y": 640
+    },
+    {
+      "id": 12,
+      "title": "Fugitive's plunge into toxic Gowanus Canal was a terrible decision",
+      "type": "gossip",
+      "year": 2018,
+      "blurb": "He's hooked on heroin and could have killed a cop — but the worst thing for this upstate fugitive's well-being may have been his recent plunge into the toxic Gowanus Canal.",
+      "sourceUrl": "https://nypost.com/2018/10/02/fugitives-plunge-into-toxic-gowanus-canal-was-a-terrible-decision/",
+      "wordCount": 586,
+      "keywords": ["fugitive", "heroin", "plunge", "toxic", "police", "chase", "crime", "health", "danger", "upstate"],
+      "x": -90,
+      "y": 820
+    },
+    {
+      "id": 13,
+      "title": "three-eyed fish",
+      "type": "cryptids",
+      "year": 2015,
+      "blurb": "Update:Ichthyologists are dubious. It was always only a matter of time until the putrid toxic waters of the Gowanus Canal spit out some mutant hellspawn determined to seek revenge on humanity for decades of nonstop pollution. All this time, we assumed it'd be some sort of mud, poop, grass, gas and discarded bicycle hybrid. But if the man in the video is to be believed, the first Gowanus Canal monster is just your regular run-of-the-mill three-eyed fish. That's right: NYC may have its first Blinky.",
+      "sourceUrl": "https://gothamist.com/food/video-man-claims-he-caught-three-eyed-fish-in-gowanus-canal",
+      "wordCount": 248,
+      "keywords": ["fish", "mutation", "Blinky", "Simpsons", "monster", "ichthyology", "video", "hellspawn", "pollution", "mutant"],
+      "x": -65,
+      "y": 360
+    },
+    {
+      "id": 14,
+      "title": "Cautious optimism on the Gowanus smell",
+      "type": "controversy",
+      "year": 2025,
+      "blurb": "According to the data collected around the tank site, levels of naphthalene, a carcinogen chemical that smells like mothballs, were below a health-based level of concern. Naphthalene can have a strong odor, meaning that even at levels far below what would constitute a health hazard, it can still be smelt in the air, Dr. Smith noted.",
+      "sourceUrl": "https://www.star-revue.com/the-new-york-city-department-of-environmental-protection-dep/",
+      "wordCount": 1132,
+      "keywords": ["naphthalene", "carcinogen", "mothballs", "odor", "air quality", "health", "testing", "tank", "DEP", "concern"],
+      "x": -155,
+      "y": 510
+    },
+    {
+      "id": 15,
+      "title": "calls for moratorium on new construction",
+      "type": "controversy",
+      "year": 2024,
+      "blurb": "The community advocacy group Voice of Gowanus and Toxics Targeting, an Ithaca-based environmental data firm that tracks contaminated sites in New York state, are calling on Governor Kathy Hochul to put a pause on new construction on brownfield sites before all contamination is comprehensively cleaned up. The call comes after Toxics Targeting uncovered that the New York State Department of Environmental Conservation had found elevated levels of trichloroethylene, an industrial chemical linked to cancer and Parkinson's disease, in the indoor air of several buildings along the canal.",
+      "sourceUrl": "https://www.star-revue.com/findings-of-toxic-fumes-in-gowanus-prompt-calls-for-moratorium-on-new-construction-by-oscar-fock/",
+      "wordCount": 1586,
+      "keywords": ["moratorium", "construction", "trichloroethylene", "cancer", "Parkinson's", "brownfield", "Voice of Gowanus", "Hochul", "indoor air", "advocacy"],
+      "x": -125,
+      "y": 240
+    },
+    {
+      "id": 16,
+      "title": "The Gowanus Shitshow",
+      "type": "controversy",
+      "year": 2023,
+      "blurb": "I used to talk with Buddy Scotto, the great Carroll Gardens community leader, about Gowanus. It's an area he knew well. Buddy's greatest claim to fame is likely getting rid of the stench from the Gowanus Canal that would permeate Carroll Gardens whenever the wind shifted. The smell — which we'll come back to again shortly — came from still canal waters that collected raw sewage whenever it rained. The reason was the pump that cycled water through the 12-foot-wide Gowanus Flushing Tunnel, which dates back to 1911, broke down in the '60s.",
+      "sourceUrl": "https://www.star-revue.com/the-gowanus-shitshow-by-george-fiala/",
+      "wordCount": 1041,
+      "keywords": ["Buddy Scotto", "sewage", "stench", "flushing tunnel", "pump", "1911", "Carroll Gardens", "smell", "rain", "wind"],
+      "x": -195,
+      "y": 430
+    },
+    {
+      "id": 17,
+      "title": "Buyer Beware on Gowanus Rezoning",
+      "type": "controversy",
+      "year": 2021,
+      "blurb": "The City has been fighting the Superfund process from the beginning, initially trying to prevent it from ever happening. The Bloomberg administration maintained that it could clean the Canal and prevent recontamination using a combination of tree planting and sticking holes in the ground, enabling stormwater to seep into the ground instead of overflowing the sewers and send waste materials into the canals during storms.",
+      "sourceUrl": "https://www.star-revue.com/superfund-lawyer-says-buyer-beware-on-gowanus-rezoning-by-george-fiala/",
+      "wordCount": 767,
+      "keywords": ["rezoning", "Bloomberg", "Superfund", "stormwater", "sewers", "recontamination", "tree planting", "city", "lawyer", "warning"],
+      "x": -80,
+      "y": 180
+    },
+    {
+      "id": 18,
+      "title": "a milestone in the Superfund cleanup",
+      "type": "science project",
+      "year": 2021,
+      "blurb": "After more than 160 years as a repository of human and industrial waste, the Gowanus Canal is leaving its toxic legacy behind—or under. Last month marked a milestone in the Superfund cleanup of the waterway, as the bottom of the canal north of the 3rd Street Bridge was successfully injected with a five-foot layer of cement in a process known as in-situ stabilization. The procedure, overseen by the Environmental Protection Agency (EPA), follows dredging works done earlier this year and will prevent remaining pollutants in the canal's sediment from recontaminating the water above.",
+      "sourceUrl": "https://www.star-revue.com/catching-up-with-the-gowanus-canal-by-jorge-bello/",
+      "wordCount": 919,
+      "keywords": ["milestone", "cement", "in-situ", "stabilization", "3rd Street", "EPA", "sediment", "pollutants", "dredging", "bridge"],
+      "x": -140,
+      "y": 150
+    },
+    {
+      "id": 19,
+      "title": "Weekly 'hour of action' brings climate advocates together",
+      "type": "date night",
+      "year": 2025,
+      "blurb": "Known as the Climate Changemakers, the group, whose members range in age from 26 to 35, is part of a broader climate advocacy network. They host a weekly "hour of action," providing attendees with everything they need to participate. DeBare, a co-founder of the Brooklyn chapter, said typical tasks in the lead-up to an election month include phone banking, drafting personalized emails to local assembly members, and reading educational briefings on relevant laws. He said the goal is to equip people with enough resources to act without expecting them to be experts.",
+      "sourceUrl": "https://www.brooklynpaper.com/climate-changemakers-meet-weekly-gowanus/",
+      "wordCount": 843,
+      "keywords": ["climate", "advocacy", "activism", "phone banking", "assembly", "education", "community", "election", "DeBare", "Changemakers"],
+      "x": -105,
+      "y": 570
+    },
+    {
+      "id": 20,
+      "title": "Artists open their doors",
+      "type": "date night",
+      "year": 2025,
+      "blurb": "Rapidly-changing Gowanus has long been an artists haven, frequently decked out with public art displays and gallery shows, but the creators themselves often work behind closed doors, tucked away in converted industrial buildings and studio collectives. Open Studios is an annual celebration of local artists, and a chance for residents to truly get to know them.",
+      "sourceUrl": "https://www.brooklynpaper.com/artists-open-doors-gowanus-open-studios-2025/",
+      "wordCount": 838,
+      "keywords": ["artists", "Open Studios", "galleries", "studios", "industrial", "collectives", "art", "celebration", "creators", "community"],
+      "x": -70,
+      "y": 410
+    },
+    {
+      "id": 21,
+      "title": "The Shop Workspace opens coworking hub in Gowanus",
+      "type": "fortune telling",
+      "year": 2025,
+      "blurb": "Memberships start at $450 monthly for Commons access, including 3,000 square feet of coworking space, unlimited coffee and access to networking events. Private suites for individuals or teams of up to ten, beginning at $1,400 monthly, with flexible terms available. Day passes and hourly bookings for meeting and event spaces are also offered, starting at $40 per day.",
+      "sourceUrl": "https://www.brooklynpaper.com/the-shop-workspace-gowanus/",
+      "wordCount": 521,
+      "keywords": ["coworking", "workspace", "membership", "office", "networking", "suites", "coffee", "flexible", "meeting", "events"],
+      "x": -175,
+      "y": 330
+    },
+    {
+      "id": 22,
+      "title": "'The Heartbeat of Gowanus': New Groundswell mural",
+      "type": "art projects",
+      "year": 2025,
+      "blurb": "On Thursday, Aug. 21, FAC and Groundswell Community Mural Project unveiled "The Heartbeat of Gowanus," a large-scale community mural created by lead artists Kristy McCarthy and Yolande Delius in collaboration with 13 youth artists from Groundswell's Voices Her'd Visionaries program, local leaders and neighborhood residents. The mural, spanning the building's facade, pays tribute to the resilience and advocacy of Gowanus organizers and residents who have shaped the neighborhood through decades of struggle and transformation. It was created after months of research, interviews, a community listening session and on-the-street interviews with locals.",
+      "sourceUrl": "https://www.brooklynpaper.com/the-heartbeat-of-gowanus-mural-fac-groundswell/",
+      "wordCount": 826,
+      "keywords": ["mural", "Groundswell", "youth", "artists", "McCarthy", "Delius", "resilience", "advocacy", "community", "facade"],
+      "x": -60,
+      "y": 270
+    },
+    {
+      "id": 23,
+      "title": "flooding and community resilience",
+      "type": "weather report",
+      "year": 2025,
+      "blurb": ""The Dear Neighbor Project," a multi-site visual art exhibition by Brooklyn-based artist Tiffany Baker in collaboration with the Van Alen Institute, aims to raise public awareness of flooding in Gowanus. The project captures residents' experiences during flood events through murals and outdoor sculptures at eight locations throughout the neighborhood. Each mural is paired with audio stories by longtime residents, students, small business owners and community leaders, who share what it's like to live in a flood-prone neighborhood, the aftermath of storms and the emotional toll of disaster. Many installations feature QR codes linking to the project's website, offering a deeper look at the stories and how the work came together.",
+      "sourceUrl": "https://www.brooklynpaper.com/gowanus-art-project-flooding-community-resilience/",
+      "wordCount": 953,
+      "keywords": ["flooding", "Dear Neighbor", "Tiffany Baker", "Van Alen", "resilience", "murals", "audio stories", "storms", "disaster", "QR codes"],
+      "x": -190,
+      "y": 550
+    },
+    {
+      "id": 24,
+      "title": "T4T celebrates three years of transgender comedy",
+      "type": "date night",
+      "year": 2025,
+      "blurb": "Brooklyn's original all-trans stand-up comedy show, T4T — short for "trans-for-trans" — is celebrating its third anniversary with a transgender comedy spectacular at the Bell House on Monday, June 16.",
+      "sourceUrl": "https://www.brooklynpaper.com/t4t-three-years-of-transgender-comedy/",
+      "wordCount": 813,
+      "keywords": ["transgender", "comedy", "T4T", "Bell House", "stand-up", "anniversary", "LGBTQ", "performance", "entertainment", "celebration"],
+      "x": -100,
+      "y": 630
+    },
+    {
+      "id": 25,
+      "title": "BIG design for Gowanus parking lot",
+      "type": "date night",
+      "year": 2025,
+      "blurb": "An attention-grabbing design by prominent Brooklyn architecture firm Bjarke Ingels Group, or BIG, for a parking lot on the corner of Third Avenue and Third Street in Gowanus seems unlikely to move forward now that the property has changed hands. While the new owners declined to comment specifically on their plans for the design, commissioned by the site's previous owner, they did tell Brownstoner they intend to build a 1,000-unit residential development with 1 million square feet — more than twice the size of the previous project.",
+      "sourceUrl": "https://www.brooklynpaper.com/big-gowanus-parking-lot-design/",
+      "wordCount": 605,
+      "keywords": ["BIG", "Bjarke Ingels", "architecture", "parking", "design", "Third Avenue", "residential", "development", "1000 units", "Brownstoner"],
+      "x": -135,
+      "y": 790
+    },
+    {
+      "id": 26,
+      "title": "Meet the microbes cleaning up the Gowanus Canal",
+      "type": "cryptids",
+      "year": 2025,
+      "blurb": "The bottom of the Gowanus Canal is not, strictly speaking, a hospitable environment. It's covered in a thick layer of contaminated sediment, the product of more than 150 years of industrial pollution and combined sewer overflow. The toxic sludge, nicknamed "black mayonnaise, is packed with coal tar, heavy metals, and long-banned industrial chemicals. Even with the federal Superfund cleanup about one-third complete, there are still tens of thousands of cubic yards of black mayonnaise at the bottom of the Gowanus. When it rains, combined sewer overflow dumps gallons of untreated sewage into the water. Despite it all, there's a thriving miniature ecosystem of billions of microbes just atop the sediment. What's more, researchers have found, those microbes are — very slowly — cleaning the canal themselves.",
+      "sourceUrl": "https://www.brooklynpaper.com/small-world-microbes-cleaning-gowanus-canal/",
+      "wordCount": 1299,
+      "keywords": ["microbes", "black mayonnaise", "sediment", "ecosystem", "bacteria", "cleanup", "coal tar", "CSO", "research", "self-cleaning"],
+      "x": -50,
+      "y": 540
+    },
+    {
+      "id": 27,
+      "title": "Affordable housing lottery opens in Gowanus",
+      "type": "fortune telling",
+      "year": 2025,
+      "blurb": "An affordable housing lottery has debuted for an under-construction tower on Gowanus' 4th Avenue, the latest of several lottery launches tied to the neighborhood's rezoning. Built on the site of a former taxi stand and garage at 380 4th Ave., the Longview will stand 175 feet tall with 17 stories and 197 apartments, according to city records. Included in the lottery are 50 units, all rent stabilized and income restricted, 40 of which could be deemed truly affordable. Those are targeted at households of one to five people earning between $35,589 and $100,620 a year, or 40-60% of Area Median Income, according to the listing.",
+      "sourceUrl": "https://www.brooklynpaper.com/affordable-housing-lotto-longview-gowanus/",
+      "wordCount": 590,
+      "keywords": ["affordable housing", "lottery", "Longview", "4th Avenue", "rent stabilized", "AMI", "rezoning", "apartments", "tower", "income restricted"],
+      "x": -165,
+      "y": 220
+    },
+    {
+      "id": 28,
+      "title": "artists turn an old Gowanus water tank into something beautiful",
+      "type": "art projects",
+      "year": 2025,
+      "blurb": "How much can a water tower mean to a neighborhood? Quite a bit, according to the artists of Gowanus. Last weekend, Arts Gowanus opened its fourth annual "Tower Show," featuring nearly 200 individual works of art all depicting the same object: the old water tower that serves as the org's logo.",
+      "sourceUrl": "https://www.brooklynpaper.com/tower-show-gowanus-tank-into-art/",
+      "wordCount": 685,
+      "keywords": ["water tower", "Tower Show", "Arts Gowanus", "art", "exhibition", "logo", "artists", "annual", "200 works", "neighborhood"],
+      "x": -115,
+      "y": 370
+    },
+    {
+      "id": 29,
+      "title": "Construction of long-delayed Gowanus Canal CSO tank",
+      "type": "art projects",
+      "year": 2025,
+      "blurb": "A long-delayed project critical to the success of the Gowanus Canal Superfund cleanup reached an early milestone this week, as the city finished excavating space for a massive underground sewer overflow tank. The Red Hook tank — formerly known as the Head End tank — will catch 8 million gallons of rainwater and combined sewer overflow during storms, preventing it from flowing right back into the freshly scrubbed canal.",
+      "sourceUrl": "https://www.brooklynpaper.com/excavation-complete-gowanus-canal-cso-tank/",
+      "wordCount": 800,
+      "keywords": ["CSO", "tank", "Red Hook", "Head End", "8 million gallons", "excavation", "underground", "sewer", "rainwater", "overflow"],
+      "x": -185,
+      "y": 680
+    },
+    {
+      "id": 30,
+      "title": "Premium grocery store, pottery studio",
+      "type": "fortune telling",
+      "year": 2025,
+      "blurb": "Two new businesses, a high-end grocery store and a pottery studio, are set to open in Gowanus this summer. Gowanus Marketplace and Hey Clay will both debut on the ground floor of a new mixed-use development, 420 Carroll, developers announced Thursday. The businesses will join hundreds of residential units, affordable artist studios, and a coworking space.",
+      "sourceUrl": "https://www.brooklynpaper.com/grocery-and-pottery-studio-to-open-gowanus/",
+      "wordCount": 469,
+      "keywords": ["grocery", "pottery", "Hey Clay", "420 Carroll", "Marketplace", "mixed-use", "development", "retail", "studio", "business"],
+      "x": -45,
+      "y": 190
+    },
+    {
+      "id": 31,
+      "title": "Affordable housing lottery",
+      "type": "fortune telling",
+      "year": 2025,
+      "blurb": "A newly constructed 17-story apartment tower on Gowanus' Fourth Avenue, made possible by the neighborhood's recent rezoning, has officially launched an affordable housing lottery for eligible renters. The Douglass Street Apartments building, which replaces a BP gas station, will have a total of 188 apartments and climbs to 175 feet, according to building permits. The lottery for the under-construction development at 164 Fourth Ave. (also 366 Douglass St.) includes 48 units, all rent-stabilized and income-restricted, 38 of which could be deemed truly affordable. According to the listing, those are targeted at households of one to five people earning between $33,875 and $67,080 a year, or 40% of Area Median Income.",
+      "sourceUrl": "https://www.brooklynpaper.com/affordable-housing-gowanus-tower/",
+      "wordCount": 596,
+      "keywords": ["Douglass Street", "Fourth Avenue", "188 apartments", "BP station", "lottery", "rent stabilized", "40% AMI", "rezoning", "17 stories", "housing"],
+      "x": -200,
+      "y": 300
+    },
+    {
+      "id": 32,
+      "title": "industrial heritage",
+      "type": "art projects",
+      "year": 2025,
+      "blurb": "A limited-run art exhibition at a new luxury development in Gowanus marries the nabe's industrial history with its more high-end future. "Tides at Gowanus Wharf," featuring works by five local artists, will run for three days at the new Union Channel building on Third Avenue starting Jan. 24. Union Channel, the first of four residential buildings at Gowanus Wharf, is set to open this spring.",
+      "sourceUrl": "https://www.brooklynpaper.com/tides-at-gowanus-whart-exhibit-opens/",
+      "wordCount": 536,
+      "keywords": ["Tides", "Gowanus Wharf", "Union Channel", "Third Avenue", "exhibition", "industrial history", "luxury", "artists", "residential", "heritage"],
+      "x": -85,
+      "y": 710
+    },
+    {
+      "id": 33,
+      "title": "affordable artist studios",
+      "type": "fortune telling",
+      "year": 2025,
+      "blurb": "A lottery for six affordable artist studios in Gowanus— the first of more than 100 such studios slated to come to the neighborhood in the next few years — is now open. The studios, built as part of a Community Benefits Agreement signed ahead of the Gowanus rezoning, are set to open this spring at a new coworking space, The Shop, at 420 Carroll St. Priced at around $1.66 per square foot per month, the studios will rent for between $275 and $331 per month, or $3,300 and $3,800 annually. Per the CBA, rents can only increase by 2% per year.",
+      "sourceUrl": "https://www.brooklynpaper.com/lottery-affordable-artist-studios-gowanus/",
+      "wordCount": 1125,
+      "keywords": ["artist studios", "affordable", "lottery", "CBA", "Community Benefits", "The Shop", "420 Carroll", "$275", "rezoning", "workspace"],
+      "x": -150,
+      "y": 470
+    },
+    {
+      "id": 34,
+      "title": "holiday pies",
+      "type": "weather report",
+      "year": 2025,
+      "blurb": "While many New Yorkers prepare for holiday gatherings this week, 34 families in Gowanus Houses face a grim reality due to a gas line shutdown that has plagued three NYCHA buildings for weeks. To spread some holiday cheer, Council Member Shahana Hanif (D-Brooklyn), her staff, members of the Youth Fellowship Council, and the Gowanus Houses Tenant Association distributed 37 freshly made holiday pies from Four & Twenty Blackbirds bakery.",
+      "sourceUrl": "https://www.brooklynpaper.com/hanif-gowanus-houses-pies/",
+      "wordCount": 960,
+      "keywords": ["Gowanus Houses", "NYCHA", "gas line", "Shahana Hanif", "holiday", "pies", "Four & Twenty Blackbirds", "Tenant Association", "shutdown", "public housing"],
+      "x": -120,
+      "y": 850
+    },
+    {
+      "id": 35,
+      "title": "Luxury apartments",
+      "type": "fortune telling",
+      "year": 2024,
+      "blurb": "A sleek new addition to the Gowanus-Park Slope border, 655 Union Street is nearing completion and set to welcome residents in early 2025, just steps from the Union Street subway station. Brian Ezra, principal and co-founder of Avery Hall, a Brooklyn-based real estate development company, told Brooklyn Paper that he was excited about completing the high-end mixed-use building, which broke ground in 2023. The team purchased the half-acre parcel, once home to a gas station, in partnership with Gindi Capital in 2019. Ezra shared that the team had long eyed the site for its strategic and attractive development potential for residential space.",
+      "sourceUrl": "https://www.brooklynpaper.com/655-union-street-gowanus-park-slope/",
+      "wordCount": 684,
+      "keywords": ["655 Union", "luxury", "Avery Hall", "Park Slope", "Brian Ezra", "Gindi Capital", "subway", "mixed-use", "gas station", "residential"],
+      "x": -35,
+      "y": 620
+    },
+    {
+      "id": 36,
+      "title": "protect biz, longtime residents",
+      "type": "weather report",
+      "year": 2024,
+      "blurb": "Three years after the Gowanus rezoning was formally approved, its impacts are sweeping through the neighborhood. Construction is underway at dozens of sites across the neighborhood and some all-new buildings have already topped out and filled with tenants. But the rezoning included more than just new residential buildings. When politicians green-lit the upzoning in 2021, they also agreed to abide by 56 Points of Agreement — things the city would do to ensure it would benefit the existing residents of the neighborhood, not just the approximately 20,000 new ones expected to move in as a result of the rezoning.",
+      "sourceUrl": "https://www.brooklynpaper.com/gowanusians-move-form-bid-biz-residents/",
+      "wordCount": 1395,
+      "keywords": ["rezoning", "56 Points", "construction", "longtime residents", "upzoning", "2021", "20000 new residents", "existing community", "displacement", "protections"],
+      "x": -175,
+      "y": 110
+    },
+    {
+      "id": 37,
+      "title": "National Grid says it pays 'more than its fair share'",
+      "type": "controversy",
+      "year": 2024,
+      "blurb": "Utility giant National Grid, one of the many parties responsible for turning the Gowanus Canal into a toxic Superfund site, is claiming its fellow polluters aren't doing their fair share to clean up the canal — and that it can no longer shoulder the cost alone. Earlier this month, the company filed a federal lawsuit against 40 defendants — including the City of New York and Con Edison — urging the court to force them to participate in the cleanup and pay National Grid back for the money it's spent so far.",
+      "sourceUrl": "https://www.brooklynpaper.com/national-grid-fair-share-gowanus-canal-suit/",
+      "wordCount": 1025,
+      "keywords": ["National Grid", "lawsuit", "Con Edison", "40 defendants", "PRP", "liability", "cleanup costs", "fair share", "utility", "legal"],
+      "x": -95,
+      "y": 90
+    },
+    {
+      "id": 38,
+      "title": "art, culture and surprises",
+      "type": "date night",
+      "year": 2024,
+      "blurb": "Gowanus is a well-known haven for artists making the most of an industrial neighborhood, but their creations can be hard to find — unless you know where to look. On Oct. 19 and 20, Brooklynites will be welcomed into the inner sanctum at Arts Gowanus' Gowanus Open Studios. Hundreds of artists will throw open their doors and invite locals to explore their studios, check out their work, and maybe take a piece or two home.",
+      "sourceUrl": "https://www.brooklynpaper.com/gowanus-open-studios-art-culture-2024/",
+      "wordCount": 761,
+      "keywords": ["Open Studios", "Arts Gowanus", "artists", "October", "studios", "art tour", "industrial", "galleries", "local art", "Brooklyn"],
+      "x": -160,
+      "y": 760
+    },
+    {
+      "id": 39,
+      "title": "toxic chemicals beneath Gowanus school",
+      "type": "weather report",
+      "year": 2024,
+      "blurb": "A ventilation system to protect students at a Gowanus elementary school from contaminated air has passed its first round of testing, according to state officials, but isn't set to be fully operational until at least after Christmas. Officials tested the air at P.S. 372 The Children's School earlier this year as part of a larger Soil Vapor Intrusion study in the neighborhood surrounding the toxic Gowanus Canal Superfund site. The results showed the air inside the school's main building on Carroll Street was safe by state standards. But in the soil below the school's annex building on First Street, officials found very high levels of oil-related chemicals including ethylbenzene, trimethylbenzene, and xylenes. Exposure to those chemicals over long periods of time, or at high concentrations, can lead to serious health effects.",
+      "sourceUrl": "https://www.brooklynpaper.com/system-contain-chemicals-gowanus-school-update-officials/",
+      "wordCount": 1524,
+      "keywords": ["P.S. 372", "school", "ventilation", "ethylbenzene", "xylenes", "soil vapor", "Children's School", "indoor air", "contamination", "health"],
+      "x": -205,
+      "y": 380
+    },
+    {
+      "id": 40,
+      "title": "pickleball",
+      "type": "fortune telling",
+      "year": 2024,
+      "blurb": "A brand-new indoor pickleball facility is making itself at home in Gowanus.",
+      "sourceUrl": "https://www.brooklynpaper.com/pklyn-indoor-pickleball-open-gowanus/",
+      "wordCount": 411,
+      "keywords": ["pickleball", "indoor", "sports", "facility", "recreation", "PKLYN", "fitness", "courts", "activity", "Brooklyn"],
+      "x": -40,
+      "y": 760
+    },
+    {
+      "id": 41,
+      "title": "Fish Queen",
+      "type": "cryptids",
+      "year": 2024,
+      "blurb": "Before it was the subject of federal attention, the canal was rumored to be a favored dumping ground for mafiosos. Before that, it was a critical hub for shipping and industry. And long before that, it was a humble creek where Native Americans farmed and European settlers searched for oysters. The full history will be recounted through song on Aug. 30, as Wes Braver's new musical "The Fish Queen of the Gowanus Canal" debuts for two nights only on a floating stage on the surface of the canal.",
+      "sourceUrl": "https://www.brooklynpaper.com/fish-queen-gowanus-canal-musical-debut/",
+      "wordCount": 920,
+      "keywords": ["musical", "Fish Queen", "Wes Braver", "floating stage", "mafia", "oysters", "Native Americans", "history", "performance", "theater"],
+      "x": -75,
+      "y": 210
+    },
+    {
+      "id": 42,
+      "title": "Creatures of the Canal",
+      "type": "cryptids",
+      "year": 2024,
+      "blurb": "Legend has it that back in the day, America's most polluted canal was dumping ground for mobsters who met an unfortunate and untimely ending. In the 1950s, a shark accidentally wound up in the Gowanus Canal and met its demise when it became the target of shooting practice for the NYPD. In 2007, Sludgie, a 12-foot minke whale, took the wrong turn and ended up in the Gowanus, where it died. Sludgie's death, however, wasn't in vain, since it helped inspire the cleanup of the canal.",
+      "sourceUrl": "https://www.brooklynpaper.com/creatures-canal-first-gowanus-art-parade/",
+      "wordCount": 1043,
+      "keywords": ["Sludgie", "whale", "shark", "1950s", "NYPD", "mobsters", "dumping ground", "minke whale", "death", "legend"],
+      "x": -110,
+      "y": 440
+    },
+    {
+      "id": 43,
+      "title": "citizen scientist",
+      "type": "weather report",
+      "year": 2024,
+      "blurb": "It looks like it's raining in Gowanus. It could be — the sky is sunless and gray, and rings form on the surface of the Gowanus Canal every so often — but it isn't. The cause of the rings is methane gas, released by decomposing organic material, which lies on the bottom of the canal. Dead plants make up some of it, but mostly, it's human feces, which ends up in the canal during rain storms when the combined sewer system can't handle the increased water flow.",
+      "sourceUrl": "https://www.brooklynpaper.com/data-gary-francis-monitor-gowanus-canal/",
+      "wordCount": 1836,
+      "keywords": ["methane", "gas", "Gary Francis", "rings", "monitoring", "feces", "sewage", "data", "citizen science", "decomposition"],
+      "x": -145,
+      "y": 330
+    }
   ]
 }
-

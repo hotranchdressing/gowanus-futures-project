@@ -1,7 +1,9 @@
 // Configuration
 const CONFIG = {
-  nodeRadius: 8,
-  revealedNodeRadius: 12,
+  minNodeRadius: 6,
+  maxNodeRadius: 20,
+  minStuckRadius: 10,
+  maxStuckRadius: 25,
   connectionColor: '#DEB887',
   revealedNodeColor: '#E07A5F',
   otherUserColor: '#81B29A',
@@ -91,6 +93,26 @@ async function loadNodes() {
     updateStats();
   } catch (error) {
     console.error('Error loading nodes:', error);
+  }
+}
+
+function getNodeRadius(node, stuck = false) {
+  if (!node.wordCount) {
+    // Default size if no word count
+    return stuck ? 12 : 8;
+  }
+  
+  // Scale radius based on word count
+  // Adjust these values based on your data range
+  const minWords = 100;
+  const maxWords = 100000;
+  
+  const normalized = Math.min(Math.max((node.wordCount - minWords) / (maxWords - minWords), 0), 1);
+  
+  if (stuck) {
+    return CONFIG.minStuckRadius + (normalized * (CONFIG.maxStuckRadius - CONFIG.minStuckRadius));
+  } else {
+    return CONFIG.minNodeRadius + (normalized * (CONFIG.maxNodeRadius - CONFIG.minNodeRadius));
   }
 }
 
@@ -401,7 +423,7 @@ function draw() {
 }
 
 function drawNode(node) {
-  const radius = node.stuck ? CONFIG.revealedNodeRadius : CONFIG.nodeRadius;
+  const radius = getNodeRadius(node, node.stuck);
   
   // Color based on state
   let nodeColor;
@@ -483,13 +505,13 @@ async function handleCanvasClick(e) {
   const x = e.clientX - rect.left;
   const y = e.clientY - rect.top;
   
-  const clickedNode = nodes.find(node => {
-    if (!node.revealed) return false;
-    const dx = x - node.x;
-    const dy = y - node.y;
-    const radius = node.stuck ? CONFIG.revealedNodeRadius : CONFIG.nodeRadius;
-    return Math.sqrt(dx * dx + dy * dy) <= radius;
-  });
+const clickedNode = nodes.find(node => {
+  if (!node.revealed) return false;
+  const dx = x - node.x;
+  const dy = y - node.y;
+  const radius = getNodeRadius(node, node.stuck);
+  return Math.sqrt(dx * dx + dy * dy) <= radius;
+});
   
   if (clickedNode) {
     if (!clickedNode.stuck) {
@@ -541,22 +563,32 @@ function handleCanvasHover(e) {
   const y = e.clientY - rect.top;
   
   const hoverNode = nodes.find(node => {
-    if (!node.revealed) return false;
-    const dx = x - node.x;
-    const dy = y - node.y;
-    const radius = node.stuck ? CONFIG.revealedNodeRadius : CONFIG.nodeRadius;
-    return Math.sqrt(dx * dx + dy * dy) <= radius;
-  });
+  if (!node.revealed) return false;
+  const dx = x - node.x;
+  const dy = y - node.y;
+  const radius = getNodeRadius(node, node.stuck);
+  return Math.sqrt(dx * dx + dy * dy) <= radius;
+});
   
   canvas.style.cursor = hoverNode ? 'pointer' : 'default';
 }
 
 function showNodeInfo(node) {
   const panel = document.getElementById('node-info-panel');
-  document.getElementById('panel-title').textContent = node.title;
+  
+  // Make title clickable if there's a source URL
+  if (node.sourceUrl) {
+    document.getElementById('panel-title').innerHTML = 
+      `<a href="#" onclick="openSourceWindow('${node.sourceUrl}', '${node.title}'); return false;" style="color: #5C4033; text-decoration: underline; cursor: pointer;">${node.title}</a>`;
+  } else {
+    document.getElementById('panel-title').textContent = node.title;
+  }
+  
   document.getElementById('panel-meta').textContent = 
     `${node.type} • ${node.year}`;
-  document.getElementById('panel-content').textContent = node.content;
+  
+  // Use blurb instead of content
+  document.getElementById('panel-content').textContent = node.blurb || node.content || '';
   
   let statsHTML = `
     <div>Revealed ${node.searches} time${node.searches !== 1 ? 's' : ''}</div>
@@ -564,19 +596,23 @@ function showNodeInfo(node) {
     <div>${node.stuck ? 'Collected' : 'Drifting'}</div>
   `;
   
+  if (node.wordCount) {
+    statsHTML += `<div>${node.wordCount.toLocaleString()} words</div>`;
+  }
+  
   // Show community meeting invitation after 10+ clicks
   if (clickSequence.length >= 10) {
     statsHTML += `
-      <div style="margin-top: 20px; padding-top: 15px;">
+      <div style="margin-top: 20px; padding-top: 15px; border-top: 2px solid #DEB887;">
         <p style="font-size: 13px; margin-bottom: 10px; line-height: 1.5;">
-          Do you have an opinion about this?
+          Do you have an opinion about this? Click to voice your thoughts.
         </p>
         <button onclick="window.location.href='/community'" style="
           width: 100%;
           padding: 12px;
-          background: #fefefeff;
-          border: 2px solid #000000ff;
-          color: #000000ff;
+          background: #E07A5F;
+          border: 2px solid #8B4513;
+          color: #fff;
           font-weight: bold;
           cursor: pointer;
           font-size: 14px;
@@ -585,16 +621,16 @@ function showNodeInfo(node) {
     `;
   }
   
-  // Keep the special portal nodes (21, 22) for direct access
+  // Portal nodes
   if (node.id === 21) {
     statsHTML += `
-      <div style="margin-top: 15px; padding-top: 15px;">
+      <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #DEB887;">
         <button onclick="window.location.href='/community'" style="
           width: 100%;
           padding: 12px;
-          background: #ffffffff;
-          border: 2px solid #000000ff;
-          color: #000000ff;
+          background: #E07A5F;
+          border: 2px solid #8B4513;
+          color: #fff;
           font-weight: bold;
           cursor: pointer;
           font-size: 14px;
@@ -603,17 +639,17 @@ function showNodeInfo(node) {
     `;
   } else if (node.id === 22) {
     statsHTML += `
-      <div style="margin-top: 15px; padding-top: 15px;">
+      <div style="margin-top: 15px; padding-top: 15px; border-top: 2px solid #DEB887;">
         <button onclick="window.location.href='/oracle'" style="
           width: 100%;
           padding: 12px;
-          background: #ffffffff;
-          border: 2px solid #000000ff;
-          color: #000000ff;
+          background: #3D5A80;
+          border: 2px solid #8B4513;
+          color: #fff;
           font-weight: bold;
           cursor: pointer;
           font-size: 14px;
-        ">PROCEED TO 2050</button>
+        ">CONSULT THE ORACLE →</button>
       </div>
     `;
   }
@@ -626,3 +662,79 @@ function closePanel() {
   document.getElementById('node-info-panel').classList.add('hidden');
   selectedNode = null;
 }
+
+// Global function for opening source windows
+window.openSourceWindow = function(url, title) {
+  // Create overlay
+  const overlay = document.createElement('div');
+  overlay.id = 'source-overlay';
+  overlay.style.cssText = `
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `;
+  
+  // Create window
+  const sourceWindow = document.createElement('div');
+  sourceWindow.style.cssText = `
+    width: 90%;
+    max-width: 1000px;
+    height: 85%;
+    background: #F5F1E8;
+    border: 3px solid #8B4513;
+    box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+  `;
+  
+  // Create title bar
+  const titleBar = document.createElement('div');
+  titleBar.style.cssText = `
+    background: linear-gradient(90deg, #000080, #4c70c7);
+    color: #fff;
+    padding: 6px 10px;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  `;
+  titleBar.innerHTML = `
+    <span>${title}</span>
+    <button id="close-source" style="
+      background: #CD853F;
+      border: 2px solid #8B4513;
+      width: 28px;
+      height: 28px;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      color: #5C4033;
+    ">×</button>
+  `;
+  
+  // Create iframe
+  const iframe = document.createElement('iframe');
+  iframe.src = url;
+  iframe.style.cssText = `
+    flex: 1;
+    border: none;
+    width: 100%;
+  `;
+  
+  // Assemble
+  sourceWindow.appendChild(titleBar);
+  sourceWindow.appendChild(iframe);
+  overlay.appendChild(sourceWindow);
+  document.body.appendChild(overlay);
+  
+  // Close handlers
+  const closeWindow = () => overlay.remove();
+  document.getElementById('close-source').addEventListener('click', closeWindow);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeWindow();
+  });
+};
