@@ -579,11 +579,12 @@ function showNodeInfo(node) {
   
   // Make title clickable if there's a source URL
   if (node.sourceUrl) {
-    document.getElementById('panel-title').innerHTML = 
-      `<a href="#" onclick="openSourceWindow('${node.sourceUrl}', '${node.title}'); return false;" style="color: #5C4033; text-decoration: underline; cursor: pointer;">${node.title}</a>`;
-  } else {
-    document.getElementById('panel-title').textContent = node.title;
-  }
+  const escapedTitle = node.title.replace(/'/g, "\\'");
+  document.getElementById('panel-title').innerHTML = 
+    `<a href="${node.sourceUrl}" onclick="openSourceWindow('${node.sourceUrl}', '${escapedTitle}'); return false;" style="color: #5C4033; text-decoration: underline; cursor: pointer;">${node.title}</a>`;
+} else {
+  document.getElementById('panel-title').textContent = node.title;
+}
   
   document.getElementById('panel-meta').textContent = 
     `${node.type} • ${node.year}`;
