@@ -231,7 +231,7 @@ function askOracle(question) {
   // Sentence 1: Bureaucratic opening (50% EPA, 20% user)
   const bureaucratic = generateWithWeights({
     epa: 0.3,
-    tiktok: 0.1
+    tiktok: 0.1,
     cyborg: 0.1,
     reviews: 0.1,
     twitter: 0.2,

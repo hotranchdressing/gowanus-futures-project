@@ -88,7 +88,8 @@ function speakFeedback(node) {
 
 function stopNodeSpeech(nodeId) {
   if (speechInstances.has(nodeId)) {
-    window.speechSynthesis.cancel(); // Stop all current speech
+    const utterance = speechInstances.get(nodeId);
+    // Just remove from tracking - don't cancel all speech
     speechInstances.delete(nodeId);
   }
 }
@@ -489,6 +490,10 @@ function handleCanvasClick(e) {
 
     // Auto-transition to Oracle after 8 clicks
     if (clickedNodesCount >= 8) {
+      // NOW cancel all speech before transitioning
+      window.speechSynthesis.cancel();
+      speechInstances.clear();
+      
       showFloatingNotification('Transitioning to Oracle...');
       setTimeout(() => {
         window.location.href = '/oracle';
