@@ -607,6 +607,9 @@ function draw() {
   // Draw faint grid for infinite field effect
   drawGrid(displayWidth, displayHeight);
 
+  // Draw type connections (thin gray lines between same-type nodes)
+  drawTypeConnections();  // ADD THIS LINE
+
   // Draw other users' connections first (underneath)
   otherUserConnections.forEach(conn => {
     drawConnection(conn.from, conn.to, conn.color, CONFIG.otherConnectionWidth);
@@ -646,6 +649,39 @@ function drawGrid(width, height) {
     ctx.lineTo(width, y);
     ctx.stroke();
   }
+}
+
+function drawTypeConnections() {
+  const revealedNodes = nodes.filter(n => n.revealed);
+  
+  // Group nodes by type
+  const typeGroups = {};
+  revealedNodes.forEach(node => {
+    if (!typeGroups[node.type]) {
+      typeGroups[node.type] = [];
+    }
+    typeGroups[node.type].push(node);
+  });
+  
+  // Draw connections between nodes of the same type
+  Object.values(typeGroups).forEach(group => {
+    if (group.length < 2) return; // Need at least 2 nodes to connect
+    
+    // Connect each node to every other node in the same type
+    for (let i = 0; i < group.length; i++) {
+      for (let j = i + 1; j < group.length; j++) {
+        const node1 = group[i];
+        const node2 = group[j];
+        
+        ctx.strokeStyle = 'rgba(128, 128, 128, 0.15)'; // Thin gray, very transparent
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(node1.x, node1.y);
+        ctx.lineTo(node2.x, node2.y);
+        ctx.stroke();
+      }
+    }
+  });
 }
 
 function drawNode(node) {
