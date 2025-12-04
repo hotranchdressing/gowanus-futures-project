@@ -987,7 +987,7 @@ function createIframeWindow(url, title) {
   titleBar.style.cssText = `
     background: linear-gradient(90deg, #5a5853ff, #e8e8dbff);
     color: #fff;
-    padding: 6px 10px;
+    padding: 3px 5px;
     font-weight: 700;
     display: flex;
     justify-content: space-between;
@@ -996,10 +996,10 @@ function createIframeWindow(url, title) {
   titleBar.innerHTML = `
     <span>${title}</span>
     <button id="close-source" style="
-      background: #000000ff;
-      width: 28px;
-      height: 28px;
-      font-size: 18px;
+      background: #ffffffff;
+      width: 14px;
+      height: 14px;
+      font-size: 8px;
       line-height: 1;
       cursor: pointer;
       color: #000000ff;
