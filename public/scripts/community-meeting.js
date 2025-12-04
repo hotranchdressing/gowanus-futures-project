@@ -240,6 +240,21 @@ async function handleSubmit() {
       // Speak the new feedback
       setTimeout(() => speakFeedback(newNode), 500);
 
+// Save to oracle corpus
+      try {
+        await fetch('/api/add-to-corpus', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            text: comment,
+            type: 'feedback',
+            timestamp: new Date().toISOString()
+          })
+        });
+      } catch (error) {
+        console.warn('Failed to add to corpus:', error);
+      }
+
       // Broadcast to other users
       try {
         await fetch('/api/broadcast-feedback', {

@@ -376,19 +376,30 @@ async function handleSearch() {
   }
 
   // Broadcast to other users
-  try {
-    await fetch('/api/broadcast-search', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query: query,
-        location: 'Brooklyn, NY',
-        nodes_revealed: revealedIds
-      })
-    });
-  } catch (error) {
-    console.warn('Failed to broadcast search:', error);
-  }
+try {
+  await fetch('/api/broadcast-search', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      query: query,
+      location: 'Brooklyn, NY',
+      nodes_revealed: revealedIds
+    })
+  });
+  
+  // ADD THIS: Save to oracle corpus
+  await fetch('/api/add-to-corpus', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      text: query,
+      type: 'search',
+      timestamp: new Date().toISOString()
+    })
+  });
+} catch (error) {
+  console.warn('Failed to broadcast search:', error);
+}
 
   updateStats();
 }

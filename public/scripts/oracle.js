@@ -89,11 +89,33 @@ async function initOracle() {
     models.twitter = new MarkovGenerator(corpora.twitter, 2);
     models.cyborg = new MarkovGenerator(corpora.cyborg, 2);
 
+    // Load user-generated corpus
+    await loadUserCorpus();
+
     modelsLoaded = true;
     console.log('✓ Oracle ready');
   } catch (error) {
     console.error('Error loading oracle:', error);
     showStatus('Error loading oracle systems');
+  }
+}
+
+async function loadUserCorpus() {
+  try {
+    const response = await fetch('/api/get-corpus');
+    const data = await response.json();
+
+    if (data.corpus && data.corpus.length > 0) {
+      const userTexts = data.corpus.map(entry => entry.text);
+      models.user = new MarkovGenerator(userTexts, 2);
+      console.log('✓ User corpus loaded');
+    } else {
+      console.log('No user corpus yet');
+      models.user = new MarkovGenerator([], 2); // Empty model
+    }
+  } catch (error) {
+    console.warn('Failed to load user corpus:', error);
+    models.user = new MarkovGenerator([], 2); // Empty model on error
   }
 }
 
@@ -165,10 +187,29 @@ function handleNewAnalysis(data) {
 }
 
 function generateWithWeights(weights) {
-  const combined = MarkovGenerator.combine(
-    [models.epa, models.blogs, models.youtube, models.tiktok, models.reviews, models.twitter, models.cyborg],
-    [weights.epa, weights.blogs || 0, weights.youtube || 0, weights.tiktok || 0, weights.reviews, weights.twitter, weights.cyborg]
-  );
+  const modelsList = [
+    models.epa, 
+    models.blogs, 
+    models.youtube, 
+    models.tiktok, 
+    models.reviews, 
+    models.twitter, 
+    models.cyborg,
+    models.user  // ADD user model
+  ];
+  
+  const weightsList = [
+    weights.epa, 
+    weights.blogs || 0, 
+    weights.youtube || 0, 
+    weights.tiktok || 0, 
+    weights.reviews, 
+    weights.twitter, 
+    weights.cyborg,
+    weights.user || 0  // ADD user weight
+  ];
+
+  const combined = MarkovGenerator.combine(modelsList, weightsList);
 
   for (let i = 0; i < 50; i++) {
     const sentence = combined.generate(50, 10);
@@ -187,30 +228,33 @@ function askOracle(question) {
 
   const responses = [];
 
-  // Sentence 1: Bureaucratic opening (70% EPA)
+  // Sentence 1: Bureaucratic opening (50% EPA, 20% user)
   const bureaucratic = generateWithWeights({
-    epa: 0.7,
+    epa: 0.5,
     cyborg: 0.1,
     reviews: 0.1,
-    twitter: 0.1
+    twitter: 0.1,
+    user: 0.2  // Include user corpus
   });
   responses.push(bureaucratic);
 
-  // Sentence 2: Medium contamination (20% EPA, 40% cyborg)
+  // Sentence 2: Medium contamination (20% EPA, 30% cyborg, 20% user)
   const prediction = generateWithWeights({
     epa: 0.2,
-    cyborg: 0.4,
-    reviews: 0.2,
-    twitter: 0.2
+    cyborg: 0.3,
+    reviews: 0.1,
+    twitter: 0.2,
+    user: 0.2  // Include user corpus
   });
   responses.push(prediction);
 
-  // Sentence 3: High contamination (5% EPA, 50% cyborg)
+  // Sentence 3: High contamination (5% EPA, 40% cyborg, 30% user)
   const mystical = generateWithWeights({
     epa: 0.05,
-    cyborg: 0.5,
-    reviews: 0.225,
-    twitter: 0.225
+    cyborg: 0.4,
+    reviews: 0.1,
+    twitter: 0.15,
+    user: 0.3  // Heavy user corpus influence
   });
   responses.push(mystical);
 
@@ -263,6 +307,21 @@ async function handleSubmit() {
   if (!modelsLoaded) {
     showStatus('Oracle systems still initializing');
     return;
+  }
+
+  // Save query to corpus
+  try {
+    await fetch('/api/add-to-corpus', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text: question,
+        type: 'oracle_query',
+        timestamp: new Date().toISOString()
+      })
+    });
+  } catch (error) {
+    console.warn('Failed to save query to corpus:', error);
   }
 
   // Show mystical animation
