@@ -1,15 +1,15 @@
 // Configuration
 const CONFIG = {
-  minNodeRadius: 6,
-  maxNodeRadius: 20,
-  minStuckRadius: 10,
-  maxStuckRadius: 25,
+  minNodeRadius: 10,
+  maxNodeRadius: 28,
+  minStuckRadius: 14,
+  maxStuckRadius: 32,
   connectionColor: '#DEB887',
   revealedNodeColor: '#E07A5F',
   otherUserColor: '#81B29A',
   connectionWidth: 2,
   otherConnectionWidth: 1,
-  labelOffset: 15,
+  labelOffset: 18,
   driftSpeed: 0.25,
   waveAmplitude: 0.02,
   waveFrequency: 0.001
@@ -273,13 +273,13 @@ function handleRemoteSearch(data) {
     nodes_revealed.forEach(nodeId => {
       const node = nodes.find(n => n.id === nodeId);
       if (node && !node.revealed) {
-        node.revealed = true;
-        node.revealedBy = 'other';
-        revealedNodeIds.add(node.id);
-        // Spawn at left edge
-        node.x = -50;
-        node.y = Math.random() * canvas.clientHeight;
-      }
+  node.revealed = true;
+  node.revealedBy = 'other';
+  revealedNodeIds.add(node.id);
+  // Spawn at random position
+  node.x = Math.random() * canvas.clientWidth;   // was -50
+  node.y = Math.random() * canvas.clientHeight;  // was already random
+}
     });
   }
 }
@@ -298,6 +298,7 @@ function displayFloatingSearch(query) {
   const floater = document.createElement('div');
   floater.className = 'floating-search';
   floater.textContent = query;
+  floater.style.fontSize = '18px';
   floater.style.color = CONFIG.otherUserColor;
   floater.style.left = Math.random() * 80 + 10 + '%';
   floater.style.top = Math.random() * 30 + 10 + '%';
@@ -337,15 +338,15 @@ async function handleSearch() {
   if (matches.length > 0) {
     matches.forEach(node => {
       if (!revealedNodeIds.has(node.id)) {
-        revealedNodeIds.add(node.id);
-        node.revealed = true;
-        node.searches++;
-        node.revealedBy = 'self';
-        revealedIds.push(node.id);
-        // Spawn at left edge
-        node.x = -50;
-        node.y = Math.random() * canvas.clientHeight;
-      } else {
+  revealedNodeIds.add(node.id);
+  node.revealed = true;
+  node.searches++;
+  node.revealedBy = 'self';
+  revealedIds.push(node.id);
+  // Spawn at random position
+  node.x = Math.random() * canvas.clientWidth;   // was -50
+  node.y = Math.random() * canvas.clientHeight;  // already random
+} else {
         // If already floating, highlight it briefly
         highlightNode(node);
       }
@@ -359,16 +360,16 @@ async function handleSearch() {
     const randomCount = Math.min(3, unrevealed.length);
 
     for (let i = 0; i < randomCount; i++) {
-      const randomIndex = Math.floor(Math.random() * unrevealed.length);
-      const node = unrevealed.splice(randomIndex, 1)[0];
-      revealedNodeIds.add(node.id);
-      node.revealed = true;
-      node.revealedBy = 'self';
-      revealedIds.push(node.id);
-      // Spawn at left edge
-      node.x = -50;
-      node.y = Math.random() * canvas.clientHeight * 0.8 + canvas.clientHeight * 0.1;
-    }
+  const randomIndex = Math.floor(Math.random() * unrevealed.length);
+  const node = unrevealed.splice(randomIndex, 1)[0];
+  revealedNodeIds.add(node.id);
+  node.revealed = true;
+  node.revealedBy = 'self';
+  revealedIds.push(node.id);
+  // Spawn at random position
+  node.x = Math.random() * canvas.clientWidth;                              // was -50
+  node.y = Math.random() * canvas.clientHeight * 0.8 + canvas.clientHeight * 0.1;  // already random
+}
 
     document.getElementById('search-feedback').textContent =
       `No exact matches found. Revealing ${randomCount} related nodes.`;
@@ -686,8 +687,8 @@ function drawNode(node) {
   
 // Draw label for all revealed nodes
 if (node.revealed) {
-  ctx.fillStyle = '#5C4033';
-  ctx.font = '12px "MS Sans Serif"';
+  ctx.fillStyle = '#000000ff';
+  ctx.font = '15px "MS Sans Serif"';
   ctx.textAlign = 'center';
   
   // Add background for readability
@@ -701,7 +702,7 @@ if (node.revealed) {
   );
   
   // Draw text
-  ctx.fillStyle = '#5C4033';
+  ctx.fillStyle = '#000000ff';
   ctx.fillText(node.title, node.x, node.y + radius + CONFIG.labelOffset);
 }
 }
