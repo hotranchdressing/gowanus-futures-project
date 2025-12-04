@@ -693,7 +693,7 @@ if (node.revealed) {
   
   // Add background for readability
   const textWidth = ctx.measureText(node.title).width;
-  ctx.fillStyle = 'rgba(245, 241, 232, 0.9)'; // Semi-transparent cream background
+  ctx.fillStyle = 'rgba(245, 241, 232, 0.1)'; // Semi-transparent cream background
   ctx.fillRect(
     node.x - textWidth / 2 - 4, 
     node.y + radius + 4, 
