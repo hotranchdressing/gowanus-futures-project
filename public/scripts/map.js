@@ -875,9 +875,6 @@ function showNodeInfo(node) {
     <div>Viewed ${node.views} time${node.views !== 1 ? 's' : ''}</div>
     <div>${node.stuck ? 'Collected' : 'Drifting'}</div>
   `;
-
-  if (node.wordCount) {
-    statsHTML += `<div>${node.wordCount.toLocaleString()} words</div>`;
   }
   
   // Show community meeting invitation after 5+ clicks
