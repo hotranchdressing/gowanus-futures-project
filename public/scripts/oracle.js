@@ -91,13 +91,10 @@ async function initOracle() {
 
     console.log('✓ Core models loaded');
 
-    // Load user-generated corpus (non-blocking)
-    loadUserCorpus().catch(err => {
-      console.warn('User corpus load failed, continuing anyway:', err);
-      models.user = new MarkovGenerator([], 2);
-    });
+    // Load user-generated corpus (handles its own initialization)
+    await loadUserCorpus();
 
-    // Set loaded flag immediately after core models
+    // Set loaded flag
     modelsLoaded = true;
     console.log('✓ Oracle ready');
   } catch (error) {
@@ -107,36 +104,38 @@ async function initOracle() {
 }
 
 async function loadUserCorpus() {
+  // Initialize empty model first to prevent undefined errors
+  models.user = new MarkovGenerator([], 2);
+  
   try {
     const response = await fetch('/api/get-corpus');
     
     // Check if response is ok
     if (!response.ok) {
-      console.warn('Failed to fetch user corpus, continuing with empty model');
-      models.user = new MarkovGenerator([], 2);
+      console.warn('Failed to fetch user corpus, using empty model');
       return;
     }
     
     const data = await response.json();
 
     if (data.corpus && data.corpus.length > 0) {
-      // FIX: Extract just the text strings, not the whole objects
-      const userTexts = data.corpus.map(entry => entry.text).filter(text => text && typeof text === 'string');
+      // Extract just the text strings, not the whole objects
+      const userTexts = data.corpus
+        .map(entry => entry.text)
+        .filter(text => text && typeof text === 'string' && text.trim().length > 0);
       
       if (userTexts.length > 0) {
         models.user = new MarkovGenerator(userTexts, 2);
         console.log(`✓ User corpus loaded (${userTexts.length} entries)`);
       } else {
         console.log('No valid text in corpus');
-        models.user = new MarkovGenerator([], 2);
       }
     } else {
       console.log('No user corpus yet');
-      models.user = new MarkovGenerator([], 2); // Empty model
     }
   } catch (error) {
     console.warn('Failed to load user corpus:', error);
-    models.user = new MarkovGenerator([], 2); // Empty model on error
+    // models.user already initialized above
   }
 }
 
