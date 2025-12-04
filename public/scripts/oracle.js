@@ -105,7 +105,7 @@ async function initOracle() {
 
 async function loadUserCorpus() {
   // Initialize empty model first to prevent undefined errors
-  models.user = new MarkovGenerator([], 2);
+  models.user = new MarkovGenerator('', 2); // Pass empty string instead of empty array
   
   try {
     const response = await fetch('/api/get-corpus');
@@ -134,7 +134,9 @@ async function loadUserCorpus() {
       console.log('Filtered user texts:', userTexts); // DEBUG
       
       if (userTexts.length > 0) {
-        models.user = new MarkovGenerator(userTexts, 2);
+        // JOIN the array into a single string with spaces
+        const combinedText = userTexts.join(' ');
+        models.user = new MarkovGenerator(combinedText, 2);
         console.log(`✓ User corpus loaded (${userTexts.length} entries)`);
       } else {
         console.log('No valid text in corpus after filtering');
