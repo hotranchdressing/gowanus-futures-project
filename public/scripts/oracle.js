@@ -28,6 +28,22 @@ let yourAnalyses = 0;
 let clickSequence = []; // Track clicked nodes in order
 let connections = []; // Store connections between nodes
 
+function resizeCanvas() {
+  const wrapper = canvas.parentElement;
+  const dpr = window.devicePixelRatio || 1;
+
+  const displayWidth = wrapper.clientWidth;
+  const displayHeight = wrapper.clientHeight;
+
+  canvas.width = displayWidth * dpr;
+  canvas.height = displayHeight * dpr;
+
+  canvas.style.width = displayWidth + 'px';
+  canvas.style.height = displayHeight + 'px';
+
+  ctx.scale(dpr, dpr);
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', async () => {
   canvas = document.getElementById('oracle-canvas');
