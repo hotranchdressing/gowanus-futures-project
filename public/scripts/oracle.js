@@ -22,7 +22,7 @@ let analysesNodes = [];
 let canvas, ctx;
 let animationId = null;
 let selectedNode = null;
-let showingSpeculations = false;
+let showingSpeculations = true;
 let currentAnalysis = null;
 let yourAnalyses = 0;
 let clickSequence = []; // Track clicked nodes in order
