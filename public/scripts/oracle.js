@@ -117,21 +117,30 @@ async function loadUserCorpus() {
     }
     
     const data = await response.json();
+    
+    console.log('Corpus data received:', data); // DEBUG
 
-    if (data.corpus && data.corpus.length > 0) {
+    if (data.corpus && Array.isArray(data.corpus) && data.corpus.length > 0) {
       // Extract just the text strings, not the whole objects
       const userTexts = data.corpus
-        .map(entry => entry.text)
-        .filter(text => text && typeof text === 'string' && text.trim().length > 0);
+        .map(entry => {
+          // Handle both {text: "..."} and string entries
+          if (typeof entry === 'string') return entry;
+          if (entry && typeof entry.text === 'string') return entry.text;
+          return null;
+        })
+        .filter(text => text && text.trim().length > 0);
+      
+      console.log('Filtered user texts:', userTexts); // DEBUG
       
       if (userTexts.length > 0) {
         models.user = new MarkovGenerator(userTexts, 2);
         console.log(`✓ User corpus loaded (${userTexts.length} entries)`);
       } else {
-        console.log('No valid text in corpus');
+        console.log('No valid text in corpus after filtering');
       }
     } else {
-      console.log('No user corpus yet');
+      console.log('No user corpus yet or invalid format');
     }
   } catch (error) {
     console.warn('Failed to load user corpus:', error);
