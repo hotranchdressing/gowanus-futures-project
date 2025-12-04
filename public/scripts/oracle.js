@@ -103,12 +103,27 @@ async function initOracle() {
 async function loadUserCorpus() {
   try {
     const response = await fetch('/api/get-corpus');
+    
+    // Check if response is ok
+    if (!response.ok) {
+      console.warn('Failed to fetch user corpus, continuing with empty model');
+      models.user = new MarkovGenerator([], 2);
+      return;
+    }
+    
     const data = await response.json();
 
     if (data.corpus && data.corpus.length > 0) {
-      const userTexts = data.corpus.map(entry => entry.text);
-      models.user = new MarkovGenerator(userTexts, 2);
-      console.log('✓ User corpus loaded');
+      // FIX: Extract just the text strings, not the whole objects
+      const userTexts = data.corpus.map(entry => entry.text).filter(text => text && typeof text === 'string');
+      
+      if (userTexts.length > 0) {
+        models.user = new MarkovGenerator(userTexts, 2);
+        console.log(`✓ User corpus loaded (${userTexts.length} entries)`);
+      } else {
+        console.log('No valid text in corpus');
+        models.user = new MarkovGenerator([], 2);
+      }
     } else {
       console.log('No user corpus yet');
       models.user = new MarkovGenerator([], 2); // Empty model
