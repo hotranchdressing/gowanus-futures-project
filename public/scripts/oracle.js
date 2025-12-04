@@ -56,22 +56,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   initializePusher();
 });
 
-function resizeCanvas() {
-  const wrapper = canvas.parentElement;
-  const dpr = window.devicePixelRatio || 1;
-
-  const displayWidth = wrapper.clientWidth;
-  const displayHeight = wrapper.clientHeight;
-
-  canvas.width = displayWidth * dpr;
-  canvas.height = displayHeight * dpr;
-
-  canvas.style.width = displayWidth + 'px';
-  canvas.style.height = displayHeight + 'px';
-
-  ctx.scale(dpr, dpr);
-}
-
 async function initOracle() {
   console.log('Loading oracle corpora...');
 
@@ -89,9 +73,15 @@ async function initOracle() {
     models.twitter = new MarkovGenerator(corpora.twitter, 2);
     models.cyborg = new MarkovGenerator(corpora.cyborg, 2);
 
-    // Load user-generated corpus
-    await loadUserCorpus();
+    console.log('✓ Core models loaded');
 
+    // Load user-generated corpus (non-blocking)
+    loadUserCorpus().catch(err => {
+      console.warn('User corpus load failed, continuing anyway:', err);
+      models.user = new MarkovGenerator([], 2);
+    });
+
+    // Set loaded flag immediately after core models
     modelsLoaded = true;
     console.log('✓ Oracle ready');
   } catch (error) {
